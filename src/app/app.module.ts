@@ -12,6 +12,7 @@ import { AdminPanelComponent } from './pages/admin-panel/admin-panel.component';
 import { AdminStoriesComponent } from './pages/admin-stories/admin-stories.component';
 import { AdminHeaderComponent } from './components/admin-header/admin-header.component';
 import { AdminCreateStoryComponent } from './pages/admin-create-story/admin-create-story.component';
+import { AdminStoryComponent } from './pages/admin-story/admin-story.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { AdminCreateStoryComponent } from './pages/admin-create-story/admin-crea
     AdminStoriesComponent,
     AdminHeaderComponent,
     AdminCreateStoryComponent,
+    AdminStoryComponent,
   ],
   imports: [
     BrowserModule,

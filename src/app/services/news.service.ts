@@ -15,6 +15,9 @@ export class NewsService {
   getAllStories(): Observable<ApiResponse<Story[]>> {
     return this.http.get<ApiResponse<Story[]>>(this._storyUrl);
   }
+  getStoryById(id: string): Observable<ApiResponse<Story>> {
+    return this.http.get<ApiResponse<Story>>(this._storyUrl + '/' + id);
+  }
   createStory(story: Story): Observable<ApiResponse<Story>> {
     return this.http.post<ApiResponse<Story>>(this._storyUrl, story);
   }

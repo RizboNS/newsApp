@@ -8,8 +8,7 @@
     width: 100%;
 }
 .info-wrapper {
-    width: 95%;
-    margin: auto;
+    width: 100%;
     margin-bottom: 1rem;
     border: 1px solid #ccc;
     padding: 10px;
@@ -21,18 +20,19 @@ button {
     max-width: 90%;
 }
 .main-wrapper {
+    width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 .editor-wrapper {
-    width: 46%;
+    width: 49.5%;
     border: 1px solid #ccc;
     padding: 10px;
     margin-bottom: 5px;
 }
 
 .preview-wrapper {
-    width: 46%;
+    width: 49.5%;
     border: 1px solid #ccc;
     padding: 10px;
     margin-bottom: 5px;
@@ -65,7 +65,28 @@ button {
 .category-wrapper select:focus {
     outline: none;
 }
-
+.upload-box {
+    display: inline-block;
+    margin: 0.2rem;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #000;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+.upload-box:hover {
+    background-color: #e0e0e0;
+}
+.upload-box:active {
+    background-color: #bdbdbd;
+}
+#file-upload-default {
+    display: none;
+}
 
 @media screen and (max-width: 1024px) {
     .main-wrapper {

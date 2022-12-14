@@ -1,8 +1,12 @@
 <div class="card" *ngFor="let story of stories">
   <div class="card-body">
+    <img src="{{ story.iconPath }}" alt="" class="card-img-top" />
     <h5 class="card-title">{{ story.title }}</h5>
     <p class="card-description">{{ story.description }}</p>
     <div>...</div>
-    <div>VIEW, EDIT, DELETE, PUBLISH, UNPUBLISH</div>
+    <div>
+      <a [routerLink]="['/admin/story', story.id]">View</a>
+      , EDIT, DELETE, PUBLISH, UNPUBLISH
+    </div>
   </div>
 </div>
