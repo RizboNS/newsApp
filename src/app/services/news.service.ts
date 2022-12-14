@@ -15,4 +15,7 @@ export class NewsService {
   getAllStories(): Observable<ApiResponse<Story[]>> {
     return this.http.get<ApiResponse<Story[]>>(this._storyUrl);
   }
+  createStory(story: Story): Observable<ApiResponse<Story>> {
+    return this.http.post<ApiResponse<Story>>(this._storyUrl, story);
+  }
 }

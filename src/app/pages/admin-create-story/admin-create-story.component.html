@@ -1,22 +1,54 @@
 <div class="main-content">
   <div class="bar">
     <button class="btn-primary-gray">Cancel</button>
-    <button type="submit" class="admin-btn-primary">Save</button>
+    <button (click)="onSubmit()" class="admin-btn-primary">Save</button>
   </div>
-  <form [formGroup]="editorForm" (submit)="onSubmit()">
+  <form [formGroup]="editorForm">
+    <div class="info-wrapper">
+      <div class="title-wrapper">
+        <h2>Title</h2>
+        <input
+          type="text"
+          class="input"
+          formControlName="title"
+          placeholder="Enter title"
+        />
+      </div>
+      <div class="description-wrapper">
+        <h2>Description</h2>
+        <input
+          type="text"
+          class="input"
+          formControlName="description"
+          placeholder="Enter description"
+        />
+      </div>
+      <div class="category-wrapper">
+        <h2>Category</h2>
+        <select formControlName="category">
+          <option
+            *ngFor="let category of categories | keyvalue"
+            [value]="category.key"
+          >
+            {{ category.value }}
+          </option>
+        </select>
+      </div>
+    </div>
     <div class="main-wrapper">
       <div class="editor-wrapper">
         <h2>Editor</h2>
         <quill-editor
           [style]="editorStyle"
-          formControlName="editor"
+          formControlName="htmlData"
         ></quill-editor>
       </div>
       <div class="preview-wrapper">
         <h2>Preview</h2>
         <div class="preview">
           <quill-view-html
-            [content]="editorForm.value.editor"
+            *ngIf="editorForm.value.htmlData"
+            [content]="editorForm.value.htmlData"
           ></quill-view-html>
         </div>
       </div>

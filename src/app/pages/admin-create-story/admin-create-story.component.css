@@ -7,6 +7,13 @@
     margin-bottom: 1rem;
     width: 100%;
 }
+.info-wrapper {
+    width: 95%;
+    margin: auto;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
 button {
     margin-left: 10px;
 }
@@ -37,7 +44,29 @@ button {
 :host ::ng-deep .preview img {
     max-width: 100%;
 }
-/* flex on screen less then 1024px */
+
+.input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+.input:focus {
+    outline: none;
+}
+
+
+.category-wrapper select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+.category-wrapper select:focus {
+    outline: none;
+}
+
+
 @media screen and (max-width: 1024px) {
     .main-wrapper {
         flex-direction: column;
