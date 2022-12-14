@@ -1,0 +1,25 @@
+<div class="main-content">
+  <div class="bar">
+    <button class="btn-primary-gray">Cancel</button>
+    <button type="submit" class="admin-btn-primary">Save</button>
+  </div>
+  <form [formGroup]="editorForm" (submit)="onSubmit()">
+    <div class="main-wrapper">
+      <div class="editor-wrapper">
+        <h2>Editor</h2>
+        <quill-editor
+          [style]="editorStyle"
+          formControlName="editor"
+        ></quill-editor>
+      </div>
+      <div class="preview-wrapper">
+        <h2>Preview</h2>
+        <div class="preview">
+          <quill-view-html
+            [content]="editorForm.value.editor"
+          ></quill-view-html>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

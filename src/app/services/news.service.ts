@@ -1,13 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ApiResponse } from '../models/api-response.model';
+import { Story } from '../models/story.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NewsService {
+  _domain = 'https://localhost:7400';
+  _storyUrl = this._domain + '/api/Story';
   constructor(private http: HttpClient) {}
 
-  getNews() {
-    return this.http.get('https://localhost:7289/api/Story');
+  getAllStories(): Observable<ApiResponse<Story[]>> {
+    return this.http.get<ApiResponse<Story[]>>(this._storyUrl);
   }
 }

@@ -1,0 +1,53 @@
+.bar {
+    padding: 10px;
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: flex-end;
+    margin: auto;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+button {
+    margin-left: 10px;
+}
+.main-content {
+    max-width: 90%;
+}
+.main-wrapper {
+    display: flex;
+    justify-content: space-around;
+}
+.editor-wrapper {
+    width: 46%;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+.preview-wrapper {
+    width: 46%;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+.preview {
+    padding: 10px;
+    border-top:#ccc 1px solid;
+}
+:host ::ng-deep .preview img {
+    max-width: 100%;
+}
+/* flex on screen less then 1024px */
+@media screen and (max-width: 1024px) {
+    .main-wrapper {
+        flex-direction: column;
+    }
+    .editor-wrapper {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .preview-wrapper {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}

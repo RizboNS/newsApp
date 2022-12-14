@@ -1,0 +1,18 @@
+.card {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #ccc;
+}
+.card-body {
+    padding: 0;
+}
+.card-title {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+.card-text {
+    font-size: 1em;
+    font-weight: normal;
+}

@@ -10,8 +10,9 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class CreateNewsComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
-  editorContent!: string;
-  contentFromApi!: string;
+  // editorContent!: string;
+  // contentFromApi!: string;
+  // storyToPut!: response;
   editorStyle = {
     height: '80vh',
   };
@@ -21,22 +22,41 @@ export class CreateNewsComponent implements OnInit {
       editor: new FormControl(null),
     });
   }
-  onSubmit(): void {
-    this.editorContent = this.editorForm.get('editor')?.value;
-    console.log(this.editorForm.get('editor')?.value);
-  }
-  testApi() {
-    this.editorContent = this.editorForm.get('editor')?.value;
-
-    this.http
-      .post<response>('https://localhost:7289/api/News', {
-        htmlData: this.editorContent.toString(),
-      })
-      .subscribe((res) => {
-        this.contentFromApi = res.htmlData;
-      });
-  }
-}
-export interface response {
-  htmlData: string;
+  // changed(event: any) {
+  //   this.http
+  //     .get<response>(
+  //       'https://localhost:7289/api/Story/2f7e4042-0166-4244-a70c-44b9681bcf2d'
+  //     )
+  //     .subscribe((res) => {
+  //       event.root.innerHTML = res.data.htmlData;
+  //       this.storyToPut = res;
+  //     });
+  // }
+  // update() {
+  //   console.log('fired');
+  //   this.storyToPut.data.htmlData = this.editorForm.get('editor')?.value;
+  //   this.http
+  //     .put<response>('https://localhost:7289/api/Story', this.storyToPut.data)
+  //     .subscribe((res) => {
+  //       console.log(res);
+  //     });
+  // }
+  // testApi() {
+  //   console.log('fired');
+  //   this.editorContent = this.editorForm.get('editor')?.value;
+  //   console.log(this.editorForm.get('editor')?.value);
+  //   this.http
+  //     .post<response>('https://localhost:7289/api/Story', {
+  //       htmlData: this.editorContent.toString(),
+  //       title: 'string',
+  //       description: 'string',
+  //       category: 2,
+  //     })
+  //     .subscribe((res) => {
+  //       if (res.data.htmlData != null) {
+  //         this.contentFromApi = res.data.htmlData;
+  //       }
+  //       console.log(res);
+  //     });
+  // }
 }
