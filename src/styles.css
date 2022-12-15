@@ -56,3 +56,11 @@ body {
 .admin-btn-primary:active {
     background-color: #0d47a1;
 }
+/* Main Article */
+.article {
+    margin: auto;
+    width: 850px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+

@@ -13,6 +13,7 @@ import { AdminStoriesComponent } from './pages/admin-stories/admin-stories.compo
 import { AdminHeaderComponent } from './components/admin-header/admin-header.component';
 import { AdminCreateStoryComponent } from './pages/admin-create-story/admin-create-story.component';
 import { AdminStoryComponent } from './pages/admin-story/admin-story.component';
+import { SanitizeHtmlPipe } from './pipes/sanitize-html.pipe';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { AdminStoryComponent } from './pages/admin-story/admin-story.component';
     AdminHeaderComponent,
     AdminCreateStoryComponent,
     AdminStoryComponent,
+    SanitizeHtmlPipe,
   ],
   imports: [
     BrowserModule,
@@ -38,12 +40,9 @@ import { AdminStoryComponent } from './pages/admin-story/admin-story.component';
           [{ list: 'ordered' }, { list: 'bullet' }],
           [{ script: 'sub' }, { script: 'super' }],
           [{ indent: '-1' }, { indent: '+1' }],
-          [{ direction: 'rtl' }],
           [{ size: ['small', false, 'large', 'huge'] }],
           [{ header: [1, 2, 3, 4, 5, 6, false] }],
           [{ color: [] }, { background: [] }],
-          [{ font: [] }],
-          [{ align: [] }],
           ['clean'],
           ['link', 'image', 'video'],
         ],
