@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { CategoryMap } from 'src/app/models/category.model';
 import { Story } from 'src/app/models/story.model';
 import { NewsService } from 'src/app/services/news.service';
+import 'quill-divider';
 
 @Component({
   selector: 'app-admin-create-story',
@@ -13,6 +14,28 @@ export class AdminCreateStoryComponent implements OnInit {
   categories = CategoryMap;
   icon: string = '';
   editorForm!: FormGroup;
+  previewVeiwMode: string = 'Desktop';
+
+  quillConfig = {
+    toolbar: [
+      ['bold', 'italic', 'underline', 'strike'],
+      ['blockquote', 'code-block'],
+      [{ header: 1 }, { header: 2 }],
+      [{ list: 'ordered' }, { list: 'bullet' }],
+      [{ script: 'sub' }, { script: 'super' }],
+      [{ indent: '-1' }, { indent: '+1' }],
+      [{ size: ['small', false, 'large', 'huge'] }],
+      [{ header: [1, 2, 3, 4, 5, 6, false] }],
+      [{ color: [] }, { background: [] }],
+      ['clean'],
+      ['link', 'image', 'video'],
+      ['divider'],
+    ],
+    divider: {
+      cssText: 'border: none;border-bottom: 1px inset;',
+    },
+  };
+
   constructor(private newsService: NewsService) {}
   ngOnInit(): void {
     this.editorForm = new FormGroup({
@@ -44,5 +67,18 @@ export class AdminCreateStoryComponent implements OnInit {
       console.log(res);
       // TO DO Navigate to the story page and open the story
     });
+  }
+  checkScreenSize() {
+    if (window.matchMedia('(max-width: 768px)').matches) {
+      return true;
+    }
+    return false;
+  }
+  setPreviewViewMode() {
+    if (this.previewVeiwMode === 'Desktop') {
+      this.previewVeiwMode = 'Mobile';
+    } else {
+      this.previewVeiwMode = 'Desktop';
+    }
   }
 }

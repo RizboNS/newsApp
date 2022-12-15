@@ -9,6 +9,7 @@ body {
 }
 *, *:before, *:after {
     box-sizing: inherit;
+    font-family: inherit;
 }
 
 .content {
@@ -23,13 +24,13 @@ body {
     width: 100%;
 }
 .btn-primary-gray {
+    font-family: inherit;
     background-color: #747474;
     color: #fff;
     border: none;
     border-radius: 4px;
     padding: 10px 20px;
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 16px;
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -40,21 +41,21 @@ body {
     background-color: #4c4c4c;
 }
 .admin-btn-primary {
-    background-color: #1e88e5;
+    font-family: inherit;
+    background-color: #4BB543;
     color: #fff;
     border: none;
     border-radius: 4px;
     padding: 10px 20px;
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 16px;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 .admin-btn-primary:hover {
-    background-color: #1565c0;
+    background-color: #388e3c;
 }
 .admin-btn-primary:active {
-    background-color: #0d47a1;
+    background-color: #2e7d32;
 }
 /* Main Article */
 .article {
