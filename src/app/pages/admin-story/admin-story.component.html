@@ -3,8 +3,7 @@
   Description: {{ story.description }}<br />
   Category: {{ story.category }}<br />
   Icon: {{ story.iconPath }}<br />
-  <article class="article">
-    <!-- <quill-view-html [content]="story.htmlData"></quill-view-html> -->
+  <article class="article ql-editor">
     <div [innerHTML]="story.htmlData | sanitizeHtml"></div>
   </article>
 </ng-container>

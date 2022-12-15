@@ -59,8 +59,11 @@ body {
 /* Main Article */
 .article {
     margin: auto;
-    width: 850px;
+    max-width: 850px;
     margin-bottom: 50px;
-    text-align: center;
 }
-
+.article p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}

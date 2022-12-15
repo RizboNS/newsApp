@@ -58,11 +58,12 @@
       </div>
       <div class="preview-wrapper">
         <h2>Preview</h2>
-        <div class="preview">
-          <quill-view-html
+        <div class="preview article">
+          <div
+            class="ql-editor"
             *ngIf="editorForm.value.htmlData"
-            [content]="editorForm.value.htmlData"
-          ></quill-view-html>
+            [innerHTML]="editorForm.value.htmlData | sanitizeHtml"
+          ></div>
         </div>
       </div>
     </div>
