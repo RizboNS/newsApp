@@ -1,12 +1,12 @@
 import { Category } from './category.model';
 
 export interface Story {
-  id: string;
+  id?: string;
   title: string;
   description: string;
   htmlData: string;
-  createdTime: string;
-  updateTime: string;
+  createdTime?: string;
+  updateTime?: string;
   publishTime: string;
   publish: boolean;
   category: Category;

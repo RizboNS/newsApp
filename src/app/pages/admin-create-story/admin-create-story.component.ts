@@ -66,7 +66,10 @@ export class AdminCreateStoryComponent implements OnInit {
     let time = hh + ':' + mm;
     return time;
   }
-
+  private mergeDateAndTime(date: string, time: string): string {
+    let dateTime = date + 'T' + time;
+    return dateTime;
+  }
   onFileSelect(event: any): void {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
@@ -78,14 +81,27 @@ export class AdminCreateStoryComponent implements OnInit {
     }
   }
   onSubmit(): void {
-    let story: Story = this.editorForm.value;
-    story.category = Number(story.category);
-    story.icon = this.icon;
+    let story: Story = this.mapStory();
     console.log(story);
     this.newsService.createStory(story).subscribe((res) => {
       console.log(res);
       // TO DO Navigate to the story page and open the story
     });
+  }
+  mapStory(): Story {
+    let story: Story = {
+      title: this.editorForm.value.title,
+      description: this.editorForm.value.description,
+      htmlData: this.editorForm.value.htmlData,
+      category: Number(this.editorForm.value.category),
+      publish: this.editorForm.value.publish,
+      publishTime: this.mergeDateAndTime(
+        this.editorForm.value.publishDate,
+        this.editorForm.value.publishTime
+      ),
+      icon: this.icon,
+    };
+    return story;
   }
   checkScreenSize(): boolean {
     if (window.matchMedia('(max-width: 768px)').matches) {
