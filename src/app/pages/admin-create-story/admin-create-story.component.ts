@@ -161,7 +161,7 @@ export class AdminCreateStoryComponent implements OnInit {
   }
   showErrorMsg() {
     this.showAlert(
-      'Error',
+      'Validation Error',
       'Please fill all the required fields and upload an icon.'
     );
   }
