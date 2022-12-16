@@ -1,8 +1,22 @@
 <ng-container *ngIf="story">
-  Title: {{ story.title }} <br />
-  Description: {{ story.description }}<br />
-  Category: {{ story.category }}<br />
-  Icon: {{ story.iconPath }}<br />
+  <div class="info-container">
+    <div class="title-wrapper">
+      <h3>Title</h3>
+      <p>{{ story.title }}</p>
+    </div>
+    <div class="description-wrapper">
+      <h3>Description</h3>
+      <p>{{ story.description }}</p>
+    </div>
+    <div class="category-wrapper">
+      <h3>Category</h3>
+      <p>{{ categories.get(story.category) }}</p>
+    </div>
+    <div class="icon-wrapper">
+      <h3>Story icon</h3>
+      <img class="icon" src="{{ story.iconPath }}" alt="story icon" />
+    </div>
+  </div>
   <article class="article ql-editor">
     <div [innerHTML]="story.htmlData | sanitizeHtml"></div>
   </article>

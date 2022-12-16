@@ -43,12 +43,31 @@ export class AdminCreateStoryComponent implements OnInit {
       title: new FormControl(''),
       description: new FormControl(''),
       category: new FormControl(1),
+      publish: new FormControl(false),
+      publishDate: new FormControl(this.getDate()),
+      publishTime: new FormControl(this.getTime()),
     });
   }
   editorStyle = {
     height: '80vh',
   };
-  onFileSelect(event: any) {
+  private getDate() {
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, '0');
+    let mm = String(today.getMonth() + 1).padStart(2, '0');
+    let yyyy = today.getFullYear();
+    let date = yyyy + '-' + mm + '-' + dd;
+    return date;
+  }
+  private getTime(): string {
+    let today = new Date();
+    let hh = String(today.getHours()).padStart(2, '0');
+    let mm = String(today.getMinutes()).padStart(2, '0');
+    let time = hh + ':' + mm;
+    return time;
+  }
+
+  onFileSelect(event: any): void {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       const reader = new FileReader();
@@ -58,7 +77,7 @@ export class AdminCreateStoryComponent implements OnInit {
       };
     }
   }
-  onSubmit() {
+  onSubmit(): void {
     let story: Story = this.editorForm.value;
     story.category = Number(story.category);
     story.icon = this.icon;
@@ -68,7 +87,7 @@ export class AdminCreateStoryComponent implements OnInit {
       // TO DO Navigate to the story page and open the story
     });
   }
-  checkScreenSize() {
+  checkScreenSize(): boolean {
     if (window.matchMedia('(max-width: 768px)').matches) {
       return true;
     }

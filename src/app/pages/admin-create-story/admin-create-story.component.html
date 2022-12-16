@@ -1,9 +1,38 @@
 <div class="main-content">
-  <div class="bar">
-    <button class="btn-primary-gray">Cancel</button>
-    <button (click)="onSubmit()" class="admin-btn-primary">Save</button>
-  </div>
   <form [formGroup]="editorForm">
+    <h1 class="title">Create story</h1>
+    <div class="submit-wrapper">
+      <div class="publish-check-wrapper">
+        <h2>Publish</h2>
+        <div class="checkbox-slider">
+          <label class="switch">
+            <input type="checkbox" formControlName="publish" />
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </div>
+      <div class="datetime-picker-wrapper">
+        <h2>Set publish date and time</h2>
+        <div class="datetime-picker">
+          <input
+            type="date"
+            formControlName="publishDate"
+            class="input"
+            placeholder="Enter publish date"
+          />
+          <input
+            type="time"
+            formControlName="publishTime"
+            class="input"
+            placeholder="Enter publish time"
+          />
+        </div>
+      </div>
+      <div class="button-wrapper">
+        <button class="btn-primary-gray">Cancel</button>
+        <button (click)="onSubmit()" class="admin-btn-primary">Save</button>
+      </div>
+    </div>
     <div class="info-wrapper">
       <div class="title-wrapper">
         <h2>Title</h2>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { take } from 'rxjs';
+import { CategoryMap } from 'src/app/models/category.model';
 import { Story } from 'src/app/models/story.model';
 import { NewsService } from 'src/app/services/news.service';
 
@@ -10,6 +11,7 @@ import { NewsService } from 'src/app/services/news.service';
   styleUrls: ['./admin-story.component.css'],
 })
 export class AdminStoryComponent implements OnInit {
+  categories = CategoryMap;
   story!: Story;
   constructor(
     private router: ActivatedRoute,
