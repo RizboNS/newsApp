@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-alert-window',
@@ -9,10 +9,12 @@ export class AlertWindowComponent {
   @Input() title: string = '';
   @Input() message: string = '';
   @Input() show: boolean = false;
+  @Output() isShownEvent = new EventEmitter<boolean>();
   constructor() {}
 
   close(): void {
     this.show = false;
+    this.isShownEvent.emit(this.show);
   }
   closeAlertWindow(): void {
     this.close();

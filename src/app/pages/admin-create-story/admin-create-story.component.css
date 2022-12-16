@@ -1,6 +1,7 @@
 .info-wrapper {
-    width: 100%;
-    margin-bottom: 1rem;
+    width: 49.5%;
+    max-width: 813px;
+    margin-bottom: 10px;
     border: 1px solid #ccc;
     padding: 10px;
 }
@@ -8,7 +9,15 @@
     border: 1px solid #ccc;
     padding: 10px;
     margin-bottom: 10px;
-    width: 100%;
+    width: 49.5%;
+    max-width: 813px;
+}
+.top-wrapper {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+    flex-direction: row-reverse;
+    align-items: flex-start;
 }
 .button-wrapper {
     display: flex;
@@ -24,7 +33,7 @@
 .main-wrapper {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 .editor-wrapper {
     width: 49.5%;
@@ -60,7 +69,12 @@
 .input:focus {
     outline: none;
 }
-
+.error-message {
+    color: red;
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+    padding: 0 10px;
+}
 
 .category-wrapper select {
     width: 100%;
@@ -165,6 +179,43 @@ input:checked + .slider:before {
 .slider.round:before {
     border-radius: 50%;
 }
+.icon-preview-container {
+  position: relative;
+  width: 300px;
+  margin: 10px;
+}
+.story-icon {
+    width: 100%;
+    object-fit: cover;
+    cursor: pointer;
+}
+.story-icon:hover {
+  box-shadow: 0 0 0 1px #000;
+}
+.remove-icon-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: red;
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  border-bottom: #ccc solid 1px;
+  border-left: #ccc solid 1px;
+}
+.remove-icon-btn:hover ~ .story-icon {
+  box-shadow: 0 0 0 1px #ff0000;
+}
+.remove-icon-btn:hover {
+  color: #ff0000;
+}
+.remove-icon-btn:focus {
+  outline: none;
+}
 
 
 
@@ -172,15 +223,34 @@ input:checked + .slider:before {
 
 
 @media screen and (max-width: 1024px) {
+    .main-content {
+      max-width: 100%;
+    }
+    .top-wrapper {
+        flex-direction: column;
+        margin-bottom: 10px;
+    }
+    .submit-wrapper {
+        width: 100%;
+        margin: auto;
+        margin-bottom: 10px;
+    }
+    .info-wrapper {
+        width: 100%;
+        margin: auto;
+    }
     .main-wrapper {
         flex-direction: column;
+        justify-content: baseline;
     }
     .editor-wrapper {
         width: 100%;
+        margin: auto;
         margin-bottom: 10px;
     }
     .preview-wrapper {
         width: 100%;
+        margin: auto;
         margin-bottom: 10px;
     }
 }

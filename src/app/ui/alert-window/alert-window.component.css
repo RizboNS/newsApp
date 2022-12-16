@@ -12,7 +12,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 500px;
+  width: 450px;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   border-radius: 8px;
@@ -21,7 +21,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px 15px;
+  padding: 5px 10px;
   background-color: #4BB543;
   color: #fff;
   font-size: 18px;
@@ -37,13 +37,17 @@
 }
 .alert_window_body {
   background-color: #fff;
-  padding: 20px;
+  padding: 10px;
 }
 .alert_window_footer {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: 10px 20px;
+  padding: 5px 15px 15px;
   background-color: #fff;
   border-radius: 0 0 8px 8px;
+}
+.alert_window_footer button {
+  margin-left: 10px;
+  width: 150px;
 }

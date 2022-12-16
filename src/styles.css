@@ -40,6 +40,7 @@ body {
 .btn-primary-gray:active {
     background-color: #4c4c4c;
 }
+
 .admin-btn-primary {
     font-family: inherit;
     background-color: #4BB543;
@@ -51,12 +52,46 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
 }
+.disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
 .admin-btn-primary:hover {
     background-color: #388e3c;
+}
+.disabled:hover {
+    background-color: #ccc;
 }
 .admin-btn-primary:active {
     background-color: #2e7d32;
 }
+.disabled:active {
+    background-color: #ccc;
+}
+.btn-close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: red;
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    border-bottom: #ccc solid 1px;
+    border-left: #ccc solid 1px;
+    border-radius: 8px;
+}
+.btn-close:hover {
+    color: #ff0000;
+}
+.btn-close:focus {
+    outline: none;
+}
+
 .admin-btn-warn {
     font-family: inherit;
     background-color: #f44336;

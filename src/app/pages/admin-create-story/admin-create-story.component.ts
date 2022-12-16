@@ -1,11 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { CategoryMap } from 'src/app/models/category.model';
 import { Story } from 'src/app/models/story.model';
 import { NewsService } from 'src/app/services/news.service';
 import 'quill-divider';
 import { Router } from '@angular/router';
 import { take } from 'rxjs';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-admin-create-story',
@@ -17,6 +23,14 @@ export class AdminCreateStoryComponent implements OnInit {
   icon: string = '';
   editorForm!: FormGroup;
   previewVeiwMode: string = 'Desktop';
+
+  alertTitle: string = '';
+  alertMessage: string = '';
+  alertShow: boolean = false;
+
+  showAlertMsg: boolean = false;
+
+  imageSrc: any;
 
   quillConfig = {
     toolbar: [
@@ -38,16 +52,21 @@ export class AdminCreateStoryComponent implements OnInit {
     },
   };
 
-  constructor(private newsService: NewsService, private router: Router) {}
+  constructor(
+    private newsService: NewsService,
+    private router: Router,
+    private fb: FormBuilder,
+    private sanitizer: DomSanitizer
+  ) {}
   ngOnInit(): void {
-    this.editorForm = new FormGroup({
-      htmlData: new FormControl(''),
-      title: new FormControl(''),
-      description: new FormControl(''),
-      category: new FormControl(1),
-      publish: new FormControl(false),
-      publishDate: new FormControl(this.getDate()),
-      publishTime: new FormControl(this.getTime()),
+    this.editorForm = this.fb.group({
+      htmlData: [''],
+      title: ['', Validators.required],
+      description: ['', Validators.required],
+      category: [1],
+      publish: [false],
+      publishDate: [this.getDate()],
+      publishTime: [this.getTime()],
     });
   }
   editorStyle = {
@@ -80,8 +99,16 @@ export class AdminCreateStoryComponent implements OnInit {
       reader.onload = () => {
         this.icon = reader.result as string;
       };
+      this.imageSrc = this.sanitizer.bypassSecurityTrustUrl(
+        URL.createObjectURL(file)
+      );
     }
   }
+  removeImage() {
+    this.icon = '';
+    this.imageSrc = '';
+  }
+
   onSubmit(): void {
     let story: Story = this.mapStory();
     console.log(story);
@@ -95,7 +122,7 @@ export class AdminCreateStoryComponent implements OnInit {
           }
         },
         error: (err) => {
-          alert('Server message: ' + err.error.message);
+          this.showAlert('Error', err.error.message);
         },
       });
   }
@@ -126,5 +153,16 @@ export class AdminCreateStoryComponent implements OnInit {
     } else {
       this.previewVeiwMode = 'Desktop';
     }
+  }
+  showAlert(title: string, message: string) {
+    this.alertTitle = title;
+    this.alertMessage = message;
+    this.alertShow = true;
+  }
+  showErrorMsg() {
+    this.showAlert(
+      'Error',
+      'Please fill all the required fields and upload an icon.'
+    );
   }
 }
