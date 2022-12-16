@@ -14,6 +14,7 @@ import { AdminHeaderComponent } from './components/admin-header/admin-header.com
 import { AdminCreateStoryComponent } from './pages/admin-create-story/admin-create-story.component';
 import { AdminStoryComponent } from './pages/admin-story/admin-story.component';
 import { SanitizeHtmlPipe } from './pipes/sanitize-html.pipe';
+import { AlertWindowComponent } from './ui/alert-window/alert-window.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { SanitizeHtmlPipe } from './pipes/sanitize-html.pipe';
     AdminCreateStoryComponent,
     AdminStoryComponent,
     SanitizeHtmlPipe,
+    AlertWindowComponent,
   ],
   imports: [
     BrowserModule,

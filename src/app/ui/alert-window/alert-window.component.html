@@ -1,0 +1,22 @@
+<ng-container *ngIf="show">
+  <div class="alert_window">
+    <div class="alert_window_content">
+      <div class="alert_window_header">
+        <div class="alert-window_header_title">
+          <h2>{{ title }}</h2>
+        </div>
+        <div class="alert-window_header_close">
+          <button class="admin-btn-warn" (click)="closeAlertWindow()">X</button>
+        </div>
+      </div>
+      <div class="alert_window_body">
+        <p>{{ message }}</p>
+      </div>
+      <div class="alert_window_footer">
+        <button class="admin-btn-primary" (click)="closeAlertWindow()">
+          OK
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-container>

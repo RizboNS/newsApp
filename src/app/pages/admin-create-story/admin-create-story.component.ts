@@ -4,6 +4,8 @@ import { CategoryMap } from 'src/app/models/category.model';
 import { Story } from 'src/app/models/story.model';
 import { NewsService } from 'src/app/services/news.service';
 import 'quill-divider';
+import { Router } from '@angular/router';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-admin-create-story',
@@ -36,7 +38,7 @@ export class AdminCreateStoryComponent implements OnInit {
     },
   };
 
-  constructor(private newsService: NewsService) {}
+  constructor(private newsService: NewsService, private router: Router) {}
   ngOnInit(): void {
     this.editorForm = new FormGroup({
       htmlData: new FormControl(''),
@@ -83,10 +85,19 @@ export class AdminCreateStoryComponent implements OnInit {
   onSubmit(): void {
     let story: Story = this.mapStory();
     console.log(story);
-    this.newsService.createStory(story).subscribe((res) => {
-      console.log(res);
-      // TO DO Navigate to the story page and open the story
-    });
+    this.newsService
+      .createStory(story)
+      .pipe(take(1))
+      .subscribe({
+        next: (res) => {
+          if (res.success) {
+            this.router.navigate(['/admin/story/' + res.data.id]);
+          }
+        },
+        error: (err) => {
+          alert('Server message: ' + err.error.message);
+        },
+      });
   }
   mapStory(): Story {
     let story: Story = {
