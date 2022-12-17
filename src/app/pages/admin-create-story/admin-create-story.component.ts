@@ -116,15 +116,32 @@ export class AdminCreateStoryComponent implements OnInit {
       .createStory(story)
       .pipe(take(1))
       .subscribe({
-        next: (res) => {
+        next: async (res) => {
           if (res.success) {
-            this.router.navigate(['/admin/story/' + res.data.id]);
+            await this.showAlert('Success', 'Story created successfully');
+            this.navigateToStory(res.data.id);
           }
         },
         error: (err) => {
           this.showAlert('Error', err.error.message);
         },
       });
+  }
+  async showAlert(title: string, message: string) {
+    this.alertTitle = title;
+    this.alertMessage = message;
+    this.alertShow = true;
+    await new Promise((resolve) => setTimeout(resolve, 50));
+    while (this.alertShow) {
+      await new Promise((resolve) => setTimeout(resolve, 50));
+    }
+  }
+
+  navigateToStory(id: string | undefined): void {
+    if (id === undefined) {
+      return;
+    }
+    this.router.navigate(['/admin/story/' + id]);
   }
   mapStory(): Story {
     let story: Story = {
@@ -154,13 +171,9 @@ export class AdminCreateStoryComponent implements OnInit {
       this.previewVeiwMode = 'Desktop';
     }
   }
-  showAlert(title: string, message: string) {
-    this.alertTitle = title;
-    this.alertMessage = message;
-    this.alertShow = true;
-  }
-  showErrorMsg() {
-    this.showAlert(
+
+  async validationErrorMsg() {
+    await this.showAlert(
       'Validation Error',
       'Please fill all the required fields and upload an icon.'
     );

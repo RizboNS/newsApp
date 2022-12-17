@@ -34,14 +34,14 @@
           <button
             (click)="onSubmit()"
             class="admin-btn-primary"
-            *ngIf="!editorForm.invalid"
+            *ngIf="!editorForm.invalid && icon !== ''"
           >
             Submit Story
           </button>
           <button
             class="admin-btn-primary disabled"
-            *ngIf="editorForm.invalid"
-            (click)="showErrorMsg()"
+            *ngIf="editorForm.invalid || icon === ''"
+            (click)="validationErrorMsg()"
           >
             Submit Story
           </button>
@@ -56,7 +56,13 @@
             formControlName="title"
             placeholder="Enter title"
           />
-          <ng-container *ngIf="editorForm.controls['title'].touched">
+
+          <ng-container
+            *ngIf="
+              editorForm.controls['title'].touched &&
+              editorForm.controls['title'].value === ''
+            "
+          >
             <div class="error-message">Title is required</div>
           </ng-container>
         </div>
@@ -68,7 +74,12 @@
             formControlName="description"
             placeholder="Enter description"
           />
-          <ng-container *ngIf="editorForm.controls['description'].touched">
+          <ng-container
+            *ngIf="
+              editorForm.controls['description'].touched &&
+              editorForm.controls['description'].value === ''
+            "
+          >
             <div class="error-message">Description is required</div>
           </ng-container>
         </div>
