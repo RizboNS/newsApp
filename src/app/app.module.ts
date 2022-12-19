@@ -8,13 +8,8 @@ import { AppComponent } from './app.component';
 import { CreateNewsComponent } from './pages/create-news/create-news.component';
 import { UpdateNewsComponent } from './pages/update-news/update-news.component';
 import { StoryComponent } from './components/story/story.component';
-import { AdminPanelComponent } from './pages/admin-panel/admin-panel.component';
-import { AdminStoriesComponent } from './pages/admin-stories/admin-stories.component';
-import { AdminHeaderComponent } from './components/admin-header/admin-header.component';
-import { AdminCreateStoryComponent } from './pages/admin-create-story/admin-create-story.component';
-import { AdminStoryComponent } from './pages/admin-story/admin-story.component';
-import { SanitizeHtmlPipe } from './pipes/sanitize-html.pipe';
-import { AlertWindowComponent } from './ui/alert-window/alert-window.component';
+import { SharedModule } from './shared/shared.module';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -22,13 +17,6 @@ import { AlertWindowComponent } from './ui/alert-window/alert-window.component';
     CreateNewsComponent,
     UpdateNewsComponent,
     StoryComponent,
-    AdminPanelComponent,
-    AdminStoriesComponent,
-    AdminHeaderComponent,
-    AdminCreateStoryComponent,
-    AdminStoryComponent,
-    SanitizeHtmlPipe,
-    AlertWindowComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,6 +24,8 @@ import { AlertWindowComponent } from './ui/alert-window/alert-window.component';
     QuillModule.forRoot(),
     ReactiveFormsModule,
     HttpClientModule,
+    SharedModule,
+    AdminModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
