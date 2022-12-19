@@ -21,4 +21,9 @@ export class NewsService {
   createStory(story: Story): Observable<ApiResponse<Story>> {
     return this.http.post<ApiResponse<Story>>(this._storyUrl, story);
   }
+  deleteStory(story: Story): Observable<ApiResponse<Story>> {
+    return this.http.delete<ApiResponse<Story>>(
+      this._storyUrl + '/' + story.id
+    );
+  }
 }

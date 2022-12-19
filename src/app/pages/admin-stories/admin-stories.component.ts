@@ -26,4 +26,15 @@ export class AdminStoriesComponent implements OnInit {
         console.log(this.stories);
       });
   }
+  onEditStory(story: Story): void {
+    console.log(story);
+  }
+  onDeleteStory(story: Story): void {
+    this.newsService
+      .deleteStory(story)
+      .pipe(take(1))
+      .subscribe((res) => {
+        res.success === true && this.getAllStories();
+      });
+  }
 }
