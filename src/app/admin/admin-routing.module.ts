@@ -4,8 +4,10 @@ import { AdminStoryComponent } from './pages/admin-story/admin-story.component';
 import { AdminStoriesComponent } from './pages/admin-stories/admin-stories.component';
 import { AdminCreateStoryComponent } from './pages/admin-create-story/admin-create-story.component';
 import { AdminPanelComponent } from './pages/admin-panel/admin-panel.component';
+import { TestComponenetComponent } from './components/test-componenet/test-componenet.component';
 
 const routes: Routes = [
+  { path: 'admin/test', component: TestComponenetComponent },
   { path: 'admin/story/:id', component: AdminStoryComponent },
   { path: 'admin/stories', component: AdminStoriesComponent },
   { path: 'admin/create-story', component: AdminCreateStoryComponent },

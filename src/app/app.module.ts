@@ -21,7 +21,7 @@ import { AdminModule } from './admin/admin.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    QuillModule.forRoot(),
+    QuillModule,
     ReactiveFormsModule,
     HttpClientModule,
     SharedModule,

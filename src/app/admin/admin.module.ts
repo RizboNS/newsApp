@@ -10,6 +10,7 @@ import { AdminHeaderComponent } from './components/admin-header/admin-header.com
 import { AdminRoutingModule } from './admin-routing.module';
 import { QuillModule } from 'ngx-quill';
 import { AlertWindowComponent } from './ui/alert-window/alert-window.component';
+import { TestComponenetComponent } from './components/test-componenet/test-componenet.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { AlertWindowComponent } from './ui/alert-window/alert-window.component';
     AdminCreateStoryComponent,
     AdminHeaderComponent,
     AlertWindowComponent,
+    TestComponenetComponent,
   ],
   imports: [
     CommonModule,

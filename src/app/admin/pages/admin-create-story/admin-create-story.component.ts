@@ -1,10 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoryMap } from 'src/app/models/category.model';
 import { Story } from 'src/app/models/story.model';
 import { NewsService } from 'src/app/services/news.service';
@@ -12,7 +7,7 @@ import 'quill-divider';
 import { Router } from '@angular/router';
 import { take } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
-
+import Quill from 'quill';
 @Component({
   selector: 'app-admin-create-story',
   templateUrl: './admin-create-story.component.html',
@@ -72,6 +67,7 @@ export class AdminCreateStoryComponent implements OnInit {
   editorStyle = {
     height: '80vh',
   };
+
   private getDate() {
     let today = new Date();
     let dd = String(today.getDate()).padStart(2, '0');
