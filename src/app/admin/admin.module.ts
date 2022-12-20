@@ -10,6 +10,7 @@ import { AdminHeaderComponent } from './components/admin-header/admin-header.com
 import { AdminRoutingModule } from './admin-routing.module';
 import { QuillModule } from 'ngx-quill';
 import { AlertWindowComponent } from './ui/alert-window/alert-window.component';
+import { FormsModule } from '@angular/forms';
 import { TestComponenetComponent } from './components/test-componenet/test-componenet.component';
 
 @NgModule({
@@ -28,6 +29,7 @@ import { TestComponenetComponent } from './components/test-componenet/test-compo
     AdminRoutingModule,
     ReactiveFormsModule,
     QuillModule,
+    FormsModule,
   ],
   exports: [AdminHeaderComponent],
 })
