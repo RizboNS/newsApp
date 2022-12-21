@@ -1,11 +1,16 @@
-import { Component } from '@angular/core';
-import { QuillModules } from 'ngx-quill';
+import { Component, ViewChild } from '@angular/core';
+import { QuillEditorComponent, QuillModules } from 'ngx-quill';
 
 @Component({
   selector: 'app-test-componenet',
   template: `
     <button type="button" (click)="addImage()">Add Image</button>
-    <quill-editor [(ngModel)]="editorContent" [modules]="modules">
+    <quill-editor
+      #editor
+      [(ngModel)]="editorContent"
+      [modules]="modules"
+      (onContentChanged)="onContentChanged()"
+    >
     </quill-editor>
   `,
   styleUrls: ['./test-componenet.component.css'],
@@ -16,6 +21,17 @@ export class TestComponenetComponent {
   modules: QuillModules = {
     toolbar: [],
   };
+
+  @ViewChild('editor', { static: false }) editor:
+    | QuillEditorComponent
+    | undefined;
+
+  onContentChanged() {
+    if (this.editor !== undefined) {
+      const length = this.editorContent.length;
+      this.editor.quillEditor.setSelection(length, 0);
+    }
+  }
 
   addImage() {
     // Create an input element with type "file"
