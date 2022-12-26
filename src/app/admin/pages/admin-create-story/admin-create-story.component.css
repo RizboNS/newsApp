@@ -215,9 +215,9 @@ input:checked + .slider:before {
 .remove-icon-btn:focus {
   outline: none;
 }
-
-
-
+.ql-addImage {
+   position: relative;
+}
 
 
 

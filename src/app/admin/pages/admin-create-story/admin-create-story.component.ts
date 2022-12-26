@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 import { take } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
 import Quill from 'quill';
+import { QuillEditorComponent } from 'ngx-quill';
+
 @Component({
   selector: 'app-admin-create-story',
   templateUrl: './admin-create-story.component.html',
@@ -19,6 +21,10 @@ export class AdminCreateStoryComponent implements OnInit {
   editorForm!: FormGroup;
   previewVeiwMode: string = 'Desktop';
 
+  @ViewChild('editor', { static: false }) editor:
+    | QuillEditorComponent
+    | undefined;
+
   alertTitle: string = '';
   alertMessage: string = '';
   alertShow: boolean = false;
@@ -28,20 +34,27 @@ export class AdminCreateStoryComponent implements OnInit {
   imageSrc: any;
 
   quillConfig = {
-    toolbar: [
-      ['bold', 'italic', 'underline', 'strike'],
-      ['blockquote', 'code-block'],
-      [{ header: 1 }, { header: 2 }],
-      [{ list: 'ordered' }, { list: 'bullet' }],
-      [{ script: 'sub' }, { script: 'super' }],
-      [{ indent: '-1' }, { indent: '+1' }],
-      [{ size: ['small', false, 'large', 'huge'] }],
-      [{ header: [1, 2, 3, 4, 5, 6, false] }],
-      [{ color: [] }, { background: [] }],
-      ['clean'],
-      ['link', 'image', 'video'],
-      ['divider'],
-    ],
+    toolbar: {
+      container: [
+        ['bold', 'italic', 'underline', 'strike'],
+        ['blockquote', 'code-block'],
+        [{ header: 1 }, { header: 2 }],
+        [{ list: 'ordered' }, { list: 'bullet' }],
+        [{ script: 'sub' }, { script: 'super' }],
+        [{ indent: '-1' }, { indent: '+1' }],
+        [{ size: ['small', false, 'large', 'huge'] }],
+        [{ header: [1, 2, 3, 4, 5, 6, false] }],
+        [{ color: [] }, { background: [] }],
+        ['clean'],
+        ['link', 'image', 'video'],
+        ['divider'],
+      ],
+      handlers: {
+        image: () => {
+          this.addImage();
+        },
+      },
+    },
     divider: {
       cssText: 'border: none;border-bottom: 1px inset;',
     },
@@ -67,6 +80,36 @@ export class AdminCreateStoryComponent implements OnInit {
   editorStyle = {
     height: '80vh',
   };
+
+  addImage() {
+    const input = document.createElement('input');
+    input.type = 'file';
+
+    input.addEventListener('change', (event: Event) => {
+      const inputElement = event.target as HTMLInputElement;
+
+      const files = inputElement.files ?? new FileList();
+
+      if (!files.length || !files[0].type.startsWith('image/')) {
+        alert('Please select an image file');
+        return;
+      }
+
+      const file = files[0];
+      const altTag = prompt('Enter an alt tag for the image:');
+      const reader = new FileReader();
+      reader.addEventListener('load', () => {
+        const dataUrl = reader.result;
+        const data = `<img alt="${altTag}" src="${dataUrl}" />`;
+        this.editorForm.patchValue({
+          htmlData: this.editorForm.value.htmlData + data,
+        });
+      });
+      reader.readAsDataURL(file);
+    });
+
+    input.click();
+  }
 
   private getDate() {
     let today = new Date();

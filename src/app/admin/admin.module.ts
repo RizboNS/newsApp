@@ -11,7 +11,6 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { QuillModule } from 'ngx-quill';
 import { AlertWindowComponent } from './ui/alert-window/alert-window.component';
 import { FormsModule } from '@angular/forms';
-import { TestComponenetComponent } from './components/test-componenet/test-componenet.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +20,6 @@ import { TestComponenetComponent } from './components/test-componenet/test-compo
     AdminCreateStoryComponent,
     AdminHeaderComponent,
     AlertWindowComponent,
-    TestComponenetComponent,
   ],
   imports: [
     CommonModule,
