@@ -32,12 +32,7 @@ export class AdminStoryComponent implements OnInit {
       .pipe(take(1))
       .subscribe((res) => (this.story = res.data));
   }
-  onEditStory(): void {
-    this.newsService;
-    // .updateStory(story)
-    // .pipe(take(1))
-    // .subscribe((res) => console.log(res));
-  }
+
   onDeleteStory(): void {
     this.newsService
       .deleteStory(this.story)

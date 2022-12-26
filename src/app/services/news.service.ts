@@ -26,4 +26,7 @@ export class NewsService {
       this._storyUrl + '/' + story.id
     );
   }
+  updateStory(story: Story): Observable<ApiResponse<Story>> {
+    return this.http.put<ApiResponse<Story>>(this._storyUrl, story);
+  }
 }

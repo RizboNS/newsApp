@@ -26,9 +26,7 @@ export class AdminStoriesComponent implements OnInit {
         console.log(this.stories);
       });
   }
-  onEditStory(story: Story): void {
-    console.log(story);
-  }
+
   onDeleteStory(story: Story): void {
     this.newsService
       .deleteStory(story)

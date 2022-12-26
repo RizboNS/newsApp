@@ -1,0 +1,172 @@
+<div class="main-content">
+  <form [formGroup]="editorForm">
+    <h3 class="title">Update story</h3>
+    <div class="top-wrapper">
+      <div class="submit-wrapper">
+        <div class="publish-check-wrapper">
+          <h3>Publish</h3>
+          <div class="checkbox-slider">
+            <label class="switch">
+              <input type="checkbox" formControlName="publish" />
+              <span class="slider round"></span>
+            </label>
+          </div>
+        </div>
+        <div class="datetime-picker-wrapper">
+          <h3>Change publish date and time</h3>
+          <div class="datetime-picker">
+            <input
+              type="date"
+              formControlName="publishDate"
+              class="input"
+              placeholder="Enter publish date"
+            />
+            <input
+              type="time"
+              formControlName="publishTime"
+              class="input"
+              placeholder="Enter publish time"
+            />
+          </div>
+        </div>
+        <div class="button-wrapper">
+          <button class="btn-primary-gray">Cancel</button>
+          <button
+            (click)="onSubmit()"
+            class="admin-btn-primary"
+            *ngIf="!editorForm.invalid && icon !== ''"
+          >
+            Update Story
+          </button>
+          <button
+            class="admin-btn-primary disabled"
+            *ngIf="editorForm.invalid || icon === ''"
+            (click)="validationErrorMsg()"
+          >
+            Submit Story
+          </button>
+        </div>
+      </div>
+      <div class="info-wrapper">
+        <div class="title-wrapper">
+          <h3>Title</h3>
+          <input
+            type="text"
+            class="input"
+            formControlName="title"
+            placeholder="Enter title"
+          />
+
+          <ng-container
+            *ngIf="
+              editorForm.controls['title'].touched &&
+              editorForm.controls['title'].value === ''
+            "
+          >
+            <div class="error-message">Title is required</div>
+          </ng-container>
+        </div>
+        <div class="description-wrapper">
+          <h3>Description</h3>
+          <input
+            type="text"
+            class="input"
+            formControlName="description"
+            placeholder="Enter description"
+          />
+          <ng-container
+            *ngIf="
+              editorForm.controls['description'].touched &&
+              editorForm.controls['description'].value === ''
+            "
+          >
+            <div class="error-message">Description is required</div>
+          </ng-container>
+        </div>
+        <div class="category-wrapper">
+          <h3>Category</h3>
+          <select formControlName="category">
+            <option
+              *ngFor="let category of categories | keyvalue"
+              [value]="category.key"
+            >
+              {{ category.value }}
+            </option>
+          </select>
+        </div>
+        <div class="image-upload-wrapper">
+          <h3>Replace story icon</h3>
+          <label for="file-upload-default" class="label-as-btn-wrapper">
+            Upload image
+            <i class="fa-solid fa-image"></i>
+            <input
+              id="file-upload-default"
+              accept="image/*"
+              type="file"
+              (change)="onFileSelect($event)"
+            />
+          </label>
+          <div *ngIf="imageSrc" class="icon-preview-container">
+            <button
+              class="remove-icon-btn"
+              *ngIf="imageSrc"
+              (click)="removeImage()"
+            >
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+            <img
+              *ngIf="imageSrc"
+              [src]="imageSrc"
+              alt="story icon"
+              class="story-icon"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="main-wrapper">
+      <div class="editor-wrapper">
+        <h3>Editor</h3>
+        <quill-editor
+          [style]="editorStyle"
+          [modules]="quillConfig"
+          formControlName="htmlData"
+        >
+        </quill-editor>
+      </div>
+      <div class="preview-wrapper">
+        <div class="preview-bar">
+          <h3>Preview</h3>
+          <ng-container class="button-bar" *ngIf="!checkScreenSize()">
+            <label class="label-as-btn-wrapper" (click)="setPreviewViewMode()">
+              {{ previewVeiwMode }} View
+              <i
+                class="fa-solid fa-mobile-screen"
+                *ngIf="previewVeiwMode === 'Mobile'"
+              ></i>
+              <i
+                class="fa-solid fa-desktop"
+                *ngIf="previewVeiwMode === 'Desktop'"
+              ></i>
+            </label>
+          </ng-container>
+        </div>
+        <div class="preview article">
+          <div
+            class="ql-editor"
+            [ngClass]="{ mobile: previewVeiwMode === 'Mobile' }"
+            *ngIf="editorForm.value.htmlData"
+            [innerHTML]="editorForm.value.htmlData | sanitizeHtml"
+          ></div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<app-alert-window
+  (isShownEvent)="alertShow = $event"
+  [show]="alertShow"
+  [title]="alertTitle"
+  [message]="alertMessage"
+></app-alert-window>

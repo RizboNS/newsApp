@@ -1,6 +1,9 @@
 <ng-container *ngIf="story">
   <nav class="story-navigation">
-    <button class="admin-btn-primary" (click)="onEditStory()">
+    <button
+      class="admin-btn-primary"
+      [routerLink]="['/admin/update-story', story.id]"
+    >
       Edit
       <i class="fa-solid fa-pen-nib"></i>
     </button>
