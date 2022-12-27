@@ -128,9 +128,19 @@ export class AdminUpdateStoryComponent {
       reader.addEventListener('load', () => {
         const dataUrl = reader.result;
         const data = `<img alt="${altTag}" src="${dataUrl}" />`;
-        this.editorForm.patchValue({
-          htmlData: this.editorForm.value.htmlData + data,
-        });
+        if (this.editor && this.editor.quillEditor) {
+          const range = this.editor.quillEditor.getSelection();
+          const index = range
+            ? range.index
+            : this.editor.quillEditor.getLength();
+          this.editor.quillEditor.clipboard.dangerouslyPasteHTML(
+            index,
+            data,
+            'user'
+          );
+          const newIndex = index + data.length;
+          this.editor.quillEditor.setSelection(newIndex, 0, 'api');
+        }
       });
       reader.readAsDataURL(file);
     });
@@ -182,6 +192,7 @@ export class AdminUpdateStoryComponent {
 
   onSubmit(): void {
     let story: Story = this.mapStory();
+    console.log(story);
     this.newsService
       .updateStory(story)
       .pipe(take(1))
@@ -194,6 +205,7 @@ export class AdminUpdateStoryComponent {
         },
         error: (err) => {
           this.showAlert('Error', err.error.message);
+          console.log(err);
         },
       });
   }
@@ -217,7 +229,10 @@ export class AdminUpdateStoryComponent {
     let story: Story = {
       title: this.editorForm.value.title,
       description: this.editorForm.value.description,
-      htmlData: this.editorForm.value.htmlData,
+      htmlData:
+        this.editorForm.value.htmlData == null
+          ? ''
+          : this.editorForm.value.htmlData,
       category: Number(this.editorForm.value.category),
       publish: this.editorForm.value.publish,
       publishTime: this.mergeDateAndTime(

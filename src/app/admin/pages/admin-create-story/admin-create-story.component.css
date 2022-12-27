@@ -53,6 +53,8 @@
 .preview {
     padding: 10px;
     border-top:#ccc 1px solid;
+    height: 760px;
+    overflow-y: scroll;
 }
 :host ::ng-deep .ql-editor img {
     width: 100%;

@@ -66,6 +66,7 @@ export class AdminCreateStoryComponent implements OnInit {
     private fb: FormBuilder,
     private sanitizer: DomSanitizer
   ) {}
+
   ngOnInit(): void {
     this.editorForm = this.fb.group({
       htmlData: [''],
@@ -101,9 +102,19 @@ export class AdminCreateStoryComponent implements OnInit {
       reader.addEventListener('load', () => {
         const dataUrl = reader.result;
         const data = `<img alt="${altTag}" src="${dataUrl}" />`;
-        this.editorForm.patchValue({
-          htmlData: this.editorForm.value.htmlData + data,
-        });
+        if (this.editor && this.editor.quillEditor) {
+          const range = this.editor.quillEditor.getSelection();
+          const index = range
+            ? range.index
+            : this.editor.quillEditor.getLength();
+          this.editor.quillEditor.clipboard.dangerouslyPasteHTML(
+            index,
+            data,
+            'user'
+          );
+          const newIndex = index + data.length;
+          this.editor.quillEditor.setSelection(newIndex, 0, 'api');
+        }
       });
       reader.readAsDataURL(file);
     });
