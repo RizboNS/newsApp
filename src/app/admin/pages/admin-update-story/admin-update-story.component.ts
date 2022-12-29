@@ -74,6 +74,8 @@ export class AdminUpdateStoryComponent {
       publish: [false],
       publishDate: [this.getDate()],
       publishTime: [this.getTime()],
+      updateTime: [],
+      createdTime: [],
     });
     const id = this.readIdFromRoute();
     this.newsService
@@ -82,6 +84,7 @@ export class AdminUpdateStoryComponent {
       .subscribe({
         next: async (res) => {
           const story = res.data;
+          console.log(story);
           this.editorForm.patchValue({
             htmlData: story.htmlData,
             title: story.title,
@@ -90,9 +93,12 @@ export class AdminUpdateStoryComponent {
             publish: story.publish,
             publishDate: this.splitDateAndTime(story.publishTime)[0],
             publishTime: this.splitDateAndTime(story.publishTime)[1],
+            updateTime: story.updateTime,
+            createdTime: story.createdTime,
           });
           if (story.iconPath !== undefined) {
             this.icon = story.iconPath;
+            this.imageSrc = story.iconPath;
           }
         },
         error: async (err) => {
@@ -167,7 +173,10 @@ export class AdminUpdateStoryComponent {
     let dateTime = date + 'T' + time;
     return dateTime;
   }
-  splitDateAndTime(dateTime: string): string[] {
+  splitDateAndTime(dateTime: string | undefined): string[] {
+    if (dateTime === undefined) {
+      return ['', ''];
+    }
     let dateAndTime = dateTime.split('T');
     return dateAndTime;
   }

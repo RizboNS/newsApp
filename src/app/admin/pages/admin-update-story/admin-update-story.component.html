@@ -94,6 +94,21 @@
             </option>
           </select>
         </div>
+        <div class="general-info-wrapper">
+          <h3>General info</h3>
+          <div class="general-info">
+            <p class="info-item">
+              Created at
+              {{ editorForm.value.createdTime | date : "longDate" }}
+              {{ editorForm.value.createdTime | date : "shortTime" }}
+            </p>
+            <p class="info-item">
+              Updated at
+              {{ editorForm.value.updateTime | date : "longDate" }}
+              {{ editorForm.value.updateTime | date : "shortTime" }}
+            </p>
+          </div>
+        </div>
         <div class="image-upload-wrapper">
           <h3>Replace story icon</h3>
           <label for="file-upload-default" class="label-as-btn-wrapper">
