@@ -57,6 +57,9 @@ export class AdminUpdateStoryComponent {
       cssText: 'border: none;border-bottom: 1px inset;',
     },
   };
+  editorStyle = {
+    height: '695px',
+  };
 
   constructor(
     private newsService: NewsService,
@@ -108,9 +111,6 @@ export class AdminUpdateStoryComponent {
         },
       });
   }
-  editorStyle = {
-    height: '80vh',
-  };
   readIdFromRoute(): string {
     return this.route.snapshot.params['id'];
   }

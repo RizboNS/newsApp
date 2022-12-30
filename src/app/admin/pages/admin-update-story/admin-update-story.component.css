@@ -5,6 +5,17 @@
   border: 1px solid #ccc;
   padding: 10px;
 }
+.general-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.info-item {
+  width: 49%;
+}
+.info-item h4 {
+  margin-bottom: 0.5rem;
+}
 .submit-wrapper {
   border: 1px solid #ccc;
   padding: 10px;

@@ -51,16 +51,16 @@
         <div class="general-info-wrapper">
           <h3>General info</h3>
           <div class="general-info">
-            <p class="info-item">
-              Created at
+            <div class="info-item">
+              <h4>Created</h4>
               {{ editorForm.value.createdTime | date : "longDate" }}
               {{ editorForm.value.createdTime | date : "shortTime" }}
-            </p>
-            <p class="info-item">
-              Updated at
+            </div>
+            <div class="info-item">
+              <h4>Updated</h4>
               {{ editorForm.value.updateTime | date : "longDate" }}
               {{ editorForm.value.updateTime | date : "shortTime" }}
-            </p>
+            </div>
           </div>
         </div>
         <div class="title-wrapper">
