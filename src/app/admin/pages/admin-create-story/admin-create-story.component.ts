@@ -85,7 +85,7 @@ export class AdminCreateStoryComponent implements OnInit {
   addImage() {
     const input = document.createElement('input');
     input.type = 'file';
-
+    input.accept = 'image/*';
     input.addEventListener('change', (event: Event) => {
       const inputElement = event.target as HTMLInputElement;
 
