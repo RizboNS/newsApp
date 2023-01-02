@@ -1,5 +1,7 @@
 <!-- Create header and show if not on admin route -->
-<ng-container *ngIf="!isOnAdminRoute()"> <header>TO DO</header> </ng-container>
+<ng-container *ngIf="!isOnAdminRoute()">
+  <app-header></app-header>
+</ng-container>
 <ng-container *ngIf="isOnAdminRoute()">
   <app-admin-header></app-admin-header>
 </ng-container>
