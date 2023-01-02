@@ -4,7 +4,12 @@
   </div>
   <div class="header-menu-container">
     <div class="header-menu-top">
-      <a class="header-menu-item-top" *ngFor="let articleType of articleTypes">
+      <a
+        class="header-menu-item-top"
+        *ngFor="let articleType of articleTypes"
+        [routerLink]="articleType"
+        routerLinkActive="active"
+      >
         {{ articleType }}
       </a>
     </div>
@@ -12,6 +17,8 @@
       <a
         class="header-menu-item-bottom"
         *ngFor="let category of categories | keyvalue"
+        [routerLink]="'kategorija/' + category.value"
+        routerLinkActive="active"
       >
         {{ category.value }}
       </a>
