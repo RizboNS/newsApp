@@ -1,1 +1,20 @@
-<p>header works!</p>
+<div class="header">
+  <div class="header-logo">
+    <img src="assets/images/see_cult_logo.png" alt="logo" />
+  </div>
+  <div class="header-menu-container">
+    <div class="header-menu-top">
+      <a class="header-menu-item-top" *ngFor="let articleType of articleTypes">
+        {{ articleType }}
+      </a>
+    </div>
+    <div class="header-menu-bottom">
+      <a
+        class="header-menu-item-bottom"
+        *ngFor="let category of categories | keyvalue"
+      >
+        {{ category.value }}
+      </a>
+    </div>
+  </div>
+</div>
