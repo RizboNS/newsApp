@@ -1,12 +1,9 @@
 .header {
   height: 100px;
   width: 100%;
-  /* box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.2); */
   border-bottom: 2px solid #E40042;
   border-image: linear-gradient(to right, #E40042, #ffffff);
   border-image-slice: 1;
-  /* box-shadow: 0 2px 2px -2px linear-gradient(to right, #E40042, #ffffff); */
-
   display: flex;
 }
 .header-logo {
@@ -32,7 +29,9 @@ a {
   justify-content: space-between;
 }
 .header-menu-top {
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid #E40042;
+  border-image: linear-gradient(to right, #E40042, #ffffff);
+  border-image-slice: 1;
   height: 50px;
   width: 100%;
   display: flex;
@@ -54,12 +53,19 @@ a {
 .header-menu-bottom a {
   color: #757575;
 }
+.header-menu-bottom a:hover {
+  color: #E40042;
+}
 
 .header-menu-item-top {
-  margin-left: 20px;
+  padding: 0 10px;
   cursor: pointer;
 }
 .header-menu-item-bottom {
-  margin-left: 20px;
+  padding: 0 10px;
   cursor: pointer;
+}
+.active {
+  background: linear-gradient(to right, #e4004129, #ffffff);
+  border-radius: 4px;
 }

@@ -10,9 +10,10 @@ import { SharedModule } from './shared/shared.module';
 import { AdminModule } from './admin/admin.module';
 import { HomeComponent } from './pages/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
+import { StoriesComponent } from './components/stories/stories.component';
 
 @NgModule({
-  declarations: [AppComponent, StoryComponent, HomeComponent, HeaderComponent],
+  declarations: [AppComponent, StoryComponent, HomeComponent, HeaderComponent, StoriesComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

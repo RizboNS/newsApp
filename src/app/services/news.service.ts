@@ -1,16 +1,26 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { domainUrl } from '../data/api-domain';
 import { ApiResponse } from '../models/api-response.model';
+import { PagedResponse } from '../models/paged-response.model';
 import { Story } from '../models/story.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NewsService {
-  _domain = 'https://localhost:7400';
+  _domain = domainUrl;
   _storyUrl = this._domain + '/api/Story';
   constructor(private http: HttpClient) {}
+  getStoriesByCategory(
+    category: string,
+    page: string
+  ): Observable<ApiResponse<PagedResponse>> {
+    return this.http.get<ApiResponse<PagedResponse>>(
+      `${this._storyUrl}/category?${category}&page=${page}`
+    );
+  }
 
   getAllStories(): Observable<ApiResponse<Story[]>> {
     return this.http.get<ApiResponse<Story[]>>(this._storyUrl);
