@@ -8,9 +8,10 @@ import { AppComponent } from './app.component';
 import { StoryComponent } from './components/story/story.component';
 import { SharedModule } from './shared/shared.module';
 import { AdminModule } from './admin/admin.module';
+import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
-  declarations: [AppComponent, StoryComponent],
+  declarations: [AppComponent, StoryComponent, HomeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
