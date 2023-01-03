@@ -1,4 +1,8 @@
 <p>{{ storyType }}</p>
 <ng-container *ngIf="stories.length > 0">
-  {{ stories[0].title }}
+  <div class="paginated-container">
+    <article class="story" *ngFor="let story of stories">
+      {{ story.title }}
+    </article>
+  </div>
 </ng-container>

@@ -1,0 +1,26 @@
+.paginated-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 5px;
+  height: 100%;
+  width: 813px;
+  margin: auto;
+}
+.paginated-container :first-child {
+  width: 813px;
+}
+.paginated-container :nth-child(n+6) {
+  width: 813px;
+  height: 100px;
+  border: 1px solid #E40042;
+  border-image: linear-gradient(to right, #e4004172, #e4004138);
+  border-image-slice: 1;
+}
+.story {
+  width: 403px;
+  height: 300px;
+
+}
+
