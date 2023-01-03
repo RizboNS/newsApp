@@ -2,9 +2,10 @@
   height: 100px;
   width: 100%;
   border-bottom: 2px solid #E40042;
-  border-image: linear-gradient(to right, #E40042, #ffffff);
+  border-image: linear-gradient(to right, #fff, #e4004172,#e400415a, #e4004138, #fff);
   border-image-slice: 1;
   display: flex;
+  justify-content: center;
 }
 .header-logo {
   height: 100%;
@@ -23,14 +24,14 @@ a {
   cursor: pointer;
 }
 .header-menu-container {
-  width: 100%;
+  /* width: 100%; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 .header-menu-top {
   border-bottom: 1px solid #E40042;
-  border-image: linear-gradient(to right, #E40042, #ffffff);
+  border-image: linear-gradient(to right, #fff, #e4004172,#e400415a, #e4004138, #fff);
   border-image-slice: 1;
   height: 50px;
   width: 100%;
