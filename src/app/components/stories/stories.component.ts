@@ -10,30 +10,33 @@ import { NewsService } from 'src/app/services/news.service';
 })
 export class StoriesComponent {
   @Input() storyType: string = '';
-  @Input() page: string = '';
   @Input() storyCategory: string = '';
 
-  stories: Story[] = [];
+  stories = new Map<string, Story[]>();
 
   constructor(private newsService: NewsService) {}
 
   ngOnInit(): void {
-    this.getStories();
+    this.getStories('1');
   }
 
-  getStories() {
+  getStories(page: string) {
     if (this.storyCategory === '') {
-      this.newsService.getStoriesPaged(this.page).pipe(take(1)).subscribe((res) => {
-        this.stories = res.data.stories;
-        console.log(res);
-        console.log(this.stories);
-      });
-    } else {
       this.newsService
-        .getStoriesByCategory(this.storyCategory, this.page)
+        .getStoriesPaged(page)
         .pipe(take(1))
         .subscribe((res) => {
-          this.stories = res.data.stories;
+          // this.stories = res.data.stories;
+          this.stories.set(res.data.page, res.data.stories);
+          console.log(res);
+          console.log(this.stories);
+        });
+    } else {
+      this.newsService
+        .getStoriesByCategory(this.storyCategory, page)
+        .pipe(take(1))
+        .subscribe((res) => {
+          // this.stories = res.data.stories;
           console.log(res);
           console.log(this.stories);
         });
