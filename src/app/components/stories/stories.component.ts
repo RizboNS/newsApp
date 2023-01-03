@@ -23,14 +23,11 @@ export class StoriesComponent {
 
   getStories() {
     if (this.storyCategory === '') {
-      this.newsService
-        .getAllStories()
-        .pipe(take(1))
-        .subscribe((res) => {
-          this.stories = res.data;
-          console.log(res);
-          console.log(this.stories);
-        });
+      this.newsService.getStoriesPaged(this.page).pipe(take(1)).subscribe((res) => {
+        this.stories = res.data.stories;
+        console.log(res);
+        console.log(this.stories);
+      });
     } else {
       this.newsService
         .getStoriesByCategory(this.storyCategory, this.page)
