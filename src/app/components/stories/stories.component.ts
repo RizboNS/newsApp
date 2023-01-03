@@ -27,9 +27,8 @@ export class StoriesComponent {
         .pipe(take(1))
         .subscribe((res) => {
           // this.stories = res.data.stories;
-          this.stories.set(res.data.page, res.data.stories);
+          this.stories.set(res.data.page.toString(), res.data.stories);
           console.log(res);
-          console.log(this.stories);
         });
     } else {
       this.newsService
@@ -37,6 +36,7 @@ export class StoriesComponent {
         .pipe(take(1))
         .subscribe((res) => {
           // this.stories = res.data.stories;
+          this.stories.set(res.data.page.toString(), res.data.stories);
           console.log(res);
           console.log(this.stories);
         });
