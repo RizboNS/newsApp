@@ -18,7 +18,11 @@
         <img class="icon" src="{{ story.iconPath }}" alt="TO DO" />
         <h3 class="title">{{ story.title }}</h3>
       </div>
-      <div class="border-inner"></div>
+      <div class="description-container">
+        <p class="description">
+          {{ story.description.substring(0, 100) + "..." }}
+        </p>
+      </div>
     </article>
   </div>
 </ng-container>
