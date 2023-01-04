@@ -28,7 +28,8 @@ export class StoriesComponent {
         .subscribe((res) => {
           // this.stories = res.data.stories;
           this.stories.set(res.data.page.toString(), res.data.stories);
-          console.log(res);
+          console.log(this.stories);
+          // console.log(res);
         });
     } else {
       this.newsService
@@ -37,7 +38,7 @@ export class StoriesComponent {
         .subscribe((res) => {
           // this.stories = res.data.stories;
           this.stories.set(res.data.page.toString(), res.data.stories);
-          console.log(res);
+          // console.log(res);
           console.log(this.stories);
         });
     }
