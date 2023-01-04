@@ -1,4 +1,4 @@
-.paginated-container {
+/* .paginated-container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -12,7 +12,6 @@
 .paginated-container :first-child {
   width: 813px;
 }
-/* first 5 stories */
 .paginated-container > :first-child .icon-container,
 .paginated-container > :nth-child(n+2):nth-child(-n+5) .icon-container {
   position: relative;
@@ -90,5 +89,43 @@
   display: block;
   object-fit: cover;
   object-position: center;
+} */
+.paginated-container {
+  width: 813px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
 }
+.story {
+  width: 813px;
+  max-height: 430px;
+  background-color: #e4004178;
+}
+.icon-container {
+  position: relative;
+  width: 813px;
+  max-height: 430px;
+}
+.title-container {
+  position: absolute;
+  z-index: 9;
+  bottom: 0;
+  left: 0;
+  padding: 0.5rem;
+  max-width: 90%;
+  background-color: #e4004178;
+  margin: 0;
+}
+.title-container h3 {
+  margin: 0;
+  color: #fff;
+  letter-spacing: -1px;
+  font-size: 24px;
+}
+/* target .paginated-container childern 2-5 */
+.paginated-container > :nth-child(n+2):nth-child(-n+5) {
+  width: 403px;
+  height: 430px;
+}
+/* target .paginated-container childern images 2-5 */
 
