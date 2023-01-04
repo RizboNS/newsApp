@@ -17,7 +17,6 @@ import { QuillEditorComponent } from 'ngx-quill';
 })
 export class AdminCreateStoryComponent implements OnInit {
   categories = CategoryMap;
-  icon: string = '';
   editorForm!: FormGroup;
   previewVeiwMode: string = 'Desktop';
 
@@ -30,8 +29,6 @@ export class AdminCreateStoryComponent implements OnInit {
   alertShow: boolean = false;
 
   showAlertMsg: boolean = false;
-
-  imageSrc: any;
 
   quillConfig = {
     toolbar: {
@@ -141,23 +138,6 @@ export class AdminCreateStoryComponent implements OnInit {
     let dateTime = date + 'T' + time;
     return dateTime;
   }
-  onFileSelect(event: any): void {
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        this.icon = reader.result as string;
-      };
-      this.imageSrc = this.sanitizer.bypassSecurityTrustUrl(
-        URL.createObjectURL(file)
-      );
-    }
-  }
-  removeImage() {
-    this.icon = '';
-    this.imageSrc = '';
-  }
 
   onSubmit(): void {
     let story: Story = this.mapStory();
@@ -204,7 +184,6 @@ export class AdminCreateStoryComponent implements OnInit {
         this.editorForm.value.publishDate,
         this.editorForm.value.publishTime
       ),
-      icon: this.icon,
     };
     return story;
   }
@@ -225,7 +204,7 @@ export class AdminCreateStoryComponent implements OnInit {
   async validationErrorMsg() {
     await this.showAlert(
       'Validation Error',
-      'Please fill all the required fields and upload an icon.'
+      'Please fill all the required fields.'
     );
   }
 }

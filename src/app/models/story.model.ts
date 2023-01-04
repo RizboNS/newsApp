@@ -10,6 +10,4 @@ export interface Story {
   publishTime: string;
   publish: boolean;
   category: Category;
-  icon?: string;
-  iconPath?: string;
 }

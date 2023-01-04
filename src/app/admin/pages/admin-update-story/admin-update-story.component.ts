@@ -15,7 +15,6 @@ import { NewsService } from 'src/app/services/news.service';
 })
 export class AdminUpdateStoryComponent {
   categories = CategoryMap;
-  icon: string = '';
   editorForm!: FormGroup;
   previewVeiwMode: string = 'Desktop';
 
@@ -28,8 +27,6 @@ export class AdminUpdateStoryComponent {
   alertShow: boolean = false;
 
   showAlertMsg: boolean = false;
-
-  imageSrc: any;
 
   quillConfig = {
     toolbar: {
@@ -99,10 +96,6 @@ export class AdminUpdateStoryComponent {
             updateTime: story.updateTime,
             createdTime: story.createdTime,
           });
-          if (story.iconPath !== undefined) {
-            this.icon = story.iconPath;
-            this.imageSrc = story.iconPath;
-          }
         },
         error: async (err) => {
           this.alertTitle = 'Error';
@@ -181,25 +174,6 @@ export class AdminUpdateStoryComponent {
     let dateAndTime = dateTime.split('T');
     return dateAndTime;
   }
-
-  onFileSelect(event: any): void {
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        this.icon = reader.result as string;
-      };
-      this.imageSrc = this.sanitizer.bypassSecurityTrustUrl(
-        URL.createObjectURL(file)
-      );
-    }
-  }
-  removeImage() {
-    this.icon = '';
-    this.imageSrc = '';
-  }
-
   onSubmit(): void {
     let story: Story = this.mapStory();
     console.log(story);
@@ -249,8 +223,6 @@ export class AdminUpdateStoryComponent {
         this.editorForm.value.publishDate,
         this.editorForm.value.publishTime
       ),
-      icon: this.icon,
-      id: this.readIdFromRoute(),
     };
     return story;
   }
@@ -271,7 +243,7 @@ export class AdminUpdateStoryComponent {
   async validationErrorMsg() {
     await this.showAlert(
       'Validation Error',
-      'Please fill all the required fields and upload an icon.'
+      'Please fill all the required fields.'
     );
   }
 }

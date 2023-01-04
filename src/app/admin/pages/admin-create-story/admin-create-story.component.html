@@ -34,13 +34,13 @@
           <button
             (click)="onSubmit()"
             class="admin-btn-primary"
-            *ngIf="!editorForm.invalid && icon !== ''"
+            *ngIf="!editorForm.invalid"
           >
             Submit Story
           </button>
           <button
             class="admin-btn-primary disabled"
-            *ngIf="editorForm.invalid || icon === ''"
+            *ngIf="editorForm.invalid"
             (click)="validationErrorMsg()"
           >
             Submit Story
@@ -93,34 +93,6 @@
               {{ category.value }}
             </option>
           </select>
-        </div>
-        <div class="image-upload-wrapper">
-          <h3>Upload story icon</h3>
-          <label for="file-upload-default" class="label-as-btn-wrapper">
-            Upload image
-            <i class="fa-solid fa-image"></i>
-            <input
-              id="file-upload-default"
-              accept="image/*"
-              type="file"
-              (change)="onFileSelect($event)"
-            />
-          </label>
-          <div *ngIf="imageSrc" class="icon-preview-container">
-            <button
-              class="remove-icon-btn"
-              *ngIf="imageSrc"
-              (click)="removeImage()"
-            >
-              <i class="fa-solid fa-xmark"></i>
-            </button>
-            <img
-              *ngIf="imageSrc"
-              [src]="imageSrc"
-              alt="story icon"
-              class="story-icon"
-            />
-          </div>
         </div>
       </div>
     </div>
