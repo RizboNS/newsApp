@@ -7,7 +7,7 @@
       <a
         class="header-menu-item-top"
         *ngFor="let articleType of articleTypes"
-        [routerLink]="articleType"
+        [routerLink]="articleType.toLowerCase()"
         routerLinkActive="active"
       >
         {{ articleType }}
@@ -17,11 +17,17 @@
       <a
         class="header-menu-item-bottom"
         *ngFor="let category of categories | keyvalue"
-        [routerLink]="'kategorija/' + category.value"
+        [routerLink]="
+          'kategorija/' + category.value.toLowerCase().replaceAll(' ', '-')
+        "
         routerLinkActive="active"
       >
         {{ category.value }}
       </a>
     </div>
   </div>
+</div>
+<div class="header-banner">
+  <img src="assets/images/temp-banner.gif" alt="banner" />
+  <button class="header-banner-btn-close">X</button>
 </div>

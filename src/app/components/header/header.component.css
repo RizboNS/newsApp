@@ -70,3 +70,27 @@ a {
   background: linear-gradient(to right, #e4004129, #ffffff);
   border-radius: 4px;
 }
+.header-banner {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f6f8fa;
+  padding: 10px;
+  border-bottom: 1px solid #E40042;
+  border-image: linear-gradient(to right, #fff, #e4004172,#e400415a, #e4004138, #fff);
+  border-image-slice: 1;
+}
+
+.header-banner-btn-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  height: 25px;
+  width:25px;
+  background: linear-gradient(to right, #e4004188,#e4004158, #e400412a);
+  color: #fff;
+  outline: none;
+  border: none;
+}

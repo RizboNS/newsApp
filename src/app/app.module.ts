@@ -12,9 +12,10 @@ import { HomeComponent } from './pages/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { StoriesComponent } from './components/stories/stories.component';
 import { CarouselComponent } from './ui/carousel/carousel.component';
+import { VestiComponent } from './pages/vesti/vesti.component';
 
 @NgModule({
-  declarations: [AppComponent, StoryComponent, HomeComponent, HeaderComponent, StoriesComponent, CarouselComponent],
+  declarations: [AppComponent, StoryComponent, HomeComponent, HeaderComponent, StoriesComponent, CarouselComponent, VestiComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

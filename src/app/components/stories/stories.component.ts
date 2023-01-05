@@ -1,4 +1,10 @@
-import { Component, Input } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { take } from 'rxjs';
 import { Story } from 'src/app/models/story.model';
 import { NewsService } from 'src/app/services/news.service';
@@ -8,7 +14,7 @@ import { NewsService } from 'src/app/services/news.service';
   templateUrl: './stories.component.html',
   styleUrls: ['./stories.component.css'],
 })
-export class StoriesComponent {
+export class StoriesComponent implements OnInit, OnChanges {
   @Input() storyType: string = '';
   @Input() storyCategory: string = '';
 
@@ -19,6 +25,11 @@ export class StoriesComponent {
   pageRangeToShow: number[] = [];
 
   constructor(private newsService: NewsService) {}
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['storyCategory']) {
+      this.getStories('1');
+    }
+  }
 
   ngOnInit(): void {
     this.getStories('1');
@@ -60,23 +71,21 @@ export class StoriesComponent {
         .getStoriesPaged(page)
         .pipe(take(1))
         .subscribe((res) => {
-          // this.stories = res.data.stories;
           this.stories.set(res.data.page.toString(), res.data.stories);
           this.pageSelected = res.data.page;
           this.pageCount = res.data.pageCount;
           this.getPageRange();
-          console.log(this.stories);
-          console.log(res);
         });
     } else {
       this.newsService
         .getStoriesByCategory(this.storyCategory, page)
         .pipe(take(1))
         .subscribe((res) => {
-          // this.stories = res.data.stories;
+          console.log(res);
           this.stories.set(res.data.page.toString(), res.data.stories);
-          // console.log(res);
-          console.log(this.stories);
+          this.pageSelected = res.data.page;
+          this.pageCount = res.data.pageCount;
+          this.getPageRange();
         });
     }
   }

@@ -4,6 +4,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+
 }
 .story {
   width: 600px;
@@ -38,7 +39,7 @@
   position: absolute;
   z-index: 10;
   opacity: 0;
-  background-color: #e4004173;
+  background-color: #e4004197;
 }
 .fade:hover {
   opacity: 0.1;
@@ -98,11 +99,16 @@
   height: 100px;
 }
 .pagination-controls {
-  width: 100%;
+  width: 600px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: auto;
+  margin: 1rem auto;
+  padding: 0.5rem;
+  border-bottom: 1px solid #E40042;
+  border-top: #E40042 1px solid;
+  border-image: linear-gradient(to right,#fff, #e4004172,#e400415a, #e4004138, #fff);
+  border-image-slice: 1;
 }
 .pagination-btn {
   width: 40px;

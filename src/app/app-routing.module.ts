@@ -2,8 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { StoryComponent } from './components/story/story.component';
 import { HomeComponent } from './pages/home/home.component';
+import { VestiComponent } from './pages/vesti/vesti.component';
 
 const routes: Routes = [
+  { path: 'vesti', component: VestiComponent },
+  { path: 'kategorija/:category', component: VestiComponent },
   { path: 'story', component: StoryComponent }, // TO DO - add route params and change to serbian
   { path: '', component: HomeComponent },
   {
