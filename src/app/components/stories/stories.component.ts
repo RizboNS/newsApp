@@ -13,11 +13,43 @@ export class StoriesComponent {
   @Input() storyCategory: string = '';
 
   stories = new Map<string, Story[]>();
+  pageSelected = 5;
+  pageCount = 65;
+  pageRange: number[] = [];
+  pageRangeToShow: number[] = [];
 
   constructor(private newsService: NewsService) {}
 
   ngOnInit(): void {
     this.getStories('1');
+    this.getPageRange();
+  }
+
+  getPageRange() {
+    this.pageRange = [];
+    for (let i = 1; i <= this.pageCount; i++) {
+      this.pageRange.push(i);
+    }
+    this.alterPageRangeToShow();
+  }
+
+  alterPageRangeToShow() {
+    if (this.pageSelected < 3) {
+      this.pageRangeToShow = this.pageRange.slice(0, 6);
+      return;
+    }
+    this.pageRangeToShow = this.pageRange.slice(
+      this.pageSelected - 3,
+      this.pageSelected + 3
+    );
+  }
+
+  pageSelectHandler(page: number) {
+    if (page == 0 || page > this.pageCount) {
+      return;
+    }
+    this.pageSelected = page;
+    this.alterPageRangeToShow();
   }
 
   getStories(page: string) {
@@ -28,8 +60,10 @@ export class StoriesComponent {
         .subscribe((res) => {
           // this.stories = res.data.stories;
           this.stories.set(res.data.page.toString(), res.data.stories);
+          // this.pageSelected = res.data.page;
+          // this.pageCount = res.data.pageCount;
           console.log(this.stories);
-          // console.log(res);
+          console.log(res);
         });
     } else {
       this.newsService

@@ -97,3 +97,34 @@
   width: 200px;
   height: 100px;
 }
+.pagination-controls {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+.pagination-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #E40042;
+  background-color: #fff;
+  color: #E40042;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 3px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+.pagination-btn:hover {
+  background-color: #E40042;
+  color: #fff;
+}
+
+
+.active {
+  background-color: #E40042;
+  color: #fff;
+}
