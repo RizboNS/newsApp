@@ -68,7 +68,6 @@ export class AdminCreateStoryComponent implements OnInit {
     this.editorForm = this.fb.group({
       htmlData: [''],
       title: ['', Validators.required],
-      description: ['', Validators.required],
       category: [1],
       publish: [false],
       publishDate: [this.getDate()],
@@ -176,7 +175,6 @@ export class AdminCreateStoryComponent implements OnInit {
   mapStory(): Story {
     let story: Story = {
       title: this.editorForm.value.title,
-      description: this.editorForm.value.description,
       htmlData: this.editorForm.value.htmlData,
       category: Number(this.editorForm.value.category),
       publish: this.editorForm.value.publish,
