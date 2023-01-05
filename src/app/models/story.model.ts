@@ -1,4 +1,5 @@
 import { Category } from './category.model';
+import { ImageDb } from './image-db.model';
 
 export interface Story {
   id?: string;
@@ -10,4 +11,5 @@ export interface Story {
   publishTime: string;
   publish: boolean;
   category: Category;
+  imageDbs?: ImageDb[];
 }

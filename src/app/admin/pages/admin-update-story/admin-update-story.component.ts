@@ -211,6 +211,7 @@ export class AdminUpdateStoryComponent {
   }
   mapStory(): Story {
     let story: Story = {
+      id: this.readIdFromRoute(),
       title: this.editorForm.value.title,
       description: this.editorForm.value.description,
       htmlData:

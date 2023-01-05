@@ -2,8 +2,14 @@
   <div class="paginated-container">
     <article class="story" *ngFor="let story of stories.get('1')">
       <div class="icon-container">
-        <!-- <img class="icon" src="{{ story.iconPath }}" alt="TO DO" /> -->
-        <h3 class="title">{{ story.title }}</h3>
+        <div class="fade"></div>
+        <app-carousel
+          class="carousel-ui"
+          [images]="story.imageDbs"
+        ></app-carousel>
+        <div class="title-container">
+          <h3 class="title">{{ story.title }}</h3>
+        </div>
       </div>
     </article>
   </div>

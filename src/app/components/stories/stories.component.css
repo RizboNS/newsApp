@@ -63,7 +63,7 @@
 
 .story {
   width: 403px;
-  height: 430px;
+  height: 300px;
   position: relative;
   border-bottom: 1px solid #E40042;
   border-image: linear-gradient(to right,#fff, #e4004172,#e400415a, #e4004138, #fff);
@@ -95,16 +95,18 @@
   margin: auto;
   display: flex;
   flex-wrap: wrap;
+  gap: 5px;
+  /* gap: 10px; */
 }
 .story {
   width: 813px;
-  max-height: 430px;
-  background-color: #e4004178;
+  max-height: 300px;
 }
 .icon-container {
   position: relative;
   width: 813px;
-  max-height: 430px;
+  max-height: 300px;
+
 }
 .title-container {
   position: absolute;
@@ -122,10 +124,66 @@
   letter-spacing: -1px;
   font-size: 24px;
 }
-/* target .paginated-container childern 2-5 */
-.paginated-container > :nth-child(n+2):nth-child(-n+5) {
-  width: 403px;
-  height: 430px;
+.fade {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 10;
+  opacity: 0;
+  background-color: #E40042;
 }
-/* target .paginated-container childern images 2-5 */
+.fade:hover {
+  opacity: 0.1;
+  cursor: pointer;
+}
 
+/* chlidren 2-5 */
+.paginated-container > :nth-child(n+2):nth-child(-n+5) {
+  width: 403.5px;
+  height: 300px;
+}
+.paginated-container > :nth-child(n+2):nth-child(-n+5) .icon-container  {
+  width: 403.5px;
+  height: 300px;
+}
+
+/* children 5-10 */
+.paginated-container > :nth-child(n+6):nth-child(-n+10) {
+  width: 813px;
+  height: 100px;
+
+}
+.paginated-container > :nth-child(n+6):nth-child(-n+10) .icon-container {
+  width: 813px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.paginated-container > :nth-child(n+6):nth-child(-n+10) .title-container {
+  position: static;
+  width: 600px;
+  height: 98px;
+  background-color: transparent;
+  border-bottom: 1px solid #E40042;
+  border-top: #E40042 1px solid;
+  border-image: linear-gradient(to right,#fff, #e4004172,#e400415a, #e4004138, #fff);
+  border-image-slice: 1;
+  display: flex;
+  align-items: center;
+}
+.paginated-container > :nth-child(n+6):nth-child(-n+10) .title-container h3 {
+  color: #424242;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.paginated-container > :nth-child(n+6):nth-child(-n+10) .carousel-ui,
+:host ::ng-deep .paginated-container > :nth-child(n+6):nth-child(-n+10) .carousel-ui .carousel-container {
+  width: 200px;
+  height: 100px;
+}
+:host ::ng-deep .paginated-container > :nth-child(n+6):nth-child(-n+10) img {
+  width: 200px;
+  height: 100px;
+}

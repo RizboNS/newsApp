@@ -11,9 +11,10 @@ import { AdminModule } from './admin/admin.module';
 import { HomeComponent } from './pages/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { StoriesComponent } from './components/stories/stories.component';
+import { CarouselComponent } from './ui/carousel/carousel.component';
 
 @NgModule({
-  declarations: [AppComponent, StoryComponent, HomeComponent, HeaderComponent, StoriesComponent],
+  declarations: [AppComponent, StoryComponent, HomeComponent, HeaderComponent, StoriesComponent, CarouselComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
