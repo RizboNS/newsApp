@@ -14,11 +14,12 @@ export class NewsService {
   _storyUrl = this._domain + '/api/Story';
   constructor(private http: HttpClient) {}
   getStoriesByCategory(
+    type: string,
     category: string,
     page: string
   ): Observable<ApiResponse<PagedResponse>> {
     return this.http.get<ApiResponse<PagedResponse>>(
-      `${this._storyUrl}/category?category=${category}&page=${page}`
+      `${this._storyUrl}/filter?type=${type}&category=${category}&page=${page}`
     );
   }
   getStoriesPaged(page: string): Observable<ApiResponse<PagedResponse>> {

@@ -16,7 +16,8 @@ export class VestiComponent implements OnInit {
   }
   initCategory() {
     this.route.paramMap.subscribe((params) => {
-      this.category = params.get('category')?.replaceAll('š', 's') || '';
+      this.category =
+        params.get('category')?.replaceAll('š', 's').replaceAll('-', '') || '';
     });
   }
 }

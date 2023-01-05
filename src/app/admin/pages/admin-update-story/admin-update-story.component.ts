@@ -69,6 +69,7 @@ export class AdminUpdateStoryComponent {
     this.editorForm = this.fb.group({
       htmlData: [''],
       title: ['', Validators.required],
+      type: ['type', Validators.required],
       category: [1],
       publish: [false],
       publishDate: [this.getDate()],
@@ -87,6 +88,7 @@ export class AdminUpdateStoryComponent {
           this.editorForm.patchValue({
             htmlData: story.htmlData,
             title: story.title,
+            type: story.type,
             category: story.category,
             publish: story.publish,
             publishDate: this.splitDateAndTime(story.publishTime)[0],
@@ -211,6 +213,7 @@ export class AdminUpdateStoryComponent {
     let story: Story = {
       id: this.readIdFromRoute(),
       title: this.editorForm.value.title,
+      type: this.editorForm.value.type,
       htmlData:
         this.editorForm.value.htmlData == null
           ? ''

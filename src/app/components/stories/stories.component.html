@@ -2,7 +2,7 @@
   <div class="paginated-container">
     <article
       class="story"
-      *ngFor="let story of stories.get(pageSelected.toString())"
+      *ngFor="let story of stories.get(pageSelected.toString()); let i = index"
     >
       <div class="icon-container" routerLink="story">
         <div class="fade"></div>
@@ -11,9 +11,43 @@
           [images]="story.imageDbs"
         ></app-carousel>
         <div class="title-container">
-          <h3 class="title">{{ story.title }}</h3>
+          <ng-container *ngIf="i > 4">
+            <div class="article-info-sml">
+              <div class="category">
+                <p>
+                  <a routerLink="">
+                    {{ capitalize(story.type) + " >" }}
+                  </a>
+                  <a routerLink="">
+                    {{ categoryMap.get(story.category) }}
+                  </a>
+                </p>
+              </div>
+              <h3 class="title">{{ story.title }}</h3>
+              <div class="date">
+                <p>
+                  {{ story.publishTime | date : "mediumDate" }}
+                </p>
+              </div>
+            </div>
+          </ng-container>
         </div>
       </div>
+      <ng-container *ngIf="i < 5">
+        <div class="article-info">
+          <div class="category">
+            <p>
+              {{ capitalize(story.type) + " >" }}
+              {{ categoryMap.get(story.category) }}
+            </p>
+          </div>
+          <div class="date">
+            <p>
+              {{ story.publishTime | date : "mediumDate" }}
+            </p>
+          </div>
+        </div>
+      </ng-container>
     </article>
   </div>
   <div class="pagination-controls">

@@ -8,6 +8,7 @@ import {
 import { take } from 'rxjs';
 import { Story } from 'src/app/models/story.model';
 import { NewsService } from 'src/app/services/news.service';
+import { CategoryMap } from 'src/app/models/category.model';
 
 @Component({
   selector: 'app-stories',
@@ -19,6 +20,7 @@ export class StoriesComponent implements OnInit, OnChanges {
   @Input() storyCategory: string = '';
 
   stories = new Map<string, Story[]>();
+  categoryMap = CategoryMap;
   pageSelected = 1;
   pageCount = 1;
   pageRange: number[] = [];
@@ -64,7 +66,9 @@ export class StoriesComponent implements OnInit, OnChanges {
       this.getStories(page.toString());
     }
   }
-
+  capitalize(str: string) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
   getStories(page: string) {
     if (this.storyCategory === '') {
       this.newsService
@@ -78,7 +82,7 @@ export class StoriesComponent implements OnInit, OnChanges {
         });
     } else {
       this.newsService
-        .getStoriesByCategory(this.storyCategory, page)
+        .getStoriesByCategory(this.storyType, this.storyCategory, page)
         .pipe(take(1))
         .subscribe((res) => {
           console.log(res);

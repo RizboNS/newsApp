@@ -68,6 +68,7 @@ export class AdminCreateStoryComponent implements OnInit {
     this.editorForm = this.fb.group({
       htmlData: [''],
       title: ['', Validators.required],
+      type: ['vest', Validators.required],
       category: [1],
       publish: [false],
       publishDate: [this.getDate()],
@@ -176,6 +177,7 @@ export class AdminCreateStoryComponent implements OnInit {
     let story: Story = {
       title: this.editorForm.value.title,
       htmlData: this.editorForm.value.htmlData,
+      type: this.editorForm.value.type,
       category: Number(this.editorForm.value.category),
       publish: this.editorForm.value.publish,
       publishTime: this.mergeDateAndTime(
