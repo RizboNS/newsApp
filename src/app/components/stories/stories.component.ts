@@ -13,8 +13,8 @@ export class StoriesComponent {
   @Input() storyCategory: string = '';
 
   stories = new Map<string, Story[]>();
-  pageSelected = 5;
-  pageCount = 65;
+  pageSelected = 1;
+  pageCount = 1;
   pageRange: number[] = [];
   pageRangeToShow: number[] = [];
 
@@ -22,7 +22,6 @@ export class StoriesComponent {
 
   ngOnInit(): void {
     this.getStories('1');
-    this.getPageRange();
   }
 
   getPageRange() {
@@ -50,6 +49,9 @@ export class StoriesComponent {
     }
     this.pageSelected = page;
     this.alterPageRangeToShow();
+    if (!this.stories.has(page.toString())) {
+      this.getStories(page.toString());
+    }
   }
 
   getStories(page: string) {
@@ -60,8 +62,9 @@ export class StoriesComponent {
         .subscribe((res) => {
           // this.stories = res.data.stories;
           this.stories.set(res.data.page.toString(), res.data.stories);
-          // this.pageSelected = res.data.page;
-          // this.pageCount = res.data.pageCount;
+          this.pageSelected = res.data.page;
+          this.pageCount = res.data.pageCount;
+          this.getPageRange();
           console.log(this.stories);
           console.log(res);
         });

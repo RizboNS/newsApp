@@ -1,6 +1,9 @@
-<ng-container *ngIf="stories.get('1')">
+<ng-container *ngIf="stories.get(pageSelected.toString())">
   <div class="paginated-container">
-    <article class="story" *ngFor="let story of stories.get('1')">
+    <article
+      class="story"
+      *ngFor="let story of stories.get(pageSelected.toString())"
+    >
       <div class="icon-container" routerLink="story">
         <div class="fade"></div>
         <app-carousel
