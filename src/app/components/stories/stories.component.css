@@ -4,8 +4,6 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  position: relative;
-  z-index: 11;
 }
 .story {
   width: 600px;
