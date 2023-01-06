@@ -27,7 +27,11 @@
     </div>
   </div>
 </div>
-<div class="header-banner">
-  <img src="assets/images/temp-banner.gif" alt="banner" />
-  <button class="header-banner-btn-close">X</button>
-</div>
+<ng-container *ngIf="bannerShow">
+  <div class="header-banner">
+    <img src="assets/images/temp-banner.gif" alt="banner" />
+    <button class="header-banner-btn-close" (click)="bannerClose()">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+</ng-container>

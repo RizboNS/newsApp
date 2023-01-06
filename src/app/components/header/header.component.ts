@@ -10,4 +10,9 @@ import { CategoryMap } from 'src/app/models/category.model';
 export class HeaderComponent {
   categories = CategoryMap;
   articleTypes = articleTypes;
+  bannerShow = true;
+
+  bannerClose() {
+    this.bannerShow = false;
+  }
 }
