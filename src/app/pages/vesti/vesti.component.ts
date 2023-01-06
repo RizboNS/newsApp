@@ -19,10 +19,11 @@ export class VestiComponent implements OnInit {
 
   initType() {
     let url = this.route.snapshot.url;
-    if (url.length === 0) {
-      this.type = this.route.snapshot.url[0].path || 'all';
-    } else {
-      this.type = this.route.snapshot.url[1].path || 'all';
+    console.log(url);
+    if (url.length === 1) {
+      this.type = url[0].path || 'all';
+    } else if (url.length > 1) {
+      this.type = url[1].path || 'all';
     }
     this.type = this.type === 'kategorija' ? 'all' : this.type;
   }
