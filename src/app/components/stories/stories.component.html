@@ -16,8 +16,9 @@
               <div class="category">
                 <p>
                   <a routerLink="">
-                    {{ capitalize(story.type) + " >" }}
+                    {{ capitalize(story.type) }}
                   </a>
+                  &gt;
                   <a routerLink="">
                     {{ categoryMap.get(story.category) }}
                   </a>

@@ -138,7 +138,13 @@
   background-color: #E40042;
   color: #fff;
 }
-
+.category a {
+  color: #E40042;
+  text-decoration: none;
+}
+.category a:hover {
+  text-decoration: underline;
+}
 
 .active {
   background-color: #E40042;
