@@ -32,6 +32,9 @@
               </div>
             </div>
           </ng-container>
+          <ng-container *ngIf="i < 5">
+            <h3 class="title">{{ story.title }}</h3>
+          </ng-container>
         </div>
       </div>
       <ng-container *ngIf="i < 5">
