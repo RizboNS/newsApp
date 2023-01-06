@@ -77,6 +77,14 @@
             </option>
           </select>
         </div>
+        <div class="type-wrapper">
+          <h3>Type</h3>
+          <select formControlName="type">
+            <option *ngFor="let type of types" [value]="type[1]">
+              {{ type[0] }}
+            </option>
+          </select>
+        </div>
       </div>
     </div>
     <div class="main-wrapper">

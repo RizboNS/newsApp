@@ -15,7 +15,7 @@
               <div class="category">
                 <p>
                   <a [routerLink]="'/' + story.type">
-                    {{ capitalize(story.type) }}
+                    {{ story.typeDisplay }}
                   </a>
                   &gt;
                   <a
@@ -44,7 +44,7 @@
         <div class="article-info">
           <div class="category">
             <a [routerLink]="'/' + story.type">
-              {{ capitalize(story.type) }}
+              {{ story.typeDisplay }}
             </a>
             &gt;
             <a [routerLink]="'/kategorija/' + categoryMap.get(story.category)">

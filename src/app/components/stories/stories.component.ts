@@ -9,6 +9,7 @@ import { take } from 'rxjs';
 import { Story } from 'src/app/models/story.model';
 import { NewsService } from 'src/app/services/news.service';
 import { CategoryMap } from 'src/app/models/category.model';
+import { articleTypes } from 'src/app/data/article-types';
 
 @Component({
   selector: 'app-stories',
@@ -19,6 +20,7 @@ export class StoriesComponent implements OnInit, OnChanges {
   @Input() storyType: string = '';
   @Input() storyCategory: string = '';
 
+  types = articleTypes;
   stories = new Map<string, Story[]>();
   categoryMap = CategoryMap;
   pageSelected = 1;
@@ -66,9 +68,17 @@ export class StoriesComponent implements OnInit, OnChanges {
       this.getStories(page.toString());
     }
   }
-  capitalize(str: string) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
+
+  private mapStoryType(page: string) {
+    this.stories.get(page)?.forEach((story) => {
+      const test = this.types.find((type) => type[1] === story.type);
+      if (test != undefined) {
+        story.type = test[1];
+        story.typeDisplay = test[0];
+      }
+    });
   }
+
   getStories(page: string) {
     if (this.storyCategory === '') {
       this.newsService
@@ -78,6 +88,7 @@ export class StoriesComponent implements OnInit, OnChanges {
           this.stories.set(res.data.page.toString(), res.data.stories);
           this.pageSelected = res.data.page;
           this.pageCount = res.data.pageCount;
+          this.mapStoryType(res.data.page.toString());
           this.getPageRange();
         });
     } else {
@@ -88,6 +99,7 @@ export class StoriesComponent implements OnInit, OnChanges {
           this.stories.set(res.data.page.toString(), res.data.stories);
           this.pageSelected = res.data.page;
           this.pageCount = res.data.pageCount;
+          this.mapStoryType(res.data.page.toString());
           this.getPageRange();
         });
     }
