@@ -7,6 +7,6 @@ export const articleTypes = [
   'Kalendar',
   'Kultura za Decu',
   'COVID 19',
-  ' Blog',
+  'Blog',
   'EN/DE',
 ];

@@ -7,7 +7,11 @@
       <a
         class="header-menu-item-top"
         *ngFor="let articleType of articleTypes"
-        [routerLink]="articleType.toLowerCase()"
+        [routerLink]="
+          articleType.toLowerCase() === 'covid 19'
+            ? 'tag/' + articleType.toLowerCase().replaceAll(' ', '-')
+            : articleType.toLowerCase().replaceAll(' ', '')
+        "
         routerLinkActive="active"
       >
         {{ articleType }}
