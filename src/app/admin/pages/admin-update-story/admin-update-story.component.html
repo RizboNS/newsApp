@@ -81,6 +81,14 @@
             <div class="error-message">Title is required</div>
           </ng-container>
         </div>
+        <div class="type-wrapper">
+          <h3>Type</h3>
+          <select formControlName="type">
+            <option *ngFor="let type of types" [value]="type[1]">
+              {{ type[0] }}
+            </option>
+          </select>
+        </div>
         <div class="category-wrapper">
           <h3>Category</h3>
           <select formControlName="category">

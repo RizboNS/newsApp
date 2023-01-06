@@ -87,6 +87,15 @@
 .category-wrapper select:focus {
     outline: none;
 }
+.type-wrapper select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+.type-wrapper select:focus {
+  outline: none;
+}
 .label-as-btn-wrapper {
     display: inline-block;
     margin: 0.2rem;

@@ -70,7 +70,7 @@ export class AdminCreateStoryComponent implements OnInit {
     this.editorForm = this.fb.group({
       htmlData: [''],
       title: ['', Validators.required],
-      type: [this.types[0], Validators.required],
+      type: [this.types[0][1]],
       category: [1],
       publish: [false],
       publishDate: [this.getDate()],
@@ -169,13 +169,13 @@ export class AdminCreateStoryComponent implements OnInit {
     }
   }
 
-  navigateToStory(id: string | undefined): void {
+  private navigateToStory(id: string | undefined): void {
     if (id === undefined) {
       return;
     }
     this.router.navigate(['/admin/story/' + id]);
   }
-  mapStory(): Story {
+  private mapStory(): Story {
     let story: Story = {
       title: this.editorForm.value.title,
       htmlData: this.editorForm.value.htmlData,
