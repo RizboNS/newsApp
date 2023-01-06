@@ -9,6 +9,7 @@ import { take } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
 import Quill from 'quill';
 import { QuillEditorComponent } from 'ngx-quill';
+import { articleTypes } from 'src/app/data/article-types';
 
 @Component({
   selector: 'app-admin-create-story',
@@ -17,6 +18,7 @@ import { QuillEditorComponent } from 'ngx-quill';
 })
 export class AdminCreateStoryComponent implements OnInit {
   categories = CategoryMap;
+  types = articleTypes;
   editorForm!: FormGroup;
   previewVeiwMode: string = 'Desktop';
 
@@ -68,7 +70,7 @@ export class AdminCreateStoryComponent implements OnInit {
     this.editorForm = this.fb.group({
       htmlData: [''],
       title: ['', Validators.required],
-      type: ['vest', Validators.required],
+      type: [this.types[0], Validators.required],
       category: [1],
       publish: [false],
       publishDate: [this.getDate()],
