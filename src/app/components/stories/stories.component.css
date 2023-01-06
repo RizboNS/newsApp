@@ -132,12 +132,13 @@
 }
 .category a {
   color: #E40042;
-
   text-decoration: none;
 }
 .category a:hover {
   text-decoration: underline;
 }
+
+
 
 .active {
   background-color: #E40042;
@@ -148,6 +149,10 @@
   justify-content: space-between;
   align-items: center;
   font-size: 12px;
+}
+
+.article-info a {
+  color: #424242;
 }
 .article-info-sml {
   height: 100%;

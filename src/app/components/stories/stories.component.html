@@ -14,11 +14,15 @@
             <div class="article-info-sml">
               <div class="category">
                 <p>
-                  <a routerLink="">
+                  <a [routerLink]="'/' + story.type">
                     {{ capitalize(story.type) }}
                   </a>
                   &gt;
-                  <a routerLink="">
+                  <a
+                    [routerLink]="
+                      '/kategorija/' + categoryMap.get(story.category)
+                    "
+                  >
                     {{ categoryMap.get(story.category) }}
                   </a>
                 </p>
@@ -39,10 +43,13 @@
       <ng-container *ngIf="i < 5">
         <div class="article-info">
           <div class="category">
-            <p>
-              {{ capitalize(story.type) + " >" }}
+            <a [routerLink]="'/' + story.type">
+              {{ capitalize(story.type) }}
+            </a>
+            &gt;
+            <a [routerLink]="'/kategorija/' + categoryMap.get(story.category)">
               {{ categoryMap.get(story.category) }}
-            </p>
+            </a>
           </div>
           <div class="date">
             <p>
