@@ -5,6 +5,9 @@ import { HomeComponent } from './pages/home/home.component';
 import { VestiComponent } from './pages/vesti/vesti.component';
 
 const routes: Routes = [
+  { path: 'konkursi', component: VestiComponent },
+  { path: 'kritika', component: VestiComponent },
+  { path: 'fokus', component: VestiComponent },
   { path: 'intervju', component: VestiComponent },
   { path: 'vesti', component: VestiComponent },
   { path: 'kategorija/:category', component: VestiComponent },

@@ -78,6 +78,7 @@ export class StoriesComponent implements OnInit, OnChanges {
           this.stories.set(res.data.page.toString(), res.data.stories);
           this.pageSelected = res.data.page;
           this.pageCount = res.data.pageCount;
+          console.log(res);
           this.getPageRange();
         });
     } else {
