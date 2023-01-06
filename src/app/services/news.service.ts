@@ -22,9 +22,12 @@ export class NewsService {
       `${this._storyUrl}/filter?type=${type}&category=${category}&page=${page}`
     );
   }
-  getStoriesPaged(page: string): Observable<ApiResponse<PagedResponse>> {
+  getStoriesPaged(
+    type: string,
+    page: string
+  ): Observable<ApiResponse<PagedResponse>> {
     return this.http.get<ApiResponse<PagedResponse>>(
-      `${this._storyUrl}/page?page=${page}`
+      `${this._storyUrl}/page?type=${type}&page=${page}`
     );
   }
 

@@ -72,7 +72,7 @@ export class StoriesComponent implements OnInit, OnChanges {
   getStories(page: string) {
     if (this.storyCategory === '') {
       this.newsService
-        .getStoriesPaged(page)
+        .getStoriesPaged(this.storyType, page)
         .pipe(take(1))
         .subscribe((res) => {
           this.stories.set(res.data.page.toString(), res.data.stories);
@@ -85,7 +85,6 @@ export class StoriesComponent implements OnInit, OnChanges {
         .getStoriesByCategory(this.storyType, this.storyCategory, page)
         .pipe(take(1))
         .subscribe((res) => {
-          console.log(res);
           this.stories.set(res.data.page.toString(), res.data.stories);
           this.pageSelected = res.data.page;
           this.pageCount = res.data.pageCount;

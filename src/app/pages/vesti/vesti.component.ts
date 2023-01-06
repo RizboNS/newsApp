@@ -8,12 +8,20 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class VestiComponent implements OnInit {
   category = '';
+  type = 'all';
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.initCategory();
+    this.initType();
   }
+
+  initType() {
+    this.type = this.route.snapshot.url[0].path || 'all';
+    this.type = this.type === 'kategorija' ? 'all' : this.type;
+  }
+
   initCategory() {
     this.route.paramMap.subscribe((params) => {
       this.category =
