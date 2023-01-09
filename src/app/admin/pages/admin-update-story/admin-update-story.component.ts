@@ -27,7 +27,6 @@ export class AdminUpdateStoryComponent {
   alertTitle: string = '';
   alertMessage: string = '';
   alertShow: boolean = false;
-
   showAlertMsg: boolean = false;
 
   quillConfig = {
