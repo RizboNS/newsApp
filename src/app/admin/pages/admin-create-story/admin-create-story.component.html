@@ -68,23 +68,25 @@
         </div>
         <div class="type-wrapper">
           <h3>Type</h3>
-          <select formControlName="type">
+          <select formControlName="type" (change)="onTypeChange()">
             <option *ngFor="let type of types" [value]="type[1]">
               {{ type[0] }}
             </option>
           </select>
         </div>
-        <div class="category-wrapper">
-          <h3>Category</h3>
-          <select formControlName="category">
-            <option
-              *ngFor="let category of categories | keyvalue"
-              [value]="category.key"
-            >
-              {{ category.value }}
-            </option>
-          </select>
-        </div>
+        <ng-container *ngIf="!isBlogSelected">
+          <div class="category-wrapper">
+            <h3>Category</h3>
+            <select formControlName="category">
+              <option
+                *ngFor="let category of categories | keyvalue"
+                [value]="category.key"
+              >
+                {{ category.value }}
+              </option>
+            </select>
+          </div>
+        </ng-container>
       </div>
     </div>
     <div class="main-wrapper">

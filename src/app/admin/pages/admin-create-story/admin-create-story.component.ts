@@ -29,6 +29,7 @@ export class AdminCreateStoryComponent implements OnInit {
   alertTitle: string = '';
   alertMessage: string = '';
   alertShow: boolean = false;
+  isBlogSelected = false;
 
   showAlertMsg: boolean = false;
 
@@ -200,6 +201,19 @@ export class AdminCreateStoryComponent implements OnInit {
       this.previewVeiwMode = 'Mobile';
     } else {
       this.previewVeiwMode = 'Desktop';
+    }
+  }
+  onTypeChange() {
+    if (this.editorForm.value.type === 'blog') {
+      this.editorForm.controls['category'].clearValidators();
+      this.editorForm.controls['category'].setValue(''); // remove category value
+      this.editorForm.controls['category'].updateValueAndValidity();
+      this.isBlogSelected = true;
+    } else {
+      this.editorForm.controls['category'].setValidators(Validators.required);
+      this.editorForm.controls['category'].setValue(1); // set default category value
+      this.editorForm.controls['category'].updateValueAndValidity();
+      this.isBlogSelected = false;
     }
   }
 
