@@ -28,6 +28,7 @@ export class AdminUpdateStoryComponent {
   alertMessage: string = '';
   alertShow: boolean = false;
   showAlertMsg: boolean = false;
+  isBlogSelected = false;
 
   quillConfig = {
     toolbar: {
@@ -97,6 +98,7 @@ export class AdminUpdateStoryComponent {
             updateTime: story.updateTime,
             createdTime: story.createdTime,
           });
+          this.onTypeChange();
         },
         error: async (err) => {
           this.alertTitle = 'Error';
@@ -241,7 +243,19 @@ export class AdminUpdateStoryComponent {
       this.previewVeiwMode = 'Desktop';
     }
   }
-
+  onTypeChange() {
+    if (this.editorForm.value.type === 'blog') {
+      this.editorForm.controls['category'].clearValidators();
+      this.editorForm.controls['category'].setValue(''); // remove category value
+      this.editorForm.controls['category'].updateValueAndValidity();
+      this.isBlogSelected = true;
+    } else {
+      this.editorForm.controls['category'].setValidators(Validators.required);
+      this.editorForm.controls['category'].setValue(1); // set default category value
+      this.editorForm.controls['category'].updateValueAndValidity();
+      this.isBlogSelected = false;
+    }
+  }
   async validationErrorMsg() {
     await this.showAlert(
       'Validation Error',

@@ -1,5 +1,4 @@
 export enum Category {
-  None = 0,
   Arhitektura = 1,
   Bastina = 2,
   CivilnoDrustvo = 3,
@@ -18,7 +17,6 @@ export enum Category {
 }
 
 export const CategoryMap = new Map<number, string>([
-  [Category.None, 'Bez Kategorije'],
   [Category.Arhitektura, 'Arhitektura'],
   [Category.Bastina, 'Bastina'],
   [Category.CivilnoDrustvo, 'Civilno društvo'],
