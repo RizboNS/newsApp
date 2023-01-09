@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { articleTypes } from 'src/app/data/article-types';
+import { articleTypesRoutes } from 'src/app/data/article-types';
 import { CategoryMap } from 'src/app/models/category.model';
 
 @Component({
@@ -9,7 +9,7 @@ import { CategoryMap } from 'src/app/models/category.model';
 })
 export class HeaderComponent {
   categories = CategoryMap;
-  articleTypes = articleTypes;
+  articleTypes = articleTypesRoutes;
   bannerShow = true;
 
   bannerClose() {

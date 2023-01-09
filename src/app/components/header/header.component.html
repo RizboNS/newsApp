@@ -7,11 +7,7 @@
       <a
         class="header-menu-item-top"
         *ngFor="let articleType of articleTypes"
-        [routerLink]="
-          articleType[1] === 'covid-19'
-            ? 'tag/' + articleType[1]
-            : articleType[1]
-        "
+        [routerLink]="articleType[1]"
         routerLinkActive="active"
       >
         {{ articleType[0] }}
