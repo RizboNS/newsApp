@@ -28,6 +28,33 @@ export class StoriesComponent implements OnInit, OnChanges {
   pageRange: number[] = [];
   pageRangeToShow: number[] = [];
 
+  testHashtags = [
+    'test',
+    'test2',
+    'test3',
+    'test4',
+    'test5',
+    'test6long',
+    'test7',
+    'test8longeeeeeer',
+    'short',
+    'test10',
+    'shrt',
+    'test12',
+    'test',
+    'test2',
+    'test3',
+    'test4',
+    'test5',
+    'test6long',
+    'test7',
+    'test8longeeeeeer',
+    'short',
+    'test10',
+    'shrt',
+    'test12',
+  ];
+
   constructor(private newsService: NewsService) {}
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['storyCategory']) {
@@ -85,7 +112,10 @@ export class StoriesComponent implements OnInit, OnChanges {
         .getStoriesPaged(this.storyType, page)
         .pipe(take(1))
         .subscribe((res) => {
-          this.stories.set(res.data.page.toString(), res.data.stories);
+          this.stories.set(
+            res.data.page.toString(),
+            this.getFirstTextFromStories(res.data.stories)
+          );
           this.pageSelected = res.data.page;
           this.pageCount = res.data.pageCount;
           this.mapStoryType(res.data.page.toString());
@@ -96,6 +126,7 @@ export class StoriesComponent implements OnInit, OnChanges {
         .getStoriesByCategory(this.storyType, this.storyCategory, page)
         .pipe(take(1))
         .subscribe((res) => {
+          res.data.stories = this.getFirstTextFromStories(res.data.stories);
           this.stories.set(res.data.page.toString(), res.data.stories);
           this.pageSelected = res.data.page;
           this.pageCount = res.data.pageCount;
@@ -103,5 +134,18 @@ export class StoriesComponent implements OnInit, OnChanges {
           this.getPageRange();
         });
     }
+  }
+
+  getFirstTextFromStories(stories: Story[]) {
+    // loop through each story and get the first innerText from the htmlData property wich is not img tag or br empty tag
+    stories.forEach((story) => {
+      const div = document.createElement('div');
+      div.innerHTML = story.htmlData;
+      const text = div.innerText;
+      const firstText = text.split(' ').slice(0, 50).join(' ');
+      story.firstText = firstText;
+    });
+
+    return stories;
   }
 }

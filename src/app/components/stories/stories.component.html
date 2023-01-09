@@ -4,7 +4,7 @@
       class="story"
       *ngFor="let story of stories.get(pageSelected.toString()); let i = index"
     >
-      <div class="icon-container" routerLink="story">
+      <div class="icon-container">
         <app-carousel
           class="carousel-ui"
           [images]="story.imageDbs"
@@ -12,26 +12,31 @@
         <div class="title-container">
           <ng-container *ngIf="i > 4">
             <div class="article-info-sml">
-              <div class="category">
-                <p>
-                  <a [routerLink]="'/' + story.type">
-                    {{ story.typeDisplay }}
-                  </a>
-                  &gt;
-                  <a
-                    [routerLink]="
-                      '/kategorija/' + categoryMap.get(story.category)
-                    "
-                  >
-                    {{ categoryMap.get(story.category) }}
-                  </a>
-                </p>
+              <div class="article-top-row">
+                <div class="category">
+                  <p>
+                    <a [routerLink]="'/' + story.type">
+                      {{ story.typeDisplay }}
+                    </a>
+                    &gt;
+                    <a
+                      [routerLink]="
+                        '/kategorija/' + categoryMap.get(story.category)
+                      "
+                    >
+                      {{ categoryMap.get(story.category) }}
+                    </a>
+                  </p>
+                </div>
+                <div class="date">
+                  <p>
+                    {{ story.publishTime | date : "mediumDate" }}
+                  </p>
+                </div>
               </div>
               <h3 class="title">{{ story.title }}</h3>
-              <div class="date">
-                <p>
-                  {{ story.publishTime | date : "mediumDate" }}
-                </p>
+              <div class="article-body">
+                <p>{{ story.firstText }}</p>
               </div>
             </div>
           </ng-container>
@@ -56,6 +61,9 @@
               {{ story.publishTime | date : "mediumDate" }}
             </p>
           </div>
+        </div>
+        <div class="article-body-main">
+          <p>{{ story.firstText }}</p>
         </div>
       </ng-container>
     </article>

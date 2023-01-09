@@ -15,7 +15,15 @@ import { CarouselComponent } from './ui/carousel/carousel.component';
 import { VestiComponent } from './pages/vesti/vesti.component';
 
 @NgModule({
-  declarations: [AppComponent, StoryComponent, HomeComponent, HeaderComponent, StoriesComponent, CarouselComponent, VestiComponent],
+  declarations: [
+    AppComponent,
+    StoryComponent,
+    HomeComponent,
+    HeaderComponent,
+    StoriesComponent,
+    CarouselComponent,
+    VestiComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

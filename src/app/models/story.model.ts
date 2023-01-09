@@ -5,6 +5,7 @@ export interface Story {
   id?: string;
   title: string;
   htmlData: string;
+  firstText?: string;
   type: string;
   typeDisplay?: string;
   createdTime?: string;

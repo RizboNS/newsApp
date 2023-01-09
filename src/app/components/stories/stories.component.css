@@ -7,7 +7,7 @@
 }
 .story {
   width: 600px;
-  height: 342px;
+  height: auto;
 }
 .icon-container {
   position: relative;
@@ -35,7 +35,7 @@
 .story:hover {
   cursor: pointer;
 }
-.story:hover .title {
+.title:hover {
   text-decoration: underline;
 }
 .paginated-container > :nth-child(1) {
@@ -47,7 +47,7 @@
 /* chlidren 2-5 */
 .paginated-container > :nth-child(n+2):nth-child(-n+5) {
   width: 295px;
-  height: 342px;
+  height: auto;
   border-bottom: 1px solid #E40042;
   border-top: #E40042 1px solid;
   border-image: linear-gradient(to right,#fff, #e4004172,#e400415a, #e4004138, #fff);
@@ -86,7 +86,12 @@
 .paginated-container > :nth-child(n+6):nth-child(-n+10) .title-container h3 {
   color: #424242;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 16px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .paginated-container > :nth-child(n+6):nth-child(-n+10) .carousel-ui,
@@ -136,8 +141,6 @@
   text-decoration: underline;
 }
 
-
-
 .active {
   background-color: #E40042;
   color: #fff;
@@ -150,7 +153,7 @@
 }
 
 .article-info a {
-  color: #424242;
+  font-size: 14px;
 }
 .article-info-sml {
   height: 100%;
@@ -158,12 +161,38 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  /* gap: 0.8rem; */
 }
-
+.article-info-sml .article-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: space-between;
+}
 .article-info-sml p {
   font-size: 12px;
   margin: 0px;
 }
-.article-info-sml .date {
-  align-self: end;
+.article-body-main p {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0 5px 20px 0;
+  font-size: 14px;
+}
+.article-body-main p:hover {
+  text-decoration: underline;
+}
+.article-body p {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0 5px 5px 0;
+  font-size: 14px;
+}
+.article-body p:hover {
+  text-decoration: underline;
 }
