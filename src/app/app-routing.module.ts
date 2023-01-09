@@ -5,6 +5,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { VestiComponent } from './pages/vesti/vesti.component';
 
 const routes: Routes = [
+  { path: 'blog', component: VestiComponent },
   { path: 'tag/en-de', component: VestiComponent },
   { path: 'tag/covid-19', component: VestiComponent },
   { path: 'kulturazadecu', component: VestiComponent },
