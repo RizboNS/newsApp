@@ -7,7 +7,7 @@ import { take } from 'rxjs';
 import { CategoryMap } from 'src/app/models/category.model';
 import { Story } from 'src/app/models/story.model';
 import { NewsService } from 'src/app/services/news.service';
-import { articleTypes } from 'src/app/data/article-types';
+import { articleTypesSetTypes } from 'src/app/data/article-types';
 
 @Component({
   selector: 'app-admin-update-story',
@@ -16,7 +16,7 @@ import { articleTypes } from 'src/app/data/article-types';
 })
 export class AdminUpdateStoryComponent {
   categories = CategoryMap;
-  types = articleTypes;
+  types = articleTypesSetTypes;
   editorForm!: FormGroup;
   previewVeiwMode: string = 'Desktop';
 

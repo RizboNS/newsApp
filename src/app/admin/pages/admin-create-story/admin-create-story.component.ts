@@ -9,7 +9,7 @@ import { take } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
 import Quill from 'quill';
 import { QuillEditorComponent } from 'ngx-quill';
-import { articleTypes } from 'src/app/data/article-types';
+import { articleTypesSetTypes } from 'src/app/data/article-types';
 
 @Component({
   selector: 'app-admin-create-story',
@@ -18,7 +18,7 @@ import { articleTypes } from 'src/app/data/article-types';
 })
 export class AdminCreateStoryComponent implements OnInit {
   categories = CategoryMap;
-  types = articleTypes;
+  types = articleTypesSetTypes;
   editorForm!: FormGroup;
   previewVeiwMode: string = 'Desktop';
 

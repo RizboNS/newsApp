@@ -22,3 +22,14 @@ export const articleTypesRoutes = [
   ['Blog', 'blog'],
   ['EN/DE', 'tag/en-de'],
 ];
+export const articleTypesSetTypes = [
+  ['Vesti', 'vesti'],
+  ['Intervju', 'intervju'],
+  ['Fokus', 'fokus'],
+  ['Kritika', 'kritika'],
+  ['Konkursi', 'konkursi'],
+  ['Kultura za Decu', 'kulturazadecu'],
+  ['COVID 19', 'tag/covid-19'],
+  ['Blog', 'blog'],
+  ['EN/DE', 'tag/en-de'],
+];
