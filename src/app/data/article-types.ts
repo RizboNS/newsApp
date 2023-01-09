@@ -29,7 +29,7 @@ export const articleTypesSetTypes = [
   ['Kritika', 'kritika'],
   ['Konkursi', 'konkursi'],
   ['Kultura za Decu', 'kulturazadecu'],
-  ['COVID 19', 'tag/covid-19'],
+  ['COVID 19', 'covid-19'],
   ['Blog', 'blog'],
-  ['EN/DE', 'tag/en-de'],
+  ['EN/DE', 'en-de'],
 ];
