@@ -4,6 +4,7 @@ import { ImageDb } from './image-db.model';
 export interface Story {
   id?: string;
   title: string;
+  titleId?: string;
   htmlData: string;
   firstText?: string;
   type: string;

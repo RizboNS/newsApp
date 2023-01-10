@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'intervju', component: VestiComponent },
   { path: 'vesti', component: VestiComponent },
   { path: 'kategorija/:category', component: VestiComponent },
-  { path: 'story', component: StoryComponent }, // TO DO - add route params and change to serbian
+  { path: 'vest/:titleId', component: StoryComponent },
   { path: '', component: HomeComponent },
   {
     path: 'admin',

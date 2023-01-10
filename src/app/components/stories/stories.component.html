@@ -3,6 +3,7 @@
     <article
       class="story"
       *ngFor="let story of stories.get(pageSelected.toString()); let i = index"
+      [routerLink]="['/vest/' + story.titleId]"
     >
       <div class="icon-container">
         <app-carousel
