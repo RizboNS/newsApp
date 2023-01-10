@@ -137,7 +137,6 @@ export class StoriesComponent implements OnInit, OnChanges {
   }
 
   getFirstTextFromStories(stories: Story[]) {
-    // loop through each story and get the first innerText from the htmlData property wich is not img tag or br empty tag
     stories.forEach((story) => {
       const div = document.createElement('div');
       div.innerHTML = story.htmlData;

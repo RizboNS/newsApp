@@ -21,7 +21,11 @@
                     &gt;
                     <a
                       [routerLink]="
-                        '/kategorija/' + categoryMap.get(story.category)
+                        '/kategorija/' +
+                        categoryMap
+                          .get(story.category)
+                          ?.toLowerCase()
+                          ?.replaceAll(' ', '-')
                       "
                     >
                       {{ categoryMap.get(story.category) }}
@@ -52,7 +56,15 @@
               {{ story.typeDisplay }}
             </a>
             &gt;
-            <a [routerLink]="'/kategorija/' + categoryMap.get(story.category)">
+            <a
+              [routerLink]="
+                '/kategorija/' +
+                categoryMap
+                  .get(story.category)
+                  ?.toLowerCase()
+                  ?.replaceAll(' ', '-')
+              "
+            >
               {{ categoryMap.get(story.category) }}
             </a>
           </div>
