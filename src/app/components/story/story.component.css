@@ -1,3 +1,13 @@
+.main-content {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #E40042;
+  border-top: #E40042 1px solid;
+  border-image: linear-gradient(to right,#fff, #e4004172,#e400415a, #e4004138, #fff);
+  border-image-slice: 1;
+  min-width: 280px;
+  max-width: 600px;
+}
 .article {
   min-width: 280px;
   max-width: 600px;
@@ -9,4 +19,42 @@ h1 {
 }
 :host ::ng-deep .article img {
   width: 100%;
+}
+.tags-container {
+  padding: 12px 15px;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #E40042;
+  border-top: #E40042 1px solid;
+  border-image: linear-gradient(to right,#fff, #e4004172,#e400415a, #e4004138, #fff);
+  border-image-slice: 1;
+}
+.tags-container h3 {
+  margin-top: 10px;
+}
+.tags-container ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  list-style: none;
+  gap: 5px;
+  padding: 0;
+  margin: 0;
+}
+.tags-container ul li {
+  transition: background-color 0.2s ease-in-out;
+  border:#E40042 1px solid;
+  padding: 5px 10px;
+}
+.tags-container a {
+  transition: color 0.2s ease-in-out;
+  color: #E40042;
+  text-decoration: none;
+}
+.tags-container ul li:hover {
+  background-color: #E40042;
+  cursor: pointer;
+}
+.tags-container ul li:hover a {
+  color: #fff;
 }

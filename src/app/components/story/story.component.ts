@@ -12,6 +12,19 @@ import { NewsService } from 'src/app/services/news.service';
 export class StoryComponent implements OnInit {
   titleId: string = '';
   story!: Story;
+
+  temptags = [
+    'Korona',
+    'Arhitektura',
+    'Nesto o Necemu',
+    'Industrija',
+    'Rat',
+    'Kultura',
+    'Bezveze',
+    'Majke',
+    'Muzika',
+    'Zivot',
+  ];
   constructor(
     private route: ActivatedRoute,
     private newsService: NewsService

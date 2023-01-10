@@ -28,33 +28,6 @@ export class StoriesComponent implements OnInit, OnChanges {
   pageRange: number[] = [];
   pageRangeToShow: number[] = [];
 
-  testHashtags = [
-    'test',
-    'test2',
-    'test3',
-    'test4',
-    'test5',
-    'test6long',
-    'test7',
-    'test8longeeeeeer',
-    'short',
-    'test10',
-    'shrt',
-    'test12',
-    'test',
-    'test2',
-    'test3',
-    'test4',
-    'test5',
-    'test6long',
-    'test7',
-    'test8longeeeeeer',
-    'short',
-    'test10',
-    'shrt',
-    'test12',
-  ];
-
   constructor(private newsService: NewsService) {}
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['storyCategory']) {
