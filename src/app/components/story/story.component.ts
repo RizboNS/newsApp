@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { take } from 'rxjs';
+import { Story } from 'src/app/models/story.model';
 import { NewsService } from 'src/app/services/news.service';
 
 @Component({
@@ -10,6 +11,7 @@ import { NewsService } from 'src/app/services/news.service';
 })
 export class StoryComponent implements OnInit {
   titleId: string = '';
+  story!: Story;
   constructor(
     private route: ActivatedRoute,
     private newsService: NewsService
@@ -28,7 +30,7 @@ export class StoryComponent implements OnInit {
       .getStoryByTitleId(this.titleId)
       .pipe(take(1))
       .subscribe((res) => {
-        console.log(res);
+        this.story = res.data;
       });
   }
 }

@@ -1,1 +1,6 @@
-<p>{{ titleId }}</p>
+<ng-container *ngIf="story">
+  <article class="article ql-editor">
+    <h1>{{ story.title }}</h1>
+    <div [innerHTML]="story.htmlData | sanitizeHtml"></div>
+  </article>
+</ng-container>

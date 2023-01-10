@@ -1,0 +1,12 @@
+.article {
+  min-width: 280px;
+  max-width: 600px;
+  margin: auto;
+}
+h1 {
+  margin-bottom: 3rem;
+  font-size: 3rem;
+}
+:host ::ng-deep .article img {
+  width: 100%;
+}
