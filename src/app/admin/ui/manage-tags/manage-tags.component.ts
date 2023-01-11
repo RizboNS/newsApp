@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { take } from 'rxjs';
+import { catchError, of, take, timeout } from 'rxjs';
 import { Tag } from 'src/app/models/tag.model';
 import { NewsService } from 'src/app/services/news.service';
 
@@ -15,16 +15,26 @@ export class ManageTagsComponent implements OnInit {
   tags: Tag[] = [];
 
   constructor(private newsService: NewsService) {}
+
   ngOnInit(): void {
     this.getTags();
   }
   getTags() {
     this.newsService
       .getTags()
-      .pipe(take(1))
-      .subscribe((res) => {
-        console.log(res);
-        this.tags = res.data;
+      .pipe(
+        timeout(10000),
+        catchError((err) => of(err)),
+        take(1)
+      )
+      .subscribe({
+        next: (res) => {
+          this.tags = res.data;
+        },
+        error: (err) => {
+          console.log(err);
+          // to do: handle error via page error or similar
+        },
       });
   }
   onDeleteTag(tag: any) {
