@@ -129,10 +129,17 @@
     </div>
   </form>
 </div>
-
-<app-alert-window
-  (isShownEvent)="alertShow = $event"
-  [show]="alertShow"
-  [title]="alertTitle"
-  [message]="alertMessage"
-></app-alert-window>
+<ng-container *ngIf="manageTagsModalShow">
+  <app-manage-tags
+    [manageTagsModalShow]="manageTagsModalShow"
+    (state)="manageTagsModalShow = $event"
+  ></app-manage-tags>
+</ng-container>
+<ng-container *ngIf="alertShow">
+  <app-alert-window
+    (isShownEvent)="alertShow = $event"
+    [show]="alertShow"
+    [title]="alertTitle"
+    [message]="alertMessage"
+  ></app-alert-window>
+</ng-container>

@@ -1,0 +1,35 @@
+<ng-container *ngIf="manageTagsModalShow">
+  <div class="background">
+    <div class="manage-tags-container">
+      <div class="top-bar">
+        <h3>Manage Tags</h3>
+        <button class="admin-btn-warn" (click)="onClose()">
+          <i class="fa-solid fa-times"></i>
+        </button>
+      </div>
+      <div class="top-row">
+        <button class="admin-btn-primary" (click)="onAddTag()">Save</button>
+        <div class="add-tag-container">
+          <input
+            type="text"
+            placeholder="Add Tag"
+            [(ngModel)]="newTag"
+            (keyup.enter)="onAddTag()"
+          />
+
+          <button class="admin-btn-primary" (click)="onAddTag()">
+            <i class="fa-solid fa-plus"></i>
+          </button>
+        </div>
+      </div>
+      <ul class="tags-container">
+        <li class="tag" *ngFor="let tag of tags">
+          <p>{{ tag.tagName }}</p>
+          <button class="admin-btn-warn" (click)="onDeleteTag(tag)">
+            <i class="fa-solid fa-trash-can"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</ng-container>

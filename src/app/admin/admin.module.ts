@@ -12,6 +12,7 @@ import { QuillModule } from 'ngx-quill';
 import { AlertWindowComponent } from './ui/alert-window/alert-window.component';
 import { FormsModule } from '@angular/forms';
 import { AdminUpdateStoryComponent } from './pages/admin-update-story/admin-update-story.component';
+import { ManageTagsComponent } from './ui/manage-tags/manage-tags.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { AdminUpdateStoryComponent } from './pages/admin-update-story/admin-upda
     AdminHeaderComponent,
     AlertWindowComponent,
     AdminUpdateStoryComponent,
+    ManageTagsComponent,
   ],
   imports: [
     CommonModule,

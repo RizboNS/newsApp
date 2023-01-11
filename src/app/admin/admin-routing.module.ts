@@ -5,8 +5,10 @@ import { AdminStoriesComponent } from './pages/admin-stories/admin-stories.compo
 import { AdminCreateStoryComponent } from './pages/admin-create-story/admin-create-story.component';
 import { AdminPanelComponent } from './pages/admin-panel/admin-panel.component';
 import { AdminUpdateStoryComponent } from './pages/admin-update-story/admin-update-story.component';
+import { ManageTagsComponent } from './ui/manage-tags/manage-tags.component';
 
 const routes: Routes = [
+  { path: 'admin/manage-tags', component: ManageTagsComponent },
   { path: 'admin/update-story/:id', component: AdminUpdateStoryComponent },
   { path: 'admin/story/:id', component: AdminStoryComponent },
   { path: 'admin/stories', component: AdminStoriesComponent },

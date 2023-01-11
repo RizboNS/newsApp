@@ -32,6 +32,7 @@ export class AdminCreateStoryComponent implements OnInit {
   isBlogSelected = false;
 
   showAlertMsg: boolean = false;
+  manageTagsModalShow: boolean = false;
 
   quillConfig = {
     toolbar: {
@@ -216,7 +217,9 @@ export class AdminCreateStoryComponent implements OnInit {
       this.isBlogSelected = false;
     }
   }
-
+  openManageTagsModal() {
+    this.manageTagsModalShow = true;
+  }
   async validationErrorMsg() {
     await this.showAlert(
       'Validation Error',
