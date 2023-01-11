@@ -159,3 +159,24 @@ h3 {
 .errorMsgShow {
   display: block;
 }
+.loading-container {
+  margin-top: 1rem;
+}
+.loading-container-fixed {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 12;
+}
+.loading-container-fixed button {
+  float: right;
+  font-size: 14px;
+  padding: 0;
+  height: 29px;
+  width: 29px;
+}

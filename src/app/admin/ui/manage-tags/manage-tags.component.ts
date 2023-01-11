@@ -9,7 +9,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { catchError, of, take, timeout } from 'rxjs';
+import { take, timeout } from 'rxjs';
 import { Tag } from 'src/app/models/tag.model';
 import { NewsService } from 'src/app/services/news.service';
 
@@ -20,6 +20,7 @@ import { NewsService } from 'src/app/services/news.service';
 })
 export class ManageTagsComponent implements OnInit {
   newTag: string = '';
+  tagsFetched = false;
 
   @ViewChild('savedMsgEl') savedMsgEl!: ElementRef;
   @ViewChild('savedMsgContainer') savedMsgContainer!: ElementRef;
@@ -29,6 +30,7 @@ export class ManageTagsComponent implements OnInit {
   tags: Tag[] = [];
   isModal: boolean = true;
   savingCompleted = true;
+  loading = true;
 
   constructor(
     private newsService: NewsService,
@@ -52,6 +54,9 @@ export class ManageTagsComponent implements OnInit {
     if (this.savingCompleted === false) {
       return;
     }
+    if (!this.onAddTag()) {
+      return;
+    }
     this.savingCompleted = false;
     this.newsService
       .updateTags(this.tags)
@@ -62,7 +67,7 @@ export class ManageTagsComponent implements OnInit {
           this.onSuccessMsg();
         },
         error: (err) => {
-          this.onErrorMsg();
+          this.onErrorMsg('Server error...');
         },
       });
   }
@@ -91,12 +96,12 @@ export class ManageTagsComponent implements OnInit {
       );
     }, 4000);
   }
-  onErrorMsg(): void {
+  onErrorMsg(msg: string): void {
     this.savingCompleted = true;
 
     const newSavedMsgEl = this.renderer.createElement('p');
 
-    const content = this.renderer.createText('Failed...');
+    const content = this.renderer.createText(msg);
     this.renderer.appendChild(newSavedMsgEl, content);
     this.renderer.addClass(newSavedMsgEl, 'errorMsg');
     this.renderer.addClass(newSavedMsgEl, 'errorMsgShow');
@@ -117,27 +122,45 @@ export class ManageTagsComponent implements OnInit {
   }
 
   getTags() {
+    this.toggleLoading();
     this.newsService
       .getTags()
       .pipe(timeout(10000), take(1))
       .subscribe({
         next: (res) => {
           this.tags = res.data;
+          this.tagsFetched = true;
+          this.toggleLoading();
         },
         error: (err) => {
           console.log(err);
           console.log(this.tags);
-          // to do: handle error via page error or similar
+          this.toggleLoading();
         },
       });
   }
+
   onDeleteTag(tag: any) {
     this.tags = this.tags.filter((t) => t !== tag);
   }
-  onAddTag() {
+  onAddTag(): boolean {
+    const tagExists = this.tags.find((t) => t.tagName === this.newTag);
+    if (tagExists) {
+      this.onErrorMsg('Tag already exists...');
+      return false;
+    }
     if (this.newTag) {
       this.tags.push({ tagName: this.newTag });
       this.newTag = '';
+      return true;
+    }
+    return true;
+  }
+  toggleLoading() {
+    this.loading = !this.loading;
+    if (this.isModal && this.loading && !this.tagsFetched) {
+      this.manageTagsModalShow = !this.manageTagsModalShow;
+      this.state.emit(this.manageTagsModalShow);
     }
   }
   onClose(): void {

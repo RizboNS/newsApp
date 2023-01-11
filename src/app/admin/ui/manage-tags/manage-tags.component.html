@@ -1,4 +1,4 @@
-<ng-container *ngIf="manageTagsModalShow && tags.length > 0">
+<ng-container *ngIf="manageTagsModalShow && tagsFetched">
   <div [ngClass]="isModal ? 'background-fixed' : ''">
     <div
       [ngClass]="
@@ -19,7 +19,6 @@
             savingCompleted ? 'admin-btn-primary' : 'admin-btn-primary disabled'
           "
           (click)="onSave()"
-          (click)="onAddTag()"
         >
           Save
         </button>
@@ -47,9 +46,17 @@
     </div>
   </div>
 </ng-container>
-<ng-container *ngIf="tags.length === 0">
+<ng-container *ngIf="!loading">
   <div [ngClass]="isModal ? 'background-fixed' : ''">
-    <app-loading></app-loading>
+    <div [ngClass]="isModal ? 'loading-container-fixed' : 'loading-container'">
+      <ng-container *ngIf="isModal">
+        <!-- close button -->
+        <button class="admin-btn-warn" (click)="onClose()">
+          <i class="fa-solid fa-times"></i>
+        </button>
+      </ng-container>
+      <app-loading></app-loading>
+    </div>
   </div>
 </ng-container>
 <div class="saved-msg-container" #savedMsgContainer></div>
