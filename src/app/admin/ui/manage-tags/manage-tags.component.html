@@ -51,7 +51,9 @@
 </ng-container>
 <ng-container *ngIf="errorMsg !== ''">
   <div class="error">
-    <i class="fa-solid fa-exclamation-triangle"></i>
-    <p>{{ errorMsg }}</p>
+    <p><i class="fa-solid fa-exclamation-triangle"></i>&nbsp;{{ errorMsg }}</p>
+    <button class="admin-btn-warn" (click)="onCloseErrorMsg()">
+      <i class="fa-solid fa-times"></i>
+    </button>
   </div>
 </ng-container>

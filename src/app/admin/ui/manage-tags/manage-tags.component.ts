@@ -36,6 +36,7 @@ export class ManageTagsComponent implements OnInit {
     }
   }
   onSave() {
+    this.savedMsg = '';
     if (this.savingCompleted === false) {
       return;
     }
@@ -88,5 +89,8 @@ export class ManageTagsComponent implements OnInit {
   onClose(): void {
     this.state.emit(false);
     this.manageTagsModalShow = false;
+  }
+  onCloseErrorMsg() {
+    this.errorMsg = '';
   }
 }
