@@ -1,14 +1,27 @@
 <ng-container *ngIf="manageTagsModalShow">
-  <div class="background">
-    <div class="manage-tags-container">
+  <div [ngClass]="isModal ? 'background-fixed' : ''">
+    <div
+      [ngClass]="
+        isModal ? 'manage-tags-container-fixed' : 'manage-tags-container'
+      "
+    >
       <div class="top-bar">
         <h3>Manage Tags</h3>
-        <button class="admin-btn-warn" (click)="onClose()">
-          <i class="fa-solid fa-times"></i>
-        </button>
+        <ng-container *ngIf="isModal">
+          <button class="admin-btn-warn" (click)="onClose()">
+            <i class="fa-solid fa-times"></i>
+          </button>
+        </ng-container>
       </div>
       <div class="top-row">
-        <button class="admin-btn-primary" (click)="onAddTag()">Save</button>
+        <button
+          [ngClass]="
+            savingCompleted ? 'admin-btn-primary' : 'admin-btn-primary disabled'
+          "
+          (click)="onSave()"
+        >
+          Save
+        </button>
         <div class="add-tag-container">
           <input
             type="text"
@@ -31,5 +44,14 @@
         </li>
       </ul>
     </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="savedMsg !== ''">
+  <p class="savedMsg">{{ savedMsg }}</p>
+</ng-container>
+<ng-container *ngIf="errorMsg !== ''">
+  <div class="error">
+    <i class="fa-solid fa-exclamation-triangle"></i>
+    <p>{{ errorMsg }}</p>
   </div>
 </ng-container>

@@ -58,4 +58,7 @@ export class NewsService {
   getTags(): Observable<ApiResponse<Tag[]>> {
     return this.http.get<ApiResponse<Tag[]>>(this._domain + '/api/Tag');
   }
+  updateTags(tags: Tag[]): Observable<ApiResponse<Tag[]>> {
+    return this.http.put<ApiResponse<Tag[]>>(this._domain + '/api/Tag', tags);
+  }
 }

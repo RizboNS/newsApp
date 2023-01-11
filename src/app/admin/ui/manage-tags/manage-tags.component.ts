@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { catchError, of, take, timeout } from 'rxjs';
 import { Tag } from 'src/app/models/tag.model';
 import { NewsService } from 'src/app/services/news.service';
@@ -13,11 +14,49 @@ export class ManageTagsComponent implements OnInit {
   @Input() manageTagsModalShow: boolean = true;
   @Output() state = new EventEmitter<boolean>();
   tags: Tag[] = [];
-
-  constructor(private newsService: NewsService) {}
+  isModal: boolean = true;
+  savedMsg = '';
+  errorMsg = '';
+  savingCompleted = true;
+  constructor(
+    private newsService: NewsService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.getTags();
+    this.checkRoute();
+  }
+
+  checkRoute() {
+    if (this.route.snapshot.url.length > 0) {
+      if (this.route.snapshot.url[1].path === 'manage-tags') {
+        this.isModal = false;
+      }
+    }
+  }
+  onSave() {
+    if (this.savingCompleted === false) {
+      return;
+    }
+    this.savingCompleted = false;
+    this.newsService
+      .updateTags(this.tags)
+      .pipe(timeout(10000), take(1))
+      .subscribe({
+        next: (res) => {
+          this.tags = res.data;
+          this.savedMsg = 'Tags Saved...';
+          this.savingCompleted = true;
+          setTimeout(() => {
+            this.savedMsg = '';
+          }, 3000);
+        },
+        error: (err) => {
+          this.errorMsg = 'Error Saving Tags...' + err.message;
+          // to do: handle error via page error or similar
+        },
+      });
   }
   getTags() {
     this.newsService
