@@ -1,28 +1,32 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { take } from 'rxjs';
 import { Tag } from 'src/app/models/tag.model';
+import { NewsService } from 'src/app/services/news.service';
 
 @Component({
   selector: 'app-manage-tags',
   templateUrl: './manage-tags.component.html',
   styleUrls: ['./manage-tags.component.css'],
 })
-export class ManageTagsComponent {
+export class ManageTagsComponent implements OnInit {
   newTag: string = '';
-  @Input() manageTagsModalShow: boolean = false;
+  @Input() manageTagsModalShow: boolean = true;
   @Output() state = new EventEmitter<boolean>();
-  tags: Tag[] = [
-    { tagName: 'Korona' },
-    { tagName: 'Arhitektura' },
-    { tagName: 'Nesto o Necemu' },
-    { tagName: 'Industrija' },
-    { tagName: 'Rat' },
-    { tagName: 'Kultura' },
-    { tagName: 'Bezveze' },
-    { tagName: 'Majke' },
-    { tagName: 'Muzika' },
-    { tagName: 'Zivot' },
-  ];
+  tags: Tag[] = [];
 
+  constructor(private newsService: NewsService) {}
+  ngOnInit(): void {
+    this.getTags();
+  }
+  getTags() {
+    this.newsService
+      .getTags()
+      .pipe(take(1))
+      .subscribe((res) => {
+        console.log(res);
+        this.tags = res.data;
+      });
+  }
   onDeleteTag(tag: any) {
     this.tags = this.tags.filter((t) => t !== tag);
   }

@@ -5,6 +5,7 @@ import { domainUrl } from '../data/api-domain';
 import { ApiResponse } from '../models/api-response.model';
 import { PagedResponse } from '../models/paged-response.model';
 import { Story } from '../models/story.model';
+import { Tag } from '../models/tag.model';
 
 @Injectable({
   providedIn: 'root',
@@ -52,5 +53,9 @@ export class NewsService {
   }
   updateStory(story: Story): Observable<ApiResponse<Story>> {
     return this.http.put<ApiResponse<Story>>(this._storyUrl, story);
+  }
+
+  getTags(): Observable<ApiResponse<Tag[]>> {
+    return this.http.get<ApiResponse<Tag[]>>(this._domain + '/api/Tag');
   }
 }
