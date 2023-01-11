@@ -1,4 +1,13 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { catchError, of, take, timeout } from 'rxjs';
 import { Tag } from 'src/app/models/tag.model';
@@ -11,16 +20,20 @@ import { NewsService } from 'src/app/services/news.service';
 })
 export class ManageTagsComponent implements OnInit {
   newTag: string = '';
+
+  @ViewChild('savedMsgEl') savedMsgEl!: ElementRef;
+  @ViewChild('savedMsgContainer') savedMsgContainer!: ElementRef;
+
   @Input() manageTagsModalShow: boolean = true;
   @Output() state = new EventEmitter<boolean>();
   tags: Tag[] = [];
   isModal: boolean = true;
-  savedMsg = '';
-  errorMsg = '';
   savingCompleted = true;
+
   constructor(
     private newsService: NewsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private renderer: Renderer2
   ) {}
 
   ngOnInit(): void {
@@ -36,7 +49,6 @@ export class ManageTagsComponent implements OnInit {
     }
   }
   onSave() {
-    this.savedMsg = '';
     if (this.savingCompleted === false) {
       return;
     }
@@ -47,18 +59,63 @@ export class ManageTagsComponent implements OnInit {
       .subscribe({
         next: (res) => {
           this.tags = res.data;
-          this.savedMsg = 'Tags Saved...';
-          this.savingCompleted = true;
-          setTimeout(() => {
-            this.savedMsg = '';
-          }, 3000);
+          this.onSuccessMsg();
         },
         error: (err) => {
-          this.errorMsg = 'Error Saving Tags...' + err.message;
-          // to do: handle error via page error or similar
+          this.onErrorMsg();
         },
       });
   }
+
+  onSuccessMsg(): void {
+    this.savingCompleted = true;
+
+    const newSavedMsgEl = this.renderer.createElement('p');
+
+    const content = this.renderer.createText('Success...');
+    this.renderer.appendChild(newSavedMsgEl, content);
+    this.renderer.addClass(newSavedMsgEl, 'savedMsg');
+    this.renderer.addClass(newSavedMsgEl, 'savedMsgShow');
+    this.renderer.appendChild(
+      this.savedMsgContainer.nativeElement,
+      newSavedMsgEl
+    );
+
+    setTimeout(() => {
+      this.renderer.addClass(newSavedMsgEl, 'savedMsgHide');
+    }, 3000);
+    setTimeout(() => {
+      this.renderer.removeChild(
+        this.savedMsgContainer.nativeElement,
+        newSavedMsgEl
+      );
+    }, 4000);
+  }
+  onErrorMsg(): void {
+    this.savingCompleted = true;
+
+    const newSavedMsgEl = this.renderer.createElement('p');
+
+    const content = this.renderer.createText('Failed...');
+    this.renderer.appendChild(newSavedMsgEl, content);
+    this.renderer.addClass(newSavedMsgEl, 'errorMsg');
+    this.renderer.addClass(newSavedMsgEl, 'errorMsgShow');
+    this.renderer.appendChild(
+      this.savedMsgContainer.nativeElement,
+      newSavedMsgEl
+    );
+
+    setTimeout(() => {
+      this.renderer.addClass(newSavedMsgEl, 'errorMsgHide');
+    }, 3000);
+    setTimeout(() => {
+      this.renderer.removeChild(
+        this.savedMsgContainer.nativeElement,
+        newSavedMsgEl
+      );
+    }, 4000);
+  }
+
   getTags() {
     this.newsService
       .getTags()
@@ -89,8 +146,5 @@ export class ManageTagsComponent implements OnInit {
   onClose(): void {
     this.state.emit(false);
     this.manageTagsModalShow = false;
-  }
-  onCloseErrorMsg() {
-    this.errorMsg = '';
   }
 }

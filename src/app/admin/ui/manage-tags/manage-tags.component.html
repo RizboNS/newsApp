@@ -1,4 +1,4 @@
-<ng-container *ngIf="manageTagsModalShow">
+<ng-container *ngIf="manageTagsModalShow && tags.length > 0">
   <div [ngClass]="isModal ? 'background-fixed' : ''">
     <div
       [ngClass]="
@@ -19,6 +19,7 @@
             savingCompleted ? 'admin-btn-primary' : 'admin-btn-primary disabled'
           "
           (click)="onSave()"
+          (click)="onAddTag()"
         >
           Save
         </button>
@@ -46,14 +47,5 @@
     </div>
   </div>
 </ng-container>
-<ng-container *ngIf="savedMsg !== ''">
-  <p class="savedMsg">{{ savedMsg }}</p>
-</ng-container>
-<ng-container *ngIf="errorMsg !== ''">
-  <div class="error">
-    <p><i class="fa-solid fa-exclamation-triangle"></i>&nbsp;{{ errorMsg }}</p>
-    <button class="admin-btn-warn" (click)="onCloseErrorMsg()">
-      <i class="fa-solid fa-times"></i>
-    </button>
-  </div>
-</ng-container>
+<div class="saved-msg-container" #savedMsgContainer></div>
+<div class="error-msg-container" #errorMsgContainer></div>

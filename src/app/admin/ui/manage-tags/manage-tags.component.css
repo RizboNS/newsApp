@@ -113,36 +113,49 @@ h3 {
   margin: 0 5px;
   height: fit-content;
 }
-.savedMsg {
+.saved-msg-container {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 300px;
+  z-index: 9999;
+}
+.savedMsg {
   color: #fff;
   background-color: #4BB543;
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 10px;
+  display: none;
+}
+.savedMsgHide {
+  transition: opacity 1s ease-out;
+  opacity: 0;
+  display: none;
+}
+.savedMsgShow {
+  display: block;
+}
+.error-msg-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 300px;
   z-index: 9999;
 }
-.error {
-  font-size: 12px;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.errorMsg {
+  color: #fff;
+  background-color: #991c1c;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  display: none;
 }
-.error p {
-  color: red;
-  /* limit text to one line */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.errorMsgHide {
+  transition: opacity 1s ease-out;
+  opacity: 0;
+  display: none;
 }
-.error button {
-  font-size: 12px;
-  padding: 4px;
-  margin: 0 5px;
-  height: fit-content;
+.errorMsgShow {
+  display: block;
 }
