@@ -47,5 +47,10 @@
     </div>
   </div>
 </ng-container>
+<ng-container *ngIf="tags.length === 0">
+  <div [ngClass]="isModal ? 'background-fixed' : ''">
+    <app-loading></app-loading>
+  </div>
+</ng-container>
 <div class="saved-msg-container" #savedMsgContainer></div>
 <div class="error-msg-container" #errorMsgContainer></div>

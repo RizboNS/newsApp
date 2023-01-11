@@ -119,17 +119,14 @@ export class ManageTagsComponent implements OnInit {
   getTags() {
     this.newsService
       .getTags()
-      .pipe(
-        timeout(10000),
-        catchError((err) => of(err)),
-        take(1)
-      )
+      .pipe(timeout(10000), take(1))
       .subscribe({
         next: (res) => {
           this.tags = res.data;
         },
         error: (err) => {
           console.log(err);
+          console.log(this.tags);
           // to do: handle error via page error or similar
         },
       });
