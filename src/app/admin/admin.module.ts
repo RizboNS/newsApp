@@ -13,6 +13,7 @@ import { AlertWindowComponent } from './ui/alert-window/alert-window.component';
 import { FormsModule } from '@angular/forms';
 import { AdminUpdateStoryComponent } from './pages/admin-update-story/admin-update-story.component';
 import { ManageTagsComponent } from './ui/manage-tags/manage-tags.component';
+import { AddTagsToStoryComponent } from './components/add-tags-to-story/add-tags-to-story.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ManageTagsComponent } from './ui/manage-tags/manage-tags.component';
     AlertWindowComponent,
     AdminUpdateStoryComponent,
     ManageTagsComponent,
+    AddTagsToStoryComponent,
   ],
   imports: [
     CommonModule,

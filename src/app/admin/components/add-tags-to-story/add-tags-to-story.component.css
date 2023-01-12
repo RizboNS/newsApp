@@ -1,0 +1,39 @@
+
+.top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+.top-row button {
+  font-size: 14px;
+  width: 29px;
+  height: 29px;
+  padding: 0;
+  background-color: #fff;
+  color: #000;
+}
+
+.aviable-tags-container {
+  height: 37px;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  align-content:flex-start;
+  gap: 5px 5px;
+  border: 1px solid #ccc;
+  padding: 5px;
+}
+.aviable-tags-container-expanded {
+  height: fit-content;
+}
+
+.tag {
+  border: solid 1px #ccc;
+  padding: 0 5px;
+}
+.tag:hover {
+  cursor: pointer;
+  /* gray it a bit */
+  background-color: #ccc;
+}
