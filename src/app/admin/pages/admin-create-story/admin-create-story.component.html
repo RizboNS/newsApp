@@ -90,6 +90,7 @@
         <div class="add-tags-container">
           <app-add-tags-to-story
             (fireOpenManageTagsModalAtParrent)="openManageTagsModal()"
+            (fireChosenTags)="onChosenTagChange($event)"
           ></app-add-tags-to-story>
         </div>
       </div>

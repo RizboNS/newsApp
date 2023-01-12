@@ -10,6 +10,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import Quill from 'quill';
 import { QuillEditorComponent } from 'ngx-quill';
 import { articleTypesSetTypes } from 'src/app/data/article-types';
+import { Tag } from 'src/app/models/tag.model';
 
 @Component({
   selector: 'app-admin-create-story',
@@ -21,6 +22,7 @@ export class AdminCreateStoryComponent implements OnInit {
   types = articleTypesSetTypes;
   editorForm!: FormGroup;
   previewVeiwMode: string = 'Desktop';
+  chosenTags: Tag[] = [];
 
   @ViewChild('editor', { static: false }) editor:
     | QuillEditorComponent
@@ -82,6 +84,11 @@ export class AdminCreateStoryComponent implements OnInit {
   editorStyle = {
     height: '80vh',
   };
+
+  onChosenTagChange(chosenTags: Tag[]): void {
+    this.chosenTags = chosenTags;
+    console.log(this.chosenTags);
+  }
 
   addImage() {
     const input = document.createElement('input');
@@ -188,6 +195,7 @@ export class AdminCreateStoryComponent implements OnInit {
         this.editorForm.value.publishDate,
         this.editorForm.value.publishTime
       ),
+      tags: this.chosenTags,
     };
     return story;
   }

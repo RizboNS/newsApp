@@ -33,6 +33,9 @@
     [(ngModel)]="newTag"
     (keyup.enter)="onAddTag()"
   />
+  <button class="admin-btn-primary" (click)="onAddTag()">
+    <i class="fa-solid fa-plus"></i>
+  </button>
   <div class="btn-container">
     <button class="admin-btn-primary" (click)="expandTags('2')">
       <ng-container *ngIf="expandBtnSign2 == '+'">

@@ -24,6 +24,7 @@ export class AddTagsToStoryComponent implements OnInit {
   @ViewChild('aviableTagsContainer1') aviableTagsContainerEl1!: ElementRef;
   @ViewChild('aviableTagsContainer2') aviableTagsContainerEl2!: ElementRef;
   @Output() fireOpenManageTagsModalAtParrent = new EventEmitter<any>();
+  @Output() fireChosenTags = new EventEmitter<Tag[]>();
 
   constructor(private newsService: NewsService) {}
   ngOnInit(): void {
@@ -43,6 +44,9 @@ export class AddTagsToStoryComponent implements OnInit {
         },
       });
   }
+  private onFireChosenTags() {
+    this.fireChosenTags.emit(this.chosenTags);
+  }
   expandTags(elNum: string): void {
     if (elNum === '1') {
       this.aviableTagsContainerEl1.nativeElement.classList.toggle(
@@ -61,6 +65,7 @@ export class AddTagsToStoryComponent implements OnInit {
       return;
     }
     this.chosenTags.push(tag);
+    this.onFireChosenTags();
   }
   onAddTag(): void {
     if (this.newTag === '') {
@@ -70,6 +75,7 @@ export class AddTagsToStoryComponent implements OnInit {
       return;
     }
     this.chosenTags.push({ tagName: this.newTag });
+    this.onFireChosenTags();
     this.newTag = '';
   }
   fireOpenManageTagsModal(): void {
@@ -77,5 +83,6 @@ export class AddTagsToStoryComponent implements OnInit {
   }
   removeFromChosenTags(tag: Tag): void {
     this.chosenTags = this.chosenTags.filter((t) => t.tagName !== tag.tagName);
+    this.onFireChosenTags();
   }
 }

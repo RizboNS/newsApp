@@ -57,3 +57,9 @@
   background-color: #fff;
   color: #000;
 }
+.confirm-btn {
+  font-size: 14px;
+  float: right;
+  margin-top: 5px;
+  width: 200px;
+}
