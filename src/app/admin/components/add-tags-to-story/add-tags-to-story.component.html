@@ -6,17 +6,17 @@
       <i class="fa-solid fa-edit"></i>
     </button>
 
-    <button class="admin-btn-primary" (click)="expandTags()">
-      <ng-container *ngIf="expandBtnSign == '+'">
+    <button class="admin-btn-primary" (click)="expandTags('1')">
+      <ng-container *ngIf="expandBtnSign1 == '+'">
         <i class="fa-solid fa-caret-down"></i>
       </ng-container>
-      <ng-container *ngIf="expandBtnSign == '-'">
+      <ng-container *ngIf="expandBtnSign1 == '-'">
         <i class="fa-solid fa-caret-up"></i>
       </ng-container>
     </button>
   </div>
 </div>
-<div class="tags-container" #aviableTagsContainer>
+<div class="tags-container" #aviableTagsContainer1>
   <div class="tag" *ngFor="let tag of aviableTags">
     <div class="tag-name" (click)="addToChosenTags(tag)">
       {{ tag.tagName }}
@@ -27,23 +27,24 @@
 <div class="top-row">
   <h4>Chosen Tags</h4>
   <input
+    class="input-tag"
     type="text"
     placeholder="Add Tag"
     [(ngModel)]="newTag"
     (keyup.enter)="onAddTag()"
   />
   <div class="btn-container">
-    <button class="admin-btn-primary" (click)="expandTags()">
-      <ng-container *ngIf="expandBtnSign == '+'">
+    <button class="admin-btn-primary" (click)="expandTags('2')">
+      <ng-container *ngIf="expandBtnSign2 == '+'">
         <i class="fa-solid fa-caret-down"></i>
       </ng-container>
-      <ng-container *ngIf="expandBtnSign == '-'">
+      <ng-container *ngIf="expandBtnSign2 == '-'">
         <i class="fa-solid fa-caret-up"></i>
       </ng-container>
     </button>
   </div>
 </div>
-<div class="tags-container" #chosenTagsContainer>
+<div class="tags-container" #aviableTagsContainer2>
   <div class="tag" *ngFor="let tag of chosenTags">
     <div class="tag-name">{{ tag.tagName }}</div>
   </div>

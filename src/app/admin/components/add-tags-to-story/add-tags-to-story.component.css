@@ -24,8 +24,9 @@
   border: 1px solid #ccc;
   padding: 5px;
 }
-.aviable-tags-container-expanded {
+.tags-container-expanded {
   height: fit-content;
+  min-height: 37px;
 }
 
 .tag {
@@ -34,6 +35,13 @@
 }
 .tag:hover {
   cursor: pointer;
-  /* gray it a bit */
   background-color: #ccc;
+}
+.input-tag {
+  border: 1px solid #ccc;
+  width: 60%;
+  height: 100%;
+  font-size: 14px;
+  padding: 5px;
+  margin: 0;
 }

@@ -11,9 +11,11 @@ import { NewsService } from 'src/app/services/news.service';
 export class AddTagsToStoryComponent implements OnInit {
   aviableTags: Tag[] = [];
   chosenTags: Tag[] = [];
-  expandBtnSign: string = '+';
+  expandBtnSign1: string = '+';
+  expandBtnSign2: string = '+';
   newTag: string = '';
-  @ViewChild('aviableTagsContainer') aviableTagsContainerEl!: ElementRef;
+  @ViewChild('aviableTagsContainer1') aviableTagsContainerEl1!: ElementRef;
+  @ViewChild('aviableTagsContainer2') aviableTagsContainerEl2!: ElementRef;
 
   constructor(private newsService: NewsService) {}
   ngOnInit(): void {
@@ -33,11 +35,18 @@ export class AddTagsToStoryComponent implements OnInit {
         },
       });
   }
-  expandTags() {
-    this.aviableTagsContainerEl.nativeElement.classList.toggle(
-      'tags-container-expanded'
-    );
-    this.expandBtnSign = this.expandBtnSign === '+' ? '-' : '+';
+  expandTags(elNum: string): void {
+    if (elNum === '1') {
+      this.aviableTagsContainerEl1.nativeElement.classList.toggle(
+        'tags-container-expanded'
+      );
+      this.expandBtnSign1 = this.expandBtnSign1 === '+' ? '-' : '+';
+    } else if (elNum === '2') {
+      this.aviableTagsContainerEl2.nativeElement.classList.toggle(
+        'tags-container-expanded'
+      );
+      this.expandBtnSign2 = this.expandBtnSign2 === '+' ? '-' : '+';
+    }
   }
   addToChosenTags(tag: Tag): void {
     if (this.chosenTags.find((t) => t.tagName === tag.tagName)) {
