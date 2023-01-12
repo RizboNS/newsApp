@@ -37,6 +37,10 @@
   cursor: pointer;
   background-color: #ccc;
 }
+.tag-chosen:hover {
+  background-color: #fff;
+  cursor: default;
+}
 .input-tag {
   border: 1px solid #ccc;
   width: 60%;

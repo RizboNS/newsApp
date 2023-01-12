@@ -45,7 +45,7 @@
   </div>
 </div>
 <div class="tags-container tags-container-expanded" #aviableTagsContainer2>
-  <div class="tag" *ngFor="let tag of chosenTags">
+  <div class="tag tag-chosen" *ngFor="let tag of chosenTags">
     <div class="tag-name">
       {{ tag.tagName }}
       <button class="admin-btn-warn" (click)="removeFromChosenTags(tag)">

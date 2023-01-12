@@ -75,5 +75,7 @@ export class AddTagsToStoryComponent implements OnInit {
   fireOpenManageTagsModal(): void {
     this.fireOpenManageTagsModalAtParrent.emit();
   }
-  removeFromChosenTags(tag: Tag): void {}
+  removeFromChosenTags(tag: Tag): void {
+    this.chosenTags = this.chosenTags.filter((t) => t.tagName !== tag.tagName);
+  }
 }
