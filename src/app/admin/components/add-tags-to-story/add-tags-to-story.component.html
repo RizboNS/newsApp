@@ -44,8 +44,13 @@
     </button>
   </div>
 </div>
-<div class="tags-container" #aviableTagsContainer2>
+<div class="tags-container tags-container-expanded" #aviableTagsContainer2>
   <div class="tag" *ngFor="let tag of chosenTags">
-    <div class="tag-name">{{ tag.tagName }}</div>
+    <div class="tag-name">
+      {{ tag.tagName }}
+      <button class="admin-btn-warn" (click)="removeFromChosenTags(tag)">
+        <i class="fa-solid fa-trash-can"></i>
+      </button>
+    </div>
   </div>
 </div>

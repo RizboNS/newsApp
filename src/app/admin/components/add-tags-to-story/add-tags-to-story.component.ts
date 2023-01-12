@@ -19,7 +19,7 @@ export class AddTagsToStoryComponent implements OnInit {
   aviableTags: Tag[] = [];
   chosenTags: Tag[] = [];
   expandBtnSign1: string = '+';
-  expandBtnSign2: string = '+';
+  expandBtnSign2: string = '-';
   newTag: string = '';
   @ViewChild('aviableTagsContainer1') aviableTagsContainerEl1!: ElementRef;
   @ViewChild('aviableTagsContainer2') aviableTagsContainerEl2!: ElementRef;
@@ -75,4 +75,5 @@ export class AddTagsToStoryComponent implements OnInit {
   fireOpenManageTagsModal(): void {
     this.fireOpenManageTagsModalAtParrent.emit();
   }
+  removeFromChosenTags(tag: Tag): void {}
 }
