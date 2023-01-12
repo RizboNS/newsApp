@@ -10,6 +10,7 @@ import { NewsService } from 'src/app/services/news.service';
 })
 export class AddTagsToStoryComponent implements OnInit {
   aviableTags: Tag[] = [];
+  chosenTags: Tag[] = [];
   expandBtnSign: string = '+';
 
   @ViewChild('aviableTagsContainer') aviableTagsContainerEl!: ElementRef;
@@ -32,9 +33,15 @@ export class AddTagsToStoryComponent implements OnInit {
         },
       });
   }
-  expandAviableTags() {
+  expandTags() {
     this.aviableTagsContainerEl.nativeElement.classList.toggle(
-      'aviable-tags-container-expanded'
+      'tags-container-expanded'
+    );
+    this.expandBtnSign = this.expandBtnSign === '+' ? '-' : '+';
+  }
+  expandChosenTags() {
+    this.aviableTagsContainerEl.nativeElement.classList.toggle(
+      'tags-container-expanded'
     );
     this.expandBtnSign = this.expandBtnSign === '+' ? '-' : '+';
   }
