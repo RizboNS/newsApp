@@ -12,7 +12,7 @@ export class AddTagsToStoryComponent implements OnInit {
   aviableTags: Tag[] = [];
   chosenTags: Tag[] = [];
   expandBtnSign: string = '+';
-
+  newTag: string = '';
   @ViewChild('aviableTagsContainer') aviableTagsContainerEl!: ElementRef;
 
   constructor(private newsService: NewsService) {}
@@ -44,5 +44,15 @@ export class AddTagsToStoryComponent implements OnInit {
       return;
     }
     this.chosenTags.push(tag);
+  }
+  onAddTag(): void {
+    if (this.newTag === '') {
+      return;
+    }
+    if (this.chosenTags.find((t) => t.tagName === this.newTag)) {
+      return;
+    }
+    this.chosenTags.push({ tagName: this.newTag });
+    this.newTag = '';
   }
 }

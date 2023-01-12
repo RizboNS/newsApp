@@ -26,6 +26,12 @@
 <!-- Chosen Tags -->
 <div class="top-row">
   <h4>Chosen Tags</h4>
+  <input
+    type="text"
+    placeholder="Add Tag"
+    [(ngModel)]="newTag"
+    (keyup.enter)="onAddTag()"
+  />
   <div class="btn-container">
     <button class="admin-btn-primary" (click)="expandTags()">
       <ng-container *ngIf="expandBtnSign == '+'">
