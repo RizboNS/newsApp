@@ -1,0 +1,21 @@
+<div class="top-row">
+  <h4>Chose from aviable Tags</h4>
+  <!-- button to modify tags -->
+  <button class="admin-btn-primary">
+    <i class="fa-solid fa-edit"></i>
+  </button>
+
+  <button class="admin-btn-primary" (click)="expandAviableTags()">
+    <ng-container *ngIf="expandBtnSign == '+'">
+      <i class="fa-solid fa-plus"></i>
+    </ng-container>
+    <ng-container *ngIf="expandBtnSign == '-'">
+      <i class="fa-solid fa-minus"></i>
+    </ng-container>
+  </button>
+</div>
+<div class="aviable-tags-container" #aviableTagsContainer>
+  <div class="tag" *ngFor="let tag of aviableTags">
+    <div class="tag-name">{{ tag.tagName }}</div>
+  </div>
+</div>
