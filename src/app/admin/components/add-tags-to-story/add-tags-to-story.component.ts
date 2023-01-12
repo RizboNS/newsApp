@@ -1,4 +1,11 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { take, timeout } from 'rxjs';
 import { Tag } from 'src/app/models/tag.model';
 import { NewsService } from 'src/app/services/news.service';
@@ -16,6 +23,7 @@ export class AddTagsToStoryComponent implements OnInit {
   newTag: string = '';
   @ViewChild('aviableTagsContainer1') aviableTagsContainerEl1!: ElementRef;
   @ViewChild('aviableTagsContainer2') aviableTagsContainerEl2!: ElementRef;
+  @Output() fireOpenManageTagsModalAtParrent = new EventEmitter<any>();
 
   constructor(private newsService: NewsService) {}
   ngOnInit(): void {
@@ -63,5 +71,8 @@ export class AddTagsToStoryComponent implements OnInit {
     }
     this.chosenTags.push({ tagName: this.newTag });
     this.newTag = '';
+  }
+  fireOpenManageTagsModal(): void {
+    this.fireOpenManageTagsModalAtParrent.emit();
   }
 }

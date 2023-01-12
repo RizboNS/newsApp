@@ -1,6 +1,4 @@
 <div class="main-content">
-  <button (click)="openManageTagsModal()">Test</button>
-  {{ manageTagsModalShow }}
   <form [formGroup]="editorForm">
     <h3 class="title">Create story</h3>
     <div class="top-wrapper">
@@ -90,7 +88,9 @@
           </div>
         </ng-container>
         <div class="add-tags-container">
-          <app-add-tags-to-story></app-add-tags-to-story>
+          <app-add-tags-to-story
+            (fireOpenManageTagsModalAtParrent)="openManageTagsModal()"
+          ></app-add-tags-to-story>
         </div>
       </div>
     </div>
