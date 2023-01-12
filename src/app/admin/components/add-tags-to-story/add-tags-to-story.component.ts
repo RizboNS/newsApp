@@ -39,10 +39,10 @@ export class AddTagsToStoryComponent implements OnInit {
     );
     this.expandBtnSign = this.expandBtnSign === '+' ? '-' : '+';
   }
-  expandChosenTags() {
-    this.aviableTagsContainerEl.nativeElement.classList.toggle(
-      'tags-container-expanded'
-    );
-    this.expandBtnSign = this.expandBtnSign === '+' ? '-' : '+';
+  addToChosenTags(tag: Tag): void {
+    if (this.chosenTags.find((t) => t.tagName === tag.tagName)) {
+      return;
+    }
+    this.chosenTags.push(tag);
   }
 }
