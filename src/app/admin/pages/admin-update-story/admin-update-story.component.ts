@@ -8,7 +8,6 @@ import { CategoryMap } from 'src/app/models/category.model';
 import { Story } from 'src/app/models/story.model';
 import { NewsService } from 'src/app/services/news.service';
 import { articleTypesSetTypes } from 'src/app/data/article-types';
-import { Tag } from 'src/app/models/tag.model';
 
 @Component({
   selector: 'app-admin-update-story',
@@ -20,7 +19,7 @@ export class AdminUpdateStoryComponent {
   types = articleTypesSetTypes;
   editorForm!: FormGroup;
   previewVeiwMode: string = 'Desktop';
-  chosenTags: Tag[] = [];
+  chosenTags: string[] = [];
 
   @ViewChild('editor', { static: false }) editor:
     | QuillEditorComponent
@@ -101,8 +100,8 @@ export class AdminUpdateStoryComponent {
             updateTime: story.updateTime,
             createdTime: story.createdTime,
           });
-          if (story.tags !== undefined) {
-            this.chosenTags = story.tags;
+          if (story.tagNames !== undefined) {
+            this.chosenTags = story.tagNames;
           }
 
           this.onTypeChange();
@@ -234,7 +233,7 @@ export class AdminUpdateStoryComponent {
         this.editorForm.value.publishDate,
         this.editorForm.value.publishTime
       ),
-      tags: this.chosenTags,
+      tagNames: this.chosenTags,
     };
     return story;
   }
@@ -264,7 +263,7 @@ export class AdminUpdateStoryComponent {
       this.isBlogSelected = false;
     }
   }
-  onChosenTagChange(chosenTags: Tag[]): void {
+  onChosenTagChange(chosenTags: string[]): void {
     this.chosenTags = chosenTags;
     console.log(this.chosenTags);
   }

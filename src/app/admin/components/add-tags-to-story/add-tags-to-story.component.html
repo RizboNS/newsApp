@@ -18,7 +18,7 @@
 </div>
 <div class="tags-container" #aviableTagsContainer1>
   <div class="tag" *ngFor="let tag of aviableTags">
-    <div class="tag-name" (click)="addToChosenTags(tag)">
+    <div class="tag-name" (click)="addToChosenTags(tag.tagName.toString())">
       {{ tag.tagName }}
     </div>
   </div>
@@ -50,7 +50,7 @@
 <div class="tags-container tags-container-expanded" #aviableTagsContainer2>
   <div class="tag tag-chosen" *ngFor="let tag of chosenTags">
     <div class="tag-name">
-      {{ tag.tagName }}
+      {{ tag }}
       <button class="admin-btn-warn" (click)="removeFromChosenTags(tag)">
         <i class="fa-solid fa-trash-can"></i>
       </button>

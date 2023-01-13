@@ -15,5 +15,6 @@ export interface Story {
   publish: boolean;
   category: Category;
   imageDbs?: string[];
+  tagNames?: string[];
   tags?: Tag[];
 }

@@ -22,7 +22,7 @@ export class AdminCreateStoryComponent implements OnInit {
   types = articleTypesSetTypes;
   editorForm!: FormGroup;
   previewVeiwMode: string = 'Desktop';
-  chosenTags: Tag[] = [];
+  chosenTags: string[] = [];
 
   @ViewChild('editor', { static: false }) editor:
     | QuillEditorComponent
@@ -85,7 +85,7 @@ export class AdminCreateStoryComponent implements OnInit {
     height: '80vh',
   };
 
-  onChosenTagChange(chosenTags: Tag[]): void {
+  onChosenTagChange(chosenTags: string[]): void {
     this.chosenTags = chosenTags;
     console.log(this.chosenTags);
   }
@@ -195,9 +195,17 @@ export class AdminCreateStoryComponent implements OnInit {
         this.editorForm.value.publishDate,
         this.editorForm.value.publishTime
       ),
-      tags: this.chosenTags,
+      tags: this.mapTags(this.chosenTags),
     };
     return story;
+  }
+
+  mapTags(tags: string[]): Tag[] {
+    let tagList: Tag[] = [];
+    tags.forEach((tag) => {
+      tagList.push({ tagName: tag });
+    });
+    return tagList;
   }
   checkScreenSize(): boolean {
     if (window.matchMedia('(max-width: 768px)').matches) {

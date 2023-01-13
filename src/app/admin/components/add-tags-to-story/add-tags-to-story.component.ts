@@ -18,14 +18,14 @@ import { NewsService } from 'src/app/services/news.service';
 })
 export class AddTagsToStoryComponent implements OnInit {
   aviableTags: Tag[] = [];
-  @Input() chosenTags: Tag[] = [];
+  @Input() chosenTags: string[] = [];
   expandBtnSign1: string = '+';
   expandBtnSign2: string = '-';
   newTag: string = '';
   @ViewChild('aviableTagsContainer1') aviableTagsContainerEl1!: ElementRef;
   @ViewChild('aviableTagsContainer2') aviableTagsContainerEl2!: ElementRef;
   @Output() fireOpenManageTagsModalAtParrent = new EventEmitter<any>();
-  @Output() fireChosenTags = new EventEmitter<Tag[]>();
+  @Output() fireChosenTags = new EventEmitter<string[]>();
 
   constructor(private newsService: NewsService) {}
   ngOnInit(): void {
@@ -61,8 +61,9 @@ export class AddTagsToStoryComponent implements OnInit {
       this.expandBtnSign2 = this.expandBtnSign2 === '+' ? '-' : '+';
     }
   }
-  addToChosenTags(tag: Tag): void {
-    if (this.chosenTags.find((t) => t.tagName === tag.tagName)) {
+  addToChosenTags(tag: string): void {
+    if (this.chosenTags.find((t) => t.toLowerCase() === tag.toLowerCase())) {
+      // TO DO: show error message
       return;
     }
     this.chosenTags.push(tag);
@@ -70,20 +71,23 @@ export class AddTagsToStoryComponent implements OnInit {
   }
   onAddTag(): void {
     if (this.newTag === '') {
+      // TO DO: show error message
       return;
     }
-    if (this.chosenTags.find((t) => t.tagName === this.newTag)) {
+    if (
+      this.chosenTags.find((t) => t.toLowerCase() === this.newTag.toLowerCase())
+    ) {
       return;
     }
-    this.chosenTags.push({ tagName: this.newTag });
+    this.chosenTags.push(this.newTag);
     this.onFireChosenTags();
     this.newTag = '';
   }
   fireOpenManageTagsModal(): void {
     this.fireOpenManageTagsModalAtParrent.emit();
   }
-  removeFromChosenTags(tag: Tag): void {
-    this.chosenTags = this.chosenTags.filter((t) => t.tagName !== tag.tagName);
+  removeFromChosenTags(tag: string): void {
+    this.chosenTags = this.chosenTags.filter((t) => t !== tag);
     this.onFireChosenTags();
   }
 }
