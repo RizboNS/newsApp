@@ -1,5 +1,5 @@
 <div class="carousel-container">
   <ng-container *ngFor="let image of imagesToShow; let i = index">
-    <img [src]="image.locationPath" [ngClass]="{ active: i === activeIndex }" />
+    <img [src]="image" [ngClass]="{ active: i === activeIndex }" />
   </ng-container>
 </div>

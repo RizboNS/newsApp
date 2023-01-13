@@ -2,6 +2,7 @@ import {
   Component,
   ElementRef,
   EventEmitter,
+  Input,
   OnInit,
   Output,
   ViewChild,
@@ -17,7 +18,7 @@ import { NewsService } from 'src/app/services/news.service';
 })
 export class AddTagsToStoryComponent implements OnInit {
   aviableTags: Tag[] = [];
-  chosenTags: Tag[] = [];
+  @Input() chosenTags: Tag[] = [];
   expandBtnSign1: string = '+';
   expandBtnSign2: string = '-';
   newTag: string = '';

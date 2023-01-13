@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ImageDb } from 'src/app/models/image-db.model';
 
 @Component({
   selector: 'app-carousel',
@@ -7,9 +6,9 @@ import { ImageDb } from 'src/app/models/image-db.model';
   styleUrls: ['./carousel.component.css'],
 })
 export class CarouselComponent implements OnInit {
-  @Input() images: ImageDb[] | undefined = [];
+  @Input() images: string[] | undefined = [];
 
-  imagesToShow: ImageDb[] = [];
+  imagesToShow: string[] = [];
   activeIndex = 0;
 
   ngOnInit(): void {

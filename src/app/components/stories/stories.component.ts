@@ -85,6 +85,7 @@ export class StoriesComponent implements OnInit, OnChanges {
         .getStoriesPaged(this.storyType, page)
         .pipe(take(1))
         .subscribe((res) => {
+          console.log(res);
           this.stories.set(
             res.data.page.toString(),
             this.getFirstTextFromStories(res.data.stories)
@@ -99,6 +100,7 @@ export class StoriesComponent implements OnInit, OnChanges {
         .getStoriesByCategory(this.storyType, this.storyCategory, page)
         .pipe(take(1))
         .subscribe((res) => {
+          console.log(res);
           res.data.stories = this.getFirstTextFromStories(res.data.stories);
           this.stories.set(res.data.page.toString(), res.data.stories);
           this.pageSelected = res.data.page;

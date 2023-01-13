@@ -8,6 +8,7 @@ import { CategoryMap } from 'src/app/models/category.model';
 import { Story } from 'src/app/models/story.model';
 import { NewsService } from 'src/app/services/news.service';
 import { articleTypesSetTypes } from 'src/app/data/article-types';
+import { Tag } from 'src/app/models/tag.model';
 
 @Component({
   selector: 'app-admin-update-story',
@@ -19,6 +20,7 @@ export class AdminUpdateStoryComponent {
   types = articleTypesSetTypes;
   editorForm!: FormGroup;
   previewVeiwMode: string = 'Desktop';
+  chosenTags: Tag[] = [];
 
   @ViewChild('editor', { static: false }) editor:
     | QuillEditorComponent
@@ -28,6 +30,7 @@ export class AdminUpdateStoryComponent {
   alertMessage: string = '';
   alertShow: boolean = false;
   showAlertMsg: boolean = false;
+  manageTagsModalShow: boolean = false;
   isBlogSelected = false;
 
   quillConfig = {
@@ -98,6 +101,10 @@ export class AdminUpdateStoryComponent {
             updateTime: story.updateTime,
             createdTime: story.createdTime,
           });
+          if (story.tags !== undefined) {
+            this.chosenTags = story.tags;
+          }
+
           this.onTypeChange();
         },
         error: async (err) => {
@@ -227,6 +234,7 @@ export class AdminUpdateStoryComponent {
         this.editorForm.value.publishDate,
         this.editorForm.value.publishTime
       ),
+      tags: this.chosenTags,
     };
     return story;
   }
@@ -255,6 +263,13 @@ export class AdminUpdateStoryComponent {
       this.editorForm.controls['category'].updateValueAndValidity();
       this.isBlogSelected = false;
     }
+  }
+  onChosenTagChange(chosenTags: Tag[]): void {
+    this.chosenTags = chosenTags;
+    console.log(this.chosenTags);
+  }
+  openManageTagsModal() {
+    this.manageTagsModalShow = true;
   }
   async validationErrorMsg() {
     await this.showAlert(

@@ -102,6 +102,13 @@
             </select>
           </div>
         </ng-container>
+        <div class="add-tags-container">
+          <app-add-tags-to-story
+            [chosenTags]="chosenTags"
+            (fireOpenManageTagsModalAtParrent)="openManageTagsModal()"
+            (fireChosenTags)="onChosenTagChange($event)"
+          ></app-add-tags-to-story>
+        </div>
       </div>
     </div>
     <div class="main-wrapper">
