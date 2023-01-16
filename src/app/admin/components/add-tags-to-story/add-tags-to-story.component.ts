@@ -45,7 +45,7 @@ export class AddTagsToStoryComponent implements OnInit {
           this.aviableTags = res.data;
         },
         error: (err) => {
-          console.log(err);
+          this.miniMsg.onErrorMsg('Error fetching tags');
         },
       });
   }
