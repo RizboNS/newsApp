@@ -112,52 +112,6 @@ h3 {
   margin: 0 5px;
   height: fit-content;
 }
-.saved-msg-container {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 300px;
-  z-index: 9999;
-}
-.savedMsg {
-  color: #fff;
-  background-color: #4BB543;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 10px;
-  display: none;
-}
-.savedMsgHide {
-  transition: opacity 1s ease-out;
-  opacity: 0;
-  display: none;
-}
-.savedMsgShow {
-  display: block;
-}
-.error-msg-container {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 300px;
-  z-index: 9999;
-}
-.errorMsg {
-  color: #fff;
-  background-color: #991c1c;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 10px;
-  display: none;
-}
-.errorMsgHide {
-  transition: opacity 1s ease-out;
-  opacity: 0;
-  display: none;
-}
-.errorMsgShow {
-  display: block;
-}
 .loading-container {
   margin-top: 1rem;
 }

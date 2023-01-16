@@ -12,6 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 import { take, timeout } from 'rxjs';
 import { Tag } from 'src/app/models/tag.model';
 import { NewsService } from 'src/app/services/news.service';
+import { MiniMsgComponent } from '../../ui/mini-msg/mini-msg.component';
 
 @Component({
   selector: 'app-manage-tags',
@@ -24,6 +25,8 @@ export class ManageTagsComponent implements OnInit {
 
   @ViewChild('savedMsgEl') savedMsgEl!: ElementRef;
   @ViewChild('savedMsgContainer') savedMsgContainer!: ElementRef;
+
+  @ViewChild(MiniMsgComponent) miniMsg: any;
 
   @Input() manageTagsModalShow: boolean = true;
   @Output() state = new EventEmitter<boolean>();
@@ -74,51 +77,11 @@ export class ManageTagsComponent implements OnInit {
 
   onSuccessMsg(): void {
     this.savingCompleted = true;
-
-    const newSavedMsgEl = this.renderer.createElement('p');
-
-    const content = this.renderer.createText('Success...');
-    this.renderer.appendChild(newSavedMsgEl, content);
-    this.renderer.addClass(newSavedMsgEl, 'savedMsg');
-    this.renderer.addClass(newSavedMsgEl, 'savedMsgShow');
-    this.renderer.appendChild(
-      this.savedMsgContainer.nativeElement,
-      newSavedMsgEl
-    );
-
-    setTimeout(() => {
-      this.renderer.addClass(newSavedMsgEl, 'savedMsgHide');
-    }, 3000);
-    setTimeout(() => {
-      this.renderer.removeChild(
-        this.savedMsgContainer.nativeElement,
-        newSavedMsgEl
-      );
-    }, 4000);
+    this.miniMsg.onSuccessMsg('Succesfully saved tags to the server.');
   }
   onErrorMsg(msg: string): void {
     this.savingCompleted = true;
-
-    const newSavedMsgEl = this.renderer.createElement('p');
-
-    const content = this.renderer.createText(msg);
-    this.renderer.appendChild(newSavedMsgEl, content);
-    this.renderer.addClass(newSavedMsgEl, 'errorMsg');
-    this.renderer.addClass(newSavedMsgEl, 'errorMsgShow');
-    this.renderer.appendChild(
-      this.savedMsgContainer.nativeElement,
-      newSavedMsgEl
-    );
-
-    setTimeout(() => {
-      this.renderer.addClass(newSavedMsgEl, 'errorMsgHide');
-    }, 3000);
-    setTimeout(() => {
-      this.renderer.removeChild(
-        this.savedMsgContainer.nativeElement,
-        newSavedMsgEl
-      );
-    }, 4000);
+    this.miniMsg.onErrorMsg(msg);
   }
 
   getTags() {
