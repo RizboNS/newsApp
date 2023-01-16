@@ -8,29 +8,28 @@
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    flex-basis: 400px;
+    max-width: 300px;
     transition: transform 0.3s ease-in-out;
     display: flex;
     flex-direction: column;
 }
 .card:hover {
-    transform: scale(1.01);
-}
-.card0 {
-  height: auto;
-  flex-basis: 500px;
-  flex-grow: 1;
+    border: 1px solid #999;
 }
 
+.image-container {
+  height: 300px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
 .card-body {
     padding: 0;
     height: 80%;
 }
-.card-img-top {
-    width: 100%;
-    margin: 10px 10px 10px 0;
-    border-radius: 8px;
-}
+
 .card-body a {
     text-decoration: none;
     color: blue;

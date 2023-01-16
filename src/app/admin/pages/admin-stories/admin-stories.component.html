@@ -1,17 +1,25 @@
 <div *ngIf="stories.length > 0" class="card-container">
-  <div
-    [class]="'card' + ' card' + i"
-    *ngFor="let story of stories; let i = index"
-  >
+  <div class="card" *ngFor="let story of stories; let i = index">
+    <div class="published">
+      <span class="published-text">Published:</span>
+      <!-- TO DO FIND BEST LOOKING PIPE :) for date time -->
+      <span class="published-value">{{ story.publishTimeDto }}</span>
+      <span class="published-value">{{ story.publishDateDto }}</span>
+    </div>
     <div class="card-body">
       <a [routerLink]="['/admin/story', story.id]">
         <h4 class="card-title">{{ story.title }}</h4>
+        <div class="image-container">
+          <ng-container *ngIf="story.imageDbs">
+            <img class="card-image" [src]="story.imageDbs[0]" />
+          </ng-container>
+        </div>
       </a>
-    </div>
-    <div class="tags">
-      <span class="tag" *ngFor="let tag of story.tagNames">
-        <span class="tag-name">{{ tag }},</span>
-      </span>
+      <div class="tags">
+        <span class="tag" *ngFor="let tag of story.tagNames">
+          <span class="tag-name">{{ tag }},</span>
+        </span>
+      </div>
     </div>
     <footer class="card-footer">
       <button
@@ -21,6 +29,7 @@
         Edit
         <i class="fa-solid fa-pen-nib"></i>
       </button>
+
       <button class="admin-btn-warn" (click)="onDeleteStory(story)">
         Delete
         <i class="fa-solid fa-trash-can"></i>
