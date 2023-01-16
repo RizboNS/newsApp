@@ -42,6 +42,7 @@ export class AddTagsToStoryComponent implements OnInit {
       .pipe(timeout(10000), take(1))
       .subscribe({
         next: (res) => {
+          console.log(res);
           this.aviableTags = res.data;
         },
         error: (err) => {

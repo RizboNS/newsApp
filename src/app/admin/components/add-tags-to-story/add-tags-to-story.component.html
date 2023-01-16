@@ -18,9 +18,11 @@
 </div>
 <div class="tags-container" #aviableTagsContainer1>
   <div class="tag" *ngFor="let tag of aviableTags">
-    <div class="tag-name" (click)="addToChosenTags(tag.tagName.toString())">
-      {{ tag.tagName }}
-    </div>
+    <ng-container *ngIf="tag.tagValue">
+      <div class="tag-name" (click)="addToChosenTags(tag.tagValue)">
+        {{ tag.tagValue }}
+      </div>
+    </ng-container>
   </div>
 </div>
 <!-- Chosen Tags -->

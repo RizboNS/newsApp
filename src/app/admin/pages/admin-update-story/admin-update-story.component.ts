@@ -8,6 +8,7 @@ import { CategoryMap } from 'src/app/models/category.model';
 import { Story } from 'src/app/models/story.model';
 import { NewsService } from 'src/app/services/news.service';
 import { articleTypesSetTypes } from 'src/app/data/article-types';
+import { Tag } from 'src/app/models/tag.model';
 
 @Component({
   selector: 'app-admin-update-story',
@@ -218,6 +219,14 @@ export class AdminUpdateStoryComponent {
     }
     this.router.navigate(['/admin/story/' + id]);
   }
+
+  mapTags(tags: string[]): Tag[] {
+    let tagList: Tag[] = [];
+    tags.forEach((tag) => {
+      tagList.push({ tagName: tag });
+    });
+    return tagList;
+  }
   mapStory(): Story {
     let story: Story = {
       id: this.readIdFromRoute(),
@@ -233,7 +242,7 @@ export class AdminUpdateStoryComponent {
         this.editorForm.value.publishDate,
         this.editorForm.value.publishTime
       ),
-      tagNames: this.chosenTags,
+      tags: this.mapTags(this.chosenTags),
     };
     return story;
   }
