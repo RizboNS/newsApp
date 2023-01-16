@@ -10,6 +10,7 @@ import {
 import { take, timeout } from 'rxjs';
 import { Tag } from 'src/app/models/tag.model';
 import { NewsService } from 'src/app/services/news.service';
+import { MiniMsgComponent } from '../../ui/mini-msg/mini-msg.component';
 
 @Component({
   selector: 'app-add-tags-to-story',
@@ -24,6 +25,9 @@ export class AddTagsToStoryComponent implements OnInit {
   newTag: string = '';
   @ViewChild('aviableTagsContainer1') aviableTagsContainerEl1!: ElementRef;
   @ViewChild('aviableTagsContainer2') aviableTagsContainerEl2!: ElementRef;
+
+  @ViewChild(MiniMsgComponent) miniMsg: any;
+
   @Output() fireOpenManageTagsModalAtParrent = new EventEmitter<any>();
   @Output() fireChosenTags = new EventEmitter<string[]>();
 
@@ -63,23 +67,26 @@ export class AddTagsToStoryComponent implements OnInit {
   }
   addToChosenTags(tag: string): void {
     if (this.chosenTags.find((t) => t.toLowerCase() === tag.toLowerCase())) {
-      // TO DO: show error message
+      this.miniMsg.onErrorMsg(`Already added: ${tag}`);
       return;
     }
     this.chosenTags.push(tag);
+    this.miniMsg.onSuccessMsg(`Added: ${tag}`);
     this.onFireChosenTags();
   }
   onAddTag(): void {
     if (this.newTag === '') {
-      // TO DO: show error message
+      this.miniMsg.onErrorMsg('Tag cannot be empty');
       return;
     }
     if (
       this.chosenTags.find((t) => t.toLowerCase() === this.newTag.toLowerCase())
     ) {
+      this.miniMsg.onErrorMsg(`Already added: ${this.newTag}`);
       return;
     }
     this.chosenTags.push(this.newTag);
+    this.miniMsg.onSuccessMsg(`Added: ${this.newTag}`);
     this.onFireChosenTags();
     this.newTag = '';
   }
