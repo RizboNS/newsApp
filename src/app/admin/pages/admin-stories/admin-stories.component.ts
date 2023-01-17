@@ -14,10 +14,12 @@ export class AdminStoriesComponent implements OnInit {
   pageRange: number[] = [];
   pageRangeToShow: number[] = [];
   pageCount: number = 1;
+  pageSize: string = '6';
+  pageSizes: string[] = ['6', '12', '18', '24'];
   constructor(private newsService: NewsService) {}
 
   ngOnInit(): void {
-    this.getAllStories('1', '6');
+    this.getAllStories('1', this.pageSize);
   }
 
   getAllStories(page: string, pageCount: string) {
@@ -48,7 +50,7 @@ export class AdminStoriesComponent implements OnInit {
     this.pageSelected = page;
     this.alterPageRangeToShow();
     if (!this.stories.has(page.toString())) {
-      this.getAllStories(page.toString(), '6');
+      this.getAllStories(page.toString(), this.pageSize);
     }
   }
   alterPageRangeToShow() {
@@ -67,5 +69,11 @@ export class AdminStoriesComponent implements OnInit {
       this.pageRange.push(i);
     }
     this.alterPageRangeToShow();
+  }
+  pageSizeChangeHandler(pageSize: any) {
+    this.pageSize = pageSize.target.value;
+    alert(this.pageSize);
+    // not working ( not formated well..)
+    this.getAllStories(this.pageSelected.toString(), pageSize.toString());
   }
 }
