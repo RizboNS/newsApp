@@ -1,10 +1,10 @@
 <div *ngIf="stories.length > 0" class="card-container">
   <div class="card" *ngFor="let story of stories; let i = index">
     <div class="published">
-      <span class="published-text">Published:</span>
-      <!-- TO DO FIND BEST LOOKING PIPE :) for date time -->
-      <span class="published-value">{{ story.publishTimeDto }}</span>
-      <span class="published-value">{{ story.publishDateDto }}</span>
+      <div class="published-text">Published:</div>
+      <div class="published-value">
+        {{ story.publishTime | date : "medium" }}
+      </div>
     </div>
     <div class="card-body">
       <a [routerLink]="['/admin/story', story.id]">

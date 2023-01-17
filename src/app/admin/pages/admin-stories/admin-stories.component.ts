@@ -23,18 +23,7 @@ export class AdminStoriesComponent implements OnInit {
       .pipe(take(1))
       .subscribe((res) => {
         this.stories = res.data;
-        this.mapDateAndTimeToAllStories();
       });
-  }
-  mapDateAndTimeToAllStories() {
-    this.stories.forEach((story) => {
-      story.publishDateDto = this.dateAndTimeSplit(story.publishTime)[0];
-      story.publishTimeDto = this.dateAndTimeSplit(story.publishTime)[1];
-    });
-  }
-
-  dateAndTimeSplit(dateAndTime: string): string[] {
-    return dateAndTime.split('T');
   }
 
   onDeleteStory(story: Story): void {

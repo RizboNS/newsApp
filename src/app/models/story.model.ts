@@ -12,8 +12,6 @@ export interface Story {
   createdTime?: string;
   updateTime?: string;
   publishTime: string;
-  publishTimeDto?: string;
-  publishDateDto?: string;
   publish: boolean;
   category: Category;
   imageDbs?: string[];
