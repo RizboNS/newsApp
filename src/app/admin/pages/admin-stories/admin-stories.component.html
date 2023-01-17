@@ -1,7 +1,13 @@
-<ng-container *ngIf="stories.length > 0">
+<ng-container *ngIf="stories.get(pageSelected.toString())?.length">
   <div class="pagination-container">
     <div class="card-container">
-      <div class="card" *ngFor="let story of stories; let i = index">
+      <div
+        class="card"
+        *ngFor="
+          let story of stories.get(pageSelected.toString());
+          let i = index
+        "
+      >
         <div class="published-container">
           <div class="published-text">
             Published: {{ story.publish ? "Yes" : "No" }}
@@ -10,6 +16,9 @@
             <div class="published-value">
               {{ story.publishTime | date : "medium" }}
             </div>
+          </ng-container>
+          <ng-container *ngIf="story.publish">
+            <div class="published-value">&nbsp;</div>
           </ng-container>
         </div>
         <div class="card-body">

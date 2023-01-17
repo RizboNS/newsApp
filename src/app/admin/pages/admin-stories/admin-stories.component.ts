@@ -9,23 +9,26 @@ import { NewsService } from 'src/app/services/news.service';
   styleUrls: ['./admin-stories.component.css'],
 })
 export class AdminStoriesComponent implements OnInit {
-  stories: Story[] = [];
+  stories = new Map<string, Story[]>();
   pageSelected: number = 1;
+  pageRange: number[] = [];
   pageRangeToShow: number[] = [];
-  pageCount: number = 0;
+  pageCount: number = 1;
   constructor(private newsService: NewsService) {}
 
   ngOnInit(): void {
-    this.getAllStories();
+    this.getAllStories('1', '6');
   }
 
-  getAllStories() {
+  getAllStories(page: string, pageCount: string) {
     this.newsService
-      .getAllStories('1', '4')
+      .getAllStories(page, pageCount)
       .pipe(take(1))
       .subscribe((res) => {
-        this.stories = res.data.stories;
-        console.log(res);
+        this.stories.set(res.data.page.toString(), res.data.stories);
+        this.pageSelected = res.data.page;
+        this.pageCount = res.data.pageCount;
+        this.getPageRange();
       });
   }
 
@@ -34,9 +37,35 @@ export class AdminStoriesComponent implements OnInit {
       .deleteStory(story)
       .pipe(take(1))
       .subscribe((res) => {
-        res.success === true && this.getAllStories();
+        res.success === true && this.getAllStories('1', '6');
       });
   }
 
-  pageSelectHandler(page: number) {}
+  pageSelectHandler(page: number) {
+    if (page == 0 || page > this.pageCount) {
+      return;
+    }
+    this.pageSelected = page;
+    this.alterPageRangeToShow();
+    if (!this.stories.has(page.toString())) {
+      this.getAllStories(page.toString(), '6');
+    }
+  }
+  alterPageRangeToShow() {
+    if (this.pageSelected < 3) {
+      this.pageRangeToShow = this.pageRange.slice(0, 6);
+      return;
+    }
+    this.pageRangeToShow = this.pageRange.slice(
+      this.pageSelected - 3,
+      this.pageSelected + 3
+    );
+  }
+  getPageRange() {
+    this.pageRange = [];
+    for (let i = 1; i <= this.pageCount; i++) {
+      this.pageRange.push(i);
+    }
+    this.alterPageRangeToShow();
+  }
 }
