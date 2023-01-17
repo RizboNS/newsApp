@@ -19,10 +19,11 @@ export class AdminStoriesComponent implements OnInit {
 
   getAllStories() {
     this.newsService
-      .getAllStories()
+      .getAllStories('1', '4')
       .pipe(take(1))
       .subscribe((res) => {
-        this.stories = res.data;
+        this.stories = res.data.stories;
+        console.log(res);
       });
   }
 

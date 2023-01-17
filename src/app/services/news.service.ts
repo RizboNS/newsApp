@@ -32,8 +32,13 @@ export class NewsService {
     );
   }
 
-  getAllStories(): Observable<ApiResponse<Story[]>> {
-    return this.http.get<ApiResponse<Story[]>>(this._storyUrl);
+  getAllStories(
+    page: string,
+    pageSize: string
+  ): Observable<ApiResponse<PagedResponse>> {
+    return this.http.get<ApiResponse<PagedResponse>>(
+      `${this._storyUrl}/admin-query?page=${page}&pageSize=${pageSize}`
+    );
   }
   getStoryById(id: string): Observable<ApiResponse<Story>> {
     return this.http.get<ApiResponse<Story>>(this._storyUrl + '/' + id);
