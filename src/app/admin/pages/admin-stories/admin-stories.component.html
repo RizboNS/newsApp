@@ -1,14 +1,20 @@
 <div *ngIf="stories.length > 0" class="card-container">
   <div class="card" *ngFor="let story of stories; let i = index">
-    <div class="published">
-      <div class="published-text">Published:</div>
-      <div class="published-value">
-        {{ story.publishTime | date : "medium" }}
+    <div class="published-container">
+      <div class="published-text">
+        Published: {{ story.publish ? "Yes" : "No" }}
       </div>
+      <ng-container *ngIf="story.publish">
+        <div class="published-value">
+          {{ story.publishTime | date : "medium" }}
+        </div>
+      </ng-container>
     </div>
     <div class="card-body">
       <a [routerLink]="['/admin/story', story.id]">
-        <h4 class="card-title">{{ story.title }}</h4>
+        <div class="card-title-container">
+          <h4 class="card-title">{{ story.title }}</h4>
+        </div>
         <div class="image-container">
           <ng-container *ngIf="story.imageDbs">
             <img class="card-image" [src]="story.imageDbs[0]" />
@@ -17,7 +23,7 @@
       </a>
       <div class="tags">
         <span class="tag" *ngFor="let tag of story.tagNames">
-          <span class="tag-name">{{ tag }},</span>
+          <span class="tag-name">{{ tag }}&nbsp;|&nbsp;</span>
         </span>
       </div>
     </div>
