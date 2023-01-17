@@ -21,11 +21,18 @@
           </ng-container>
         </div>
       </a>
-      <div class="tags">
-        <span class="tag" *ngFor="let tag of story.tagNames">
-          <span class="tag-name">{{ tag }}&nbsp;|&nbsp;</span>
-        </span>
-      </div>
+      <ng-container *ngIf="story.tagNames && story.tagNames.length > 0">
+        <div class="tags">
+          <span class="tag" *ngFor="let tag of story.tagNames; let i = index">
+            <span class="tag-name"
+              >{{ tag }}
+              <ng-container *ngIf="i < story.tagNames.length - 1">
+                &nbsp;|&nbsp;
+              </ng-container>
+            </span>
+          </span>
+        </div>
+      </ng-container>
     </div>
     <footer class="card-footer">
       <button

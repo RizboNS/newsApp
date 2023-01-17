@@ -76,6 +76,8 @@ h4 {
     margin-left: 10px;
     margin-right: 10px;
     margin-bottom: 10px;
+    border-top: #ccc solid 1px;
+    border-bottom: #ccc solid 1px;
     padding: 0;
     display: flex;
     flex-wrap: wrap;
