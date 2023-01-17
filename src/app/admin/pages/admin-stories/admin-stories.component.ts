@@ -10,7 +10,9 @@ import { NewsService } from 'src/app/services/news.service';
 })
 export class AdminStoriesComponent implements OnInit {
   stories: Story[] = [];
-
+  pageSelected: number = 1;
+  pageRangeToShow: number[] = [];
+  pageCount: number = 0;
   constructor(private newsService: NewsService) {}
 
   ngOnInit(): void {
@@ -35,4 +37,6 @@ export class AdminStoriesComponent implements OnInit {
         res.success === true && this.getAllStories();
       });
   }
+
+  pageSelectHandler(page: number) {}
 }

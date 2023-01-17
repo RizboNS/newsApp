@@ -1,52 +1,88 @@
-<div *ngIf="stories.length > 0" class="card-container">
-  <div class="card" *ngFor="let story of stories; let i = index">
-    <div class="published-container">
-      <div class="published-text">
-        Published: {{ story.publish ? "Yes" : "No" }}
-      </div>
-      <ng-container *ngIf="story.publish">
-        <div class="published-value">
-          {{ story.publishTime | date : "medium" }}
-        </div>
-      </ng-container>
-    </div>
-    <div class="card-body">
-      <a [routerLink]="['/admin/story', story.id]">
-        <div class="card-title-container">
-          <h4 class="card-title">{{ story.title }}</h4>
-        </div>
-        <div class="image-container">
-          <ng-container *ngIf="story.imageDbs">
-            <img class="card-image" [src]="story.imageDbs[0]" />
+<ng-container *ngIf="stories.length > 0">
+  <div class="pagination-container">
+    <div class="card-container">
+      <div class="card" *ngFor="let story of stories; let i = index">
+        <div class="published-container">
+          <div class="published-text">
+            Published: {{ story.publish ? "Yes" : "No" }}
+          </div>
+          <ng-container *ngIf="story.publish">
+            <div class="published-value">
+              {{ story.publishTime | date : "medium" }}
+            </div>
           </ng-container>
         </div>
-      </a>
-      <ng-container *ngIf="story.tagNames && story.tagNames.length > 0">
-        <div class="tags">
-          <span class="tag" *ngFor="let tag of story.tagNames; let i = index">
-            <span class="tag-name"
-              >{{ tag }}
-              <ng-container *ngIf="i < story.tagNames.length - 1">
-                &nbsp;|&nbsp;
+        <div class="card-body">
+          <a [routerLink]="['/admin/story', story.id]">
+            <div class="card-title-container">
+              <h4 class="card-title">{{ story.title }}</h4>
+            </div>
+            <div class="image-container">
+              <ng-container *ngIf="story.imageDbs">
+                <img class="card-image" [src]="story.imageDbs[0]" />
               </ng-container>
-            </span>
-          </span>
+            </div>
+          </a>
+          <ng-container *ngIf="story.tagNames && story.tagNames.length > 0">
+            <div class="tags">
+              <span
+                class="tag"
+                *ngFor="let tag of story.tagNames; let i = index"
+              >
+                <span class="tag-name"
+                  >{{ tag }}
+                  <ng-container *ngIf="i < story.tagNames.length - 1">
+                    &nbsp;|&nbsp;
+                  </ng-container>
+                </span>
+              </span>
+            </div>
+          </ng-container>
         </div>
-      </ng-container>
-    </div>
-    <footer class="card-footer">
-      <button
-        class="admin-btn-primary"
-        [routerLink]="['/admin/update-story', story.id]"
-      >
-        Edit
-        <i class="fa-solid fa-pen-nib"></i>
-      </button>
+        <footer class="card-footer">
+          <button
+            class="admin-btn-primary"
+            [routerLink]="['/admin/update-story', story.id]"
+          >
+            Edit
+            <i class="fa-solid fa-pen-nib"></i>
+          </button>
 
-      <button class="admin-btn-warn" (click)="onDeleteStory(story)">
-        Delete
-        <i class="fa-solid fa-trash-can"></i>
+          <button class="admin-btn-warn" (click)="onDeleteStory(story)">
+            Delete
+            <i class="fa-solid fa-trash-can"></i>
+          </button>
+        </footer>
+      </div>
+    </div>
+    <div class="pagination-controls">
+      <button class="pagination-btn" (click)="pageSelectHandler(1)">
+        &lt;&lt;
       </button>
-    </footer>
+      <button
+        class="pagination-btn"
+        (click)="pageSelectHandler(pageSelected - 1)"
+      >
+        &lt;
+      </button>
+      <ng-container *ngFor="let page of pageRangeToShow; let i = index">
+        <button
+          class="pagination-btn"
+          [ngClass]="{ active: pageSelected === page }"
+          (click)="pageSelectHandler(page)"
+        >
+          {{ page }}
+        </button>
+      </ng-container>
+      <button
+        class="pagination-btn"
+        (click)="pageSelectHandler(pageSelected + 1)"
+      >
+        &gt;
+      </button>
+      <button class="pagination-btn" (click)="pageSelectHandler(pageCount)">
+        &gt;&gt;
+      </button>
+    </div>
   </div>
-</div>
+</ng-container>
