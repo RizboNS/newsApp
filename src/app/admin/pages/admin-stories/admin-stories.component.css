@@ -118,6 +118,7 @@ h4 {
 }
 .pagination-controls {
     margin: 0;
+    margin-top: 10px;
     padding: 0;
     display: flex;
     justify-content: center;
@@ -129,7 +130,13 @@ h4 {
     padding: 5px 10px;
     margin: 0 5px;
     cursor: pointer;
+    background-color: white;
+    color: #333;
+}
+.pagination-btn:hover {
+    background-color: #ccc;
 }
 .active {
   color: #E40042;
+  font-weight: bold;
 }
