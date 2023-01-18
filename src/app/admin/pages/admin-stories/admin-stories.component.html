@@ -30,6 +30,7 @@
       </button>
     </div>
     <div class="page-size-input">
+      <span class="spacer"></span>
       <label for="page-size">Results per page:</label>
       <select id="page-size" (change)="pageSizeChangeHandler($event)">
         <option *ngFor="let size of pageSizes" [value]="size">
