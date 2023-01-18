@@ -134,7 +134,7 @@ h4 {
     color: #333;
 }
 .pagination-btn:hover {
-    background-color: #ccc;
+    border: #333 solid 1px;
 }
 .active {
   color: #E40042;

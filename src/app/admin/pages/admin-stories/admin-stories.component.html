@@ -57,7 +57,7 @@
               {{ story.publishTime | date : "medium" }}
             </div>
           </ng-container>
-          <ng-container *ngIf="story.publish">
+          <ng-container *ngIf="!story.publish">
             <div class="published-value">&nbsp;</div>
           </ng-container>
         </div>
