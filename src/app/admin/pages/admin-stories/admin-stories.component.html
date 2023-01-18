@@ -1,6 +1,6 @@
 <ng-container *ngIf="stories.get(pageSelected.toString())?.length">
   <div class="page-size-input">
-    <label for="page-size">Page size:</label>
+    <label for="page-size">Results per page:</label>
     <select id="page-size" (change)="pageSizeChangeHandler($event)">
       <option *ngFor="let size of pageSizes" [value]="size">
         {{ size }}

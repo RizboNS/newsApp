@@ -14,8 +14,20 @@ export class AdminStoriesComponent implements OnInit {
   pageRange: number[] = [];
   pageRangeToShow: number[] = [];
   pageCount: number = 1;
-  pageSize: string = '6';
-  pageSizes: string[] = ['6', '12', '18', '24'];
+  pageSize: string = '5';
+  pageSizes: string[] = [
+    '5',
+    '10',
+    '20',
+    '30',
+    '40',
+    '50',
+    '60',
+    '70',
+    '80',
+    '90',
+    '100',
+  ];
   constructor(private newsService: NewsService) {}
 
   ngOnInit(): void {
@@ -72,8 +84,6 @@ export class AdminStoriesComponent implements OnInit {
   }
   pageSizeChangeHandler(pageSize: any) {
     this.pageSize = pageSize.target.value;
-    alert(this.pageSize);
-    // not working ( not formated well..)
-    this.getAllStories(this.pageSelected.toString(), pageSize.toString());
+    this.getAllStories(this.pageSelected.toString(), this.pageSize);
   }
 }
