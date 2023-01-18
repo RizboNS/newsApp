@@ -93,3 +93,37 @@ h4 {
 .active {
     color: #E40042;
 }
+.page-size-input {
+  float: right;
+  margin: 0;
+  padding: 0;
+  border-bottom: #999 solid 1px;
+}
+.page-size-input select {
+    width: 100px;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 5px;
+}
+.page-size-input option {
+    padding: 0 5px;
+}
+.pagination {
+    margin: 0;
+    padding: 0;
+}
+.pagination-controls {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pagination-btn {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin: 0 5px;
+    cursor: pointer;
+}

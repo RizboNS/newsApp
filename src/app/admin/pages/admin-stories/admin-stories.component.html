@@ -1,40 +1,42 @@
 <ng-container *ngIf="stories.get(pageSelected.toString())?.length">
-  <div class="page-size-input">
-    <label for="page-size">Results per page:</label>
-    <select id="page-size" (change)="pageSizeChangeHandler($event)">
-      <option *ngFor="let size of pageSizes" [value]="size">
-        {{ size }}
-      </option>
-    </select>
-  </div>
-  <div class="pagination-controls">
-    <button class="pagination-btn" (click)="pageSelectHandler(1)">
-      &lt;&lt;
-    </button>
-    <button
-      class="pagination-btn"
-      (click)="pageSelectHandler(pageSelected - 1)"
-    >
-      &lt;
-    </button>
-    <ng-container *ngFor="let page of pageRangeToShow; let i = index">
+  <div class="pagination">
+    <div class="pagination-controls">
+      <button class="pagination-btn" (click)="pageSelectHandler(1)">
+        &lt;&lt;
+      </button>
       <button
         class="pagination-btn"
-        [ngClass]="{ active: pageSelected === page }"
-        (click)="pageSelectHandler(page)"
+        (click)="pageSelectHandler(pageSelected - 1)"
       >
-        {{ page }}
+        &lt;
       </button>
-    </ng-container>
-    <button
-      class="pagination-btn"
-      (click)="pageSelectHandler(pageSelected + 1)"
-    >
-      &gt;
-    </button>
-    <button class="pagination-btn" (click)="pageSelectHandler(pageCount)">
-      &gt;&gt;
-    </button>
+      <ng-container *ngFor="let page of pageRangeToShow; let i = index">
+        <button
+          class="pagination-btn"
+          [ngClass]="{ active: pageSelected === page }"
+          (click)="pageSelectHandler(page)"
+        >
+          {{ page }}
+        </button>
+      </ng-container>
+      <button
+        class="pagination-btn"
+        (click)="pageSelectHandler(pageSelected + 1)"
+      >
+        &gt;
+      </button>
+      <button class="pagination-btn" (click)="pageSelectHandler(pageCount)">
+        &gt;&gt;
+      </button>
+    </div>
+    <div class="page-size-input">
+      <label for="page-size">Results per page:</label>
+      <select id="page-size" (change)="pageSizeChangeHandler($event)">
+        <option *ngFor="let size of pageSizes" [value]="size">
+          {{ size }}
+        </option>
+      </select>
+    </div>
   </div>
   <div class="pagination-container">
     <div class="card-container">
