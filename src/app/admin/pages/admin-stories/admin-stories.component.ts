@@ -10,6 +10,7 @@ import { NewsService } from 'src/app/services/news.service';
 })
 export class AdminStoriesComponent implements OnInit {
   stories = new Map<string, Story[]>();
+  searchText: string = '';
   pageSelected: number = 1;
   pageRange: number[] = [];
   pageRangeToShow: number[] = [];
@@ -86,4 +87,5 @@ export class AdminStoriesComponent implements OnInit {
     this.pageSize = pageSize.target.value;
     this.getAllStories(this.pageSelected.toString(), this.pageSize);
   }
+  searchHandler() {}
 }

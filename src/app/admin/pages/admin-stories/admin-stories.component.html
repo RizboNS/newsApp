@@ -1,4 +1,49 @@
 <ng-container *ngIf="stories.get(pageSelected.toString())?.length">
+  <div class="control-bar">
+    <div class="control-bar-left">
+      <!-- filter buttons by category, tag, published, etc -->
+      <!-- <div class="filter-container">
+        <div class="filter">
+          <label for="category">Category:</label>
+          <select id="category" (change)="categoryChangeHandler($event)">
+            <option value="all">All</option>
+            <option *ngFor="let category of categories" [value]="category">
+              {{ category }}
+            </option>
+          </select>
+        </div>
+        <div class="filter">
+          <label for="tag">Tag:</label>
+          <select id="tag" (change)="tagChangeHandler($event)">
+            <option value="all">All</option>
+            <option *ngFor="let tag of tags" [value]="tag">
+              {{ tag }}
+            </option>
+          </select>
+        </div>
+        <div class="filter">
+          <label for="published">Published:</label>
+          <select id="published" (change)="publishedChangeHandler($event)">
+            <option value="all">All</option>
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+          </select>
+        </div> -->
+      <!-- fake temp div with width of 60% -->
+      <div class="spacer"></div>
+    </div>
+    <div class="control-bar-right">
+      <div class="search-container">
+        <input
+          type="text"
+          placeholder="Search"
+          [(ngModel)]="searchText"
+          (keyup)="searchHandler()"
+        />
+        <i class="fa-solid fa-search"></i>
+      </div>
+    </div>
+  </div>
   <div class="pagination-container">
     <div class="card-container">
       <div
