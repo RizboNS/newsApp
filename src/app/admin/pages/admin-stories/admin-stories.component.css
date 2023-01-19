@@ -94,7 +94,7 @@ h4 {
 .pagination {
     margin: 0;
     padding: 0;
-    border-bottom: #ccc solid 1px;
+    border-top: #ccc solid 1px;
 }
 .page-size-input {
   display: flex;
