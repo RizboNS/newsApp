@@ -147,6 +147,11 @@ h4 {
     margin: 10px;
     max-width: 95%;
 }
+.control-bar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 .search-container {
     display: flex;
     align-items: center;
