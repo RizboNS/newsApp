@@ -23,7 +23,11 @@
         </select> -->
         <label for="dropdown">Tag:</label>
         <div class="dropdown">
-          <button class="dropdown-button" (click)="toggleDropDown()">
+          <button
+            class="dropdown-button"
+            #dropdownButton
+            (click)="toggleDropDown()"
+          >
             <span> Select Tags </span>
             <i class="fa-solid fa-angle-down"></i>
           </button>

@@ -1,6 +1,7 @@
 import {
   Component,
   ElementRef,
+  HostListener,
   OnInit,
   Renderer2,
   ViewChild,
@@ -26,6 +27,7 @@ export class AdminStoriesComponent implements OnInit {
   @ViewChild(MiniMsgComponent) miniMsg: any;
   @ViewChild('dropdownContent', { static: true })
   dropdownContent!: ElementRef;
+  @ViewChild('dropdownButton', { static: true }) dropdownButton!: ElementRef;
 
   stories = new Map<string, Story[]>();
   searchText: string = '';
@@ -47,6 +49,20 @@ export class AdminStoriesComponent implements OnInit {
     '90',
     '100',
   ];
+
+  @HostListener('document:click', ['$event'])
+  documentClick(event: MouseEvent) {
+    if (
+      !this.dropdownContent.nativeElement.contains(event.target) &&
+      !this.dropdownButton.nativeElement.contains(event.target)
+    ) {
+      this.isTagDropDownOpen = false;
+      this.renderer.removeClass(
+        this.dropdownContent.nativeElement,
+        'showDropdown'
+      );
+    }
+  }
   constructor(
     private newsService: NewsService,
     private renderer: Renderer2,
@@ -140,19 +156,22 @@ export class AdminStoriesComponent implements OnInit {
         },
       });
   }
+
   toggleDropDown() {
-    this.isTagDropDownOpen = !this.isTagDropDownOpen;
-    if (this.isTagDropDownOpen) {
-      this.renderer.addClass(
-        this.dropdownContent.nativeElement,
-        'showDropdown'
-      );
-    } else {
-      this.renderer.removeClass(
-        this.dropdownContent.nativeElement,
-        'showDropdown'
-      );
-    }
+    setTimeout(() => {
+      this.isTagDropDownOpen = !this.isTagDropDownOpen;
+      if (this.isTagDropDownOpen) {
+        this.renderer.addClass(
+          this.dropdownContent.nativeElement,
+          'showDropdown'
+        );
+      } else {
+        this.renderer.removeClass(
+          this.dropdownContent.nativeElement,
+          'showDropdown'
+        );
+      }
+    }, 0);
   }
   // tmp
   categoryChangeHandler(e: any) {}
