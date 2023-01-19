@@ -147,3 +147,20 @@ h4 {
     margin: 10px;
     max-width: 95%;
 }
+.search-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.search-container input {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px 10px;
+    width: 200px;
+}
+.search-container i {
+    cursor: pointer;
+    position: relative;
+    left: -30px;
+    color: #ccc;
+}
