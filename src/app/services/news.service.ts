@@ -31,7 +31,15 @@ export class NewsService {
       `${this._storyUrl}/page?type=${type}&page=${page}`
     );
   }
-
+  searchStories(
+    searchText: string,
+    page: string,
+    pageSize: string
+  ): Observable<ApiResponse<PagedResponse>> {
+    return this.http.get<ApiResponse<PagedResponse>>(
+      `${this._storyUrl}/search?searchValue=${searchText}&page=${page}&pageSize=${pageSize}`
+    );
+  }
   getAllStories(
     page: string,
     pageSize: string

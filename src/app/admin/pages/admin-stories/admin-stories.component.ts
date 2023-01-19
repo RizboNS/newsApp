@@ -85,7 +85,22 @@ export class AdminStoriesComponent implements OnInit {
   }
   pageSizeChangeHandler(pageSize: any) {
     this.pageSize = pageSize.target.value;
-    this.getAllStories(this.pageSelected.toString(), this.pageSize);
+    this.searchHandler();
   }
-  searchHandler() {}
+  searchHandler() {
+    if (this.searchText === '') {
+      this.getAllStories(this.pageSelected.toString(), this.pageSize);
+      return;
+    }
+    this.newsService
+      .searchStories(this.searchText, '1', this.pageSize)
+      .pipe(take(1))
+      .subscribe((res) => {
+        console.log('res');
+        this.stories.set(res.data.page.toString(), res.data.stories);
+        this.pageSelected = res.data.page;
+        this.pageCount = res.data.pageCount;
+        this.getPageRange();
+      });
+  }
 }
