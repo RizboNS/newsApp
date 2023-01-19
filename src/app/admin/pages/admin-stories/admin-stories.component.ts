@@ -1,7 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { take } from 'rxjs';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
+import { take, timeout } from 'rxjs';
+import { CategoryMap } from 'src/app/models/category.model';
 import { Story } from 'src/app/models/story.model';
+import { Tag } from 'src/app/models/tag.model';
 import { NewsService } from 'src/app/services/news.service';
+import { MiniMsgComponent } from '../../ui/mini-msg/mini-msg.component';
 
 @Component({
   selector: 'app-admin-stories',
@@ -9,6 +18,14 @@ import { NewsService } from 'src/app/services/news.service';
   styleUrls: ['./admin-stories.component.css'],
 })
 export class AdminStoriesComponent implements OnInit {
+  categories = CategoryMap;
+  // tmp
+  tags: Tag[] = [];
+
+  @ViewChild(MiniMsgComponent) miniMsg: any;
+  @ViewChild('dropdownContent', { static: true })
+  dropdownContent!: ElementRef;
+
   stories = new Map<string, Story[]>();
   searchText: string = '';
   pageSelected: number = 1;
@@ -29,10 +46,15 @@ export class AdminStoriesComponent implements OnInit {
     '90',
     '100',
   ];
-  constructor(private newsService: NewsService) {}
+  constructor(
+    private newsService: NewsService,
+    private renderer: Renderer2,
+    private el: ElementRef
+  ) {}
 
   ngOnInit(): void {
     this.getAllStories('1', this.pageSize);
+    this.initAviableTags();
   }
 
   getAllStories(page: string, pageCount: string) {
@@ -103,4 +125,40 @@ export class AdminStoriesComponent implements OnInit {
         this.getPageRange();
       });
   }
+  initAviableTags() {
+    this.newsService
+      .getTags()
+      .pipe(timeout(10000), take(1))
+      .subscribe({
+        next: (res) => {
+          console.log(res);
+          this.tags = res.data;
+        },
+        error: (err) => {
+          this.miniMsg.onErrorMsg('Error fetching tags');
+        },
+      });
+  }
+  toggleDropDown() {
+    this.tags.forEach((tag) => {
+      const checkbox = this.renderer.createElement('input');
+      if (tag.tagValue) {
+        this.renderer.setAttribute(checkbox, 'type', 'checkbox');
+        this.renderer.setAttribute(checkbox, 'value', tag.tagValue);
+        this.renderer.setAttribute(checkbox, 'name', tag.tagName);
+        this.renderer.appendChild(this.dropdownContent.nativeElement, checkbox);
+
+        const label = this.renderer.createElement('label');
+        const text = this.renderer.createText(tag.tagName);
+        this.renderer.appendChild(label, text);
+        this.renderer.appendChild(this.dropdownContent.nativeElement, label);
+      }
+    });
+  }
+  // tmp
+  categoryChangeHandler(e: any) {}
+  // tmp
+  tagChangeHandler(e: any) {}
+  // tmp
+  publishedChangeHandler(e: any) {}
 }
