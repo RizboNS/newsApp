@@ -211,6 +211,9 @@ h4 {
   display: block;
 }
 
-.dropdown:hover .dropdown-content {
+/* .dropdown:hover .dropdown-content {
+  display: block;
+} */
+.showDropdown {
   display: block;
 }

@@ -23,8 +23,10 @@
         </select> -->
         <label for="dropdown">Tag:</label>
         <div class="dropdown">
-          <button class="dropdown-button">Select Tags</button>
-          <div class="dropdown-content">
+          <button class="dropdown-button" (click)="toggleDropDown()">
+            Select Tags
+          </button>
+          <div class="dropdown-content" #dropdownContent>
             <label><input type="checkbox" name="tag" value="all" /> All</label>
             <label *ngFor="let tag of tags"
               ><input

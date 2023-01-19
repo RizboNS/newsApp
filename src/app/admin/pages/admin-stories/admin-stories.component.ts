@@ -19,6 +19,7 @@ import { MiniMsgComponent } from '../../ui/mini-msg/mini-msg.component';
 })
 export class AdminStoriesComponent implements OnInit {
   categories = CategoryMap;
+  isTagDropDownOpen = false;
   // tmp
   tags: Tag[] = [];
 
@@ -140,20 +141,18 @@ export class AdminStoriesComponent implements OnInit {
       });
   }
   toggleDropDown() {
-    this.tags.forEach((tag) => {
-      const checkbox = this.renderer.createElement('input');
-      if (tag.tagValue) {
-        this.renderer.setAttribute(checkbox, 'type', 'checkbox');
-        this.renderer.setAttribute(checkbox, 'value', tag.tagValue);
-        this.renderer.setAttribute(checkbox, 'name', tag.tagName);
-        this.renderer.appendChild(this.dropdownContent.nativeElement, checkbox);
-
-        const label = this.renderer.createElement('label');
-        const text = this.renderer.createText(tag.tagName);
-        this.renderer.appendChild(label, text);
-        this.renderer.appendChild(this.dropdownContent.nativeElement, label);
-      }
-    });
+    this.isTagDropDownOpen = !this.isTagDropDownOpen;
+    if (this.isTagDropDownOpen) {
+      this.renderer.addClass(
+        this.dropdownContent.nativeElement,
+        'showDropdown'
+      );
+    } else {
+      this.renderer.removeClass(
+        this.dropdownContent.nativeElement,
+        'showDropdown'
+      );
+    }
   }
   // tmp
   categoryChangeHandler(e: any) {}
