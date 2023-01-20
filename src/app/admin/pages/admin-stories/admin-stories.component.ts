@@ -242,4 +242,23 @@ export class AdminStoriesComponent implements OnInit {
   filterHandler() {
     this.getAllStories('1', this.pageSize);
   }
+  cancelFilterHandler() {
+    this.selectedCategories = [];
+    this.selectedTags = [];
+    this.published = 'all';
+
+    const checkboxes = this.el.nativeElement.querySelectorAll(
+      'input[type="checkbox"]'
+    );
+    checkboxes.forEach((checkbox: { checked: boolean }) => {
+      checkbox.checked = false;
+    });
+    // set value of published select to all
+    const publishedSelect = this.el.nativeElement.querySelector(
+      'select[id="published"]'
+    );
+    publishedSelect.value = 'all';
+
+    this.getAllStories('1', this.pageSize);
+  }
 }
