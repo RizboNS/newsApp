@@ -18,7 +18,7 @@
                 type="checkbox"
                 [name]="category.value"
                 [value]="category.key"
-                (click)="updateSelectedCategories(category.value)"
+                (click)="updateSelectedCategories(category.key)"
               />
               {{ category.value }}</label
             >
@@ -43,7 +43,7 @@
                   type="checkbox"
                   [name]="tag.tagValue"
                   [value]="tag.tagValue"
-                  (click)="updateSelectedTags(tag.tagValue)"
+                  (click)="updateSelectedTags(tag.tagName)"
                 />
                 {{ tag.tagValue }}
               </ng-container>
@@ -60,6 +60,8 @@
         <option value="false">No</option>
       </select>
     </div>
+    <!-- accept filter button -->
+    <button class="admin-btn-primary" (click)="filterHandler()">Accept</button>
   </div>
   <div class="control-bar-right">
     <div class="search-container">

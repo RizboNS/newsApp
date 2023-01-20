@@ -23,7 +23,7 @@ export class AdminStoriesComponent implements OnInit {
   isCategoryDropDownOpen = false;
   isTagDropDownOpen = false;
   tags: Tag[] = [];
-  selectedCategories: string[] = [];
+  selectedCategories: number[] = [];
   selectedTags: string[] = [];
   published: string = 'all';
 
@@ -95,9 +95,16 @@ export class AdminStoriesComponent implements OnInit {
 
   getAllStories(page: string, pageCount: string) {
     this.newsService
-      .getAllStories(page, pageCount)
+      .getAllStories(
+        page,
+        pageCount,
+        this.selectedCategories,
+        this.selectedTags,
+        this.published
+      )
       .pipe(take(1))
       .subscribe((res) => {
+        console.log(res);
         this.stories.set(res.data.page.toString(), res.data.stories);
         this.pageSelected = res.data.page;
         this.pageCount = res.data.pageCount;
@@ -209,7 +216,7 @@ export class AdminStoriesComponent implements OnInit {
       }, 0);
     }
   }
-  updateSelectedCategories(category: string) {
+  updateSelectedCategories(category: number) {
     const index = this.selectedCategories.indexOf(category);
     if (index === -1) {
       this.selectedCategories.push(category);
@@ -227,9 +234,12 @@ export class AdminStoriesComponent implements OnInit {
     }
     console.log(this.selectedTags);
   }
-  // tmp
+
   publishedChangeHandler(e: any) {
     this.published = e.target.value;
     console.log(this.published);
+  }
+  filterHandler() {
+    this.getAllStories('1', this.pageSize);
   }
 }

@@ -42,10 +42,20 @@ export class NewsService {
   }
   getAllStories(
     page: string,
-    pageSize: string
+    pageSize: string,
+    categories: number[],
+    tags: string[],
+    published: string
   ): Observable<ApiResponse<PagedResponse>> {
+    console.log(
+      `${this._storyUrl}/admin-query?page=${page}&pageSize=${pageSize}${
+        categories.length > 0 ? '&categories=' + categories : ''
+      }${tags.length > 0 ? '&tags=' + tags : ''}&published=${published}`
+    );
     return this.http.get<ApiResponse<PagedResponse>>(
-      `${this._storyUrl}/admin-query?page=${page}&pageSize=${pageSize}`
+      `${this._storyUrl}/admin-query?page=${page}&pageSize=${pageSize}${
+        categories.length > 0 ? '&categories=' + categories : ''
+      }${tags.length > 0 ? '&tags=' + tags : ''}&published=${published}`
     );
   }
   getStoryById(id: string): Observable<ApiResponse<Story>> {
