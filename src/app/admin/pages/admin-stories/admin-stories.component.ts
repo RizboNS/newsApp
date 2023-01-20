@@ -22,8 +22,10 @@ export class AdminStoriesComponent implements OnInit {
   categories = CategoryMap;
   isCategoryDropDownOpen = false;
   isTagDropDownOpen = false;
-  // tmp
   tags: Tag[] = [];
+  selectedCategories: string[] = [];
+  selectedTags: string[] = [];
+  published: string = 'all';
 
   @ViewChild(MiniMsgComponent) miniMsg: any;
 
@@ -207,11 +209,27 @@ export class AdminStoriesComponent implements OnInit {
       }, 0);
     }
   }
-
+  updateSelectedCategories(category: string) {
+    const index = this.selectedCategories.indexOf(category);
+    if (index === -1) {
+      this.selectedCategories.push(category);
+    } else {
+      this.selectedCategories.splice(index, 1);
+    }
+    console.log(this.selectedCategories);
+  }
+  updateSelectedTags(tag: string) {
+    const index = this.selectedTags.indexOf(tag);
+    if (index === -1) {
+      this.selectedTags.push(tag);
+    } else {
+      this.selectedTags.splice(index, 1);
+    }
+    console.log(this.selectedTags);
+  }
   // tmp
-  categoryChangeHandler(e: any) {}
-  // tmp
-  tagChangeHandler(e: any) {}
-  // tmp
-  publishedChangeHandler(e: any) {}
+  publishedChangeHandler(e: any) {
+    this.published = e.target.value;
+    console.log(this.published);
+  }
 }

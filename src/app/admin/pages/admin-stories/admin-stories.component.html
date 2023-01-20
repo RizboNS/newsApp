@@ -18,6 +18,7 @@
                 type="checkbox"
                 [name]="category.value"
                 [value]="category.key"
+                (click)="updateSelectedCategories(category.value)"
               />
               {{ category.value }}</label
             >
@@ -36,14 +37,17 @@
             <i class="fa-solid fa-angle-down"></i>
           </button>
           <div class="dropdown-content" #tagDropdownContent>
-            <label *ngFor="let tag of tags"
-              ><input
-                type="checkbox"
-                [name]="tag.tagValue"
-                [value]="tag.tagValue"
-              />
-              {{ tag.tagValue }}</label
-            >
+            <label *ngFor="let tag of tags">
+              <ng-container *ngIf="tag.tagValue">
+                <input
+                  type="checkbox"
+                  [name]="tag.tagValue"
+                  [value]="tag.tagValue"
+                  (click)="updateSelectedTags(tag.tagValue)"
+                />
+                {{ tag.tagValue }}
+              </ng-container>
+            </label>
           </div>
         </div>
       </div>
