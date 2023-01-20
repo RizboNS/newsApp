@@ -2,37 +2,42 @@
   <div class="control-bar-left">
     <div class="filter-container">
       <div class="filter">
-        <label for="category">Category:</label>
-        <select id="category" (change)="categoryChangeHandler($event)">
-          <option value="all">All</option>
-          <option
-            *ngFor="let category of categories | keyvalue"
-            [value]="category.key"
+        <label for="dropdown">Categories:</label>
+        <div class="dropdown">
+          <button
+            class="dropdown-button"
+            #categoryDropdownButton
+            (click)="
+              toggleDropDown(categoryDropdownContent, isCategoryDropDownOpen)
+            "
           >
-            {{ category.value }}
-          </option>
-        </select>
+            <span> Select Category </span>
+            <i class="fa-solid fa-angle-down"></i>
+          </button>
+          <div class="dropdown-content" #categoryDropdownContent>
+            <label *ngFor="let category of categories | keyvalue"
+              ><input
+                type="checkbox"
+                [name]="category.value"
+                [value]="category.key"
+              />
+              {{ category.value }}</label
+            >
+          </div>
+        </div>
       </div>
       <div class="filter">
-        <!-- <label for="tag">Tag:</label>
-        <select (change)="tagChangeHandler($event)">
-          <option value="all">All</option>
-          <option *ngFor="let tag of tags" [value]="tag.tagValue">
-            {{ tag.tagValue }}
-          </option>
-        </select> -->
         <label for="dropdown">Tag:</label>
         <div class="dropdown">
           <button
             class="dropdown-button"
-            #dropdownButton
-            (click)="toggleDropDown()"
+            #tagDropdownButton
+            (click)="toggleDropDown(tagDropdownContent, isTagDropDownOpen)"
           >
             <span> Select Tags </span>
             <i class="fa-solid fa-angle-down"></i>
           </button>
-          <div class="dropdown-content" #dropdownContent>
-            <label><input type="checkbox" name="tag" value="all" /> All</label>
+          <div class="dropdown-content" #tagDropdownContent>
             <label *ngFor="let tag of tags"
               ><input
                 type="checkbox"

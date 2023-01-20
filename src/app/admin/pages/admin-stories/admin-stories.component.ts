@@ -20,14 +20,21 @@ import { MiniMsgComponent } from '../../ui/mini-msg/mini-msg.component';
 })
 export class AdminStoriesComponent implements OnInit {
   categories = CategoryMap;
+  isCategoryDropDownOpen = false;
   isTagDropDownOpen = false;
   // tmp
   tags: Tag[] = [];
 
   @ViewChild(MiniMsgComponent) miniMsg: any;
-  @ViewChild('dropdownContent', { static: true })
-  dropdownContent!: ElementRef;
-  @ViewChild('dropdownButton', { static: true }) dropdownButton!: ElementRef;
+
+  @ViewChild('categoryDropdownContent', { static: true })
+  categoryDropdownContent!: ElementRef;
+  @ViewChild('categoryDropdownButton', { static: true })
+  categoryDropdownButton!: ElementRef;
+  @ViewChild('tagDropdownContent', { static: true })
+  tagDropdownContent!: ElementRef;
+  @ViewChild('tagDropdownButton', { static: true })
+  tagDropdownButton!: ElementRef;
 
   stories = new Map<string, Story[]>();
   searchText: string = '';
@@ -53,12 +60,21 @@ export class AdminStoriesComponent implements OnInit {
   @HostListener('document:click', ['$event'])
   documentClick(event: MouseEvent) {
     if (
-      !this.dropdownContent.nativeElement.contains(event.target) &&
-      !this.dropdownButton.nativeElement.contains(event.target)
+      !this.categoryDropdownContent.nativeElement.contains(event.target) &&
+      !this.categoryDropdownButton.nativeElement.contains(event.target)
+    ) {
+      this.isCategoryDropDownOpen = false;
+      this.renderer.removeClass(
+        this.categoryDropdownContent.nativeElement,
+        'showDropdown'
+      );
+    } else if (
+      !this.tagDropdownContent.nativeElement.contains(event.target) &&
+      !this.tagDropdownButton.nativeElement.contains(event.target)
     ) {
       this.isTagDropDownOpen = false;
       this.renderer.removeClass(
-        this.dropdownContent.nativeElement,
+        this.tagDropdownContent.nativeElement,
         'showDropdown'
       );
     }
@@ -157,22 +173,20 @@ export class AdminStoriesComponent implements OnInit {
       });
   }
 
-  toggleDropDown() {
+  toggleDropDown(dropdownContent: any, isTagDropDownOpen: boolean) {
     setTimeout(() => {
-      this.isTagDropDownOpen = !this.isTagDropDownOpen;
-      if (this.isTagDropDownOpen) {
-        this.renderer.addClass(
-          this.dropdownContent.nativeElement,
-          'showDropdown'
-        );
+      isTagDropDownOpen = !isTagDropDownOpen;
+      if (isTagDropDownOpen) {
+        this.renderer.addClass(dropdownContent.nativeElement, 'showDropdown');
       } else {
         this.renderer.removeClass(
-          this.dropdownContent.nativeElement,
+          dropdownContent.nativeElement,
           'showDropdown'
         );
       }
     }, 0);
   }
+
   // tmp
   categoryChangeHandler(e: any) {}
   // tmp
