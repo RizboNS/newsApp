@@ -7,9 +7,7 @@
           <button
             class="dropdown-button"
             #categoryDropdownButton
-            (click)="
-              toggleDropDown(categoryDropdownContent, isCategoryDropDownOpen)
-            "
+            (click)="toggleDropDown('category')"
           >
             <span> Select Category </span>
             <i class="fa-solid fa-angle-down"></i>
@@ -32,7 +30,7 @@
           <button
             class="dropdown-button"
             #tagDropdownButton
-            (click)="toggleDropDown(tagDropdownContent, isTagDropDownOpen)"
+            (click)="toggleDropDown('tag')"
           >
             <span> Select Tags </span>
             <i class="fa-solid fa-angle-down"></i>

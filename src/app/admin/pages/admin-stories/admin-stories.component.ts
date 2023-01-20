@@ -68,7 +68,8 @@ export class AdminStoriesComponent implements OnInit {
         this.categoryDropdownContent.nativeElement,
         'showDropdown'
       );
-    } else if (
+    }
+    if (
       !this.tagDropdownContent.nativeElement.contains(event.target) &&
       !this.tagDropdownButton.nativeElement.contains(event.target)
     ) {
@@ -173,18 +174,38 @@ export class AdminStoriesComponent implements OnInit {
       });
   }
 
-  toggleDropDown(dropdownContent: any, isTagDropDownOpen: boolean) {
-    setTimeout(() => {
-      isTagDropDownOpen = !isTagDropDownOpen;
-      if (isTagDropDownOpen) {
-        this.renderer.addClass(dropdownContent.nativeElement, 'showDropdown');
-      } else {
-        this.renderer.removeClass(
-          dropdownContent.nativeElement,
-          'showDropdown'
-        );
-      }
-    }, 0);
+  toggleDropDown(type: string) {
+    if (type === 'category') {
+      setTimeout(() => {
+        this.isCategoryDropDownOpen = !this.isCategoryDropDownOpen;
+        if (this.isCategoryDropDownOpen) {
+          this.renderer.addClass(
+            this.categoryDropdownContent.nativeElement,
+            'showDropdown'
+          );
+        } else {
+          this.renderer.removeClass(
+            this.categoryDropdownContent.nativeElement,
+            'showDropdown'
+          );
+        }
+      }, 0);
+    } else if (type === 'tag') {
+      setTimeout(() => {
+        this.isTagDropDownOpen = !this.isTagDropDownOpen;
+        if (this.isTagDropDownOpen) {
+          this.renderer.addClass(
+            this.tagDropdownContent.nativeElement,
+            'showDropdown'
+          );
+        } else {
+          this.renderer.removeClass(
+            this.tagDropdownContent.nativeElement,
+            'showDropdown'
+          );
+        }
+      }, 0);
+    }
   }
 
   // tmp
