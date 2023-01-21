@@ -2,6 +2,7 @@
   height: 100px;
   width: 100%;
   border-bottom: 2px solid #E40042;
+  border-top: 1px solid #E40042;
   border-image: linear-gradient(to right, #fff, #e4004172,#e400415a, #e4004138, #fff);
   border-image-slice: 1;
   display: flex;
