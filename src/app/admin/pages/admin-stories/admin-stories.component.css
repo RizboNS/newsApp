@@ -229,3 +229,21 @@ h4 {
 .showDropdown {
   display: block;
 }
+.btn-container {
+  display: flex;
+  justify-content: space-between;
+}
+.filter-btn {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+}
+.filter-btn:hover {
+  border: #333 solid 1px;
+}

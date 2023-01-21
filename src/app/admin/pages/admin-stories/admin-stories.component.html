@@ -60,8 +60,16 @@
         <option value="false">No</option>
       </select>
     </div>
-    <!-- accept filter button -->
-    <button class="admin-btn-primary" (click)="filterHandler()">Accept</button>
+    <div class="btn-container">
+      <button class="filter-btn" (click)="cancelFilterHandler()">
+        Cancel Filters
+        <i class="fa-solid fa-times"></i>
+      </button>
+      <button class="filter-btn" (click)="filterHandler()">
+        Accept Filters
+        <i class="fa-solid fa-check"></i>
+      </button>
+    </div>
   </div>
   <div class="control-bar-right">
     <div class="search-container">
@@ -105,6 +113,11 @@
           <ng-container *ngIf="!story.publish">
             <div class="published-value">&nbsp;</div>
           </ng-container>
+        </div>
+        <div class="category">
+          <span class="category-name">{{
+            categories.get(story.category)
+          }}</span>
         </div>
         <div class="card-body">
           <a [routerLink]="['/admin/story', story.id]">
