@@ -21,6 +21,9 @@ p {
 }
 .content {
     padding: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
 .main-content {
     margin: 0 auto;
@@ -127,3 +130,8 @@ p {
     margin-bottom: 20px;
 }
 
+.banner-container {
+  width: 400px;
+  height: 900px;
+  background-color: #2e7d32;
+}
