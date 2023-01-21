@@ -196,3 +196,29 @@
 .article-body p:hover {
   text-decoration: underline;
 }
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 14px;
+  align-items: center;
+
+}
+.tags a {
+  color: #E40042;
+  text-decoration: none;
+}
+.tags a:hover {
+  text-decoration: underline;
+}
+.divider {
+  color: #424242;
+}
+.arrow {
+  width: 0;
+  height: 0;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-left: 7px solid #E40042;
+  transform: scale(0.5);
+  margin-right: 5px;
+}

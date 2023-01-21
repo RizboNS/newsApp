@@ -78,6 +78,19 @@
         <div class="article-body-main">
           <p>{{ story.firstText }}</p>
         </div>
+        <ng-container *ngIf="story.tagNames && story.tagNames.length > 0">
+          <div class="tags">
+            <span class="arrow"></span>
+            <ng-container *ngFor="let tag of story.tagNames; let i = index">
+              <a [routerLink]="'/tag/' + tag">
+                <span class="tag">{{ tag }}</span>
+              </a>
+              <ng-container *ngIf="i != story.tagNames.length - 1">
+                <span class="divider">&nbsp;|&nbsp;</span>
+              </ng-container>
+            </ng-container>
+          </div>
+        </ng-container>
       </ng-container>
     </article>
   </div>
