@@ -11,7 +11,7 @@ export class CalendarPageComponent implements OnInit {
 
   constructor() {}
   ngOnInit(): void {
-    this.initDates();
+    this.initEvents();
   }
   previusDay() {
     console.log('previusDay');
@@ -19,10 +19,20 @@ export class CalendarPageComponent implements OnInit {
   nextDay() {
     console.log('nextDay');
   }
-  initDates() {}
   splitDateAndTime(dateAndTime: string) {
     const date = dateAndTime.split('T')[0];
-    const time = dateAndTime.split('T')[1];
+    const time =
+      dateAndTime.split('T')[1].split(':')[0] +
+      ':' +
+      dateAndTime.split('T')[1].split(':')[1];
     return { date, time };
   }
+  initEvents() {
+    this.calendarEvents.events.forEach((event) => {
+      const { date, time } = this.splitDateAndTime(event.dateAndTime);
+      event.time = time;
+      event.date = date;
+    });
+  }
+  flip() {}
 }
