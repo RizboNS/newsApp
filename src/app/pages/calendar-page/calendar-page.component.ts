@@ -34,5 +34,12 @@ export class CalendarPageComponent implements OnInit {
       event.date = date;
     });
   }
-  flip() {}
+  flip(e: any) {
+    if (e.target.classList.contains('calendar-event-header')) {
+      e.target.nextElementSibling.classList.toggle('show');
+      e.target.lastChild.classList.toggle('show');
+    } else {
+      e.target.parentElement.nextElementSibling.classList.toggle('show');
+    }
+  }
 }
