@@ -59,6 +59,9 @@
   font-size: 14px;
   border-radius: 2px;
 }
+.event-body-wrapper {
+  padding: 0;
+}
 .event-body {
   /* display: none; */
   padding: 10px 10px;

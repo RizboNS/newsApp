@@ -28,8 +28,8 @@
           <i class="fa-solid fa-chevron-up"></i>
         </div>
       </div>
-      <div class="event-body" *ngIf="i === selectedEventIndex">
-        test test test
+      <div class="event-body-wrapper" [@eventAnimations]="getEventState(i)">
+        <div class="event-body">test test test</div>
       </div>
     </li>
   </ul>
