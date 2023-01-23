@@ -8,7 +8,7 @@ import { calendarDummyData } from 'src/app/models/calendar-events-by-day.model';
 })
 export class CalendarPageComponent implements OnInit {
   calendarEvents = calendarDummyData;
-
+  selectedEventIndex = -1;
   constructor() {}
   ngOnInit(): void {
     this.initEvents();
@@ -34,12 +34,13 @@ export class CalendarPageComponent implements OnInit {
       event.date = date;
     });
   }
-  flip(e: any) {
-    if (e.target.classList.contains('calendar-event-header')) {
-      e.target.nextElementSibling.classList.toggle('show');
-      e.target.lastChild.classList.toggle('show');
-    } else {
-      e.target.parentElement.nextElementSibling.classList.toggle('show');
-    }
+  flip(index: number) {
+    // if (e.target.classList.contains('calendar-event-header')) {
+    //   e.target.nextElementSibling.classList.toggle('show');
+    //   e.target.lastChild.classList.toggle('show');
+    // } else {
+    //   e.target.parentElement.nextElementSibling.classList.toggle('show');
+    // }
+    this.selectedEventIndex = index === this.selectedEventIndex ? -1 : index;
   }
 }

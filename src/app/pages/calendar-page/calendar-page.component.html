@@ -1,25 +1,36 @@
 <div class="calendar-container">
   <div class="calendar-header">
     <button class="calendar-header-button" (click)="previusDay()">
-      <div class="arrow-left"></div>
+      <i class="fa-solid fa-chevron-left"></i>
     </button>
     <div class="calendar-header-label">
       {{ calendarEvents.dateAndTime | date : "dd MMMM yyyy" }}
     </div>
     <button class="calendar-header-button" (click)="nextDay()">
-      <div class="arrow-right"></div>
+      <i class="fa-solid fa-chevron-right"></i>
     </button>
   </div>
   <ul class="calendar-body">
-    <li class="calendar-event" *ngFor="let event of calendarEvents.events">
-      <div class="calendar-event-header">
+    <li
+      class="calendar-event"
+      *ngFor="let event of calendarEvents.events; let i = index"
+    >
+      <div class="calendar-event-header" (click)="flip(i)">
         <div class="calendar-time">{{ event.time }}</div>
         <div class="calendar-title">
-          <h4>{{ event.title }}</h4>
+          {{ event.title }}
         </div>
-        <div class="flip" (click)="flip()">+</div>
+        <span class="spacer"></span>
+        <div class="calendar-arrow-up" *ngIf="i === selectedEventIndex">
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
+        <div class="calendar-arrow-down" *ngIf="i !== selectedEventIndex">
+          <i class="fa-solid fa-chevron-up"></i>
+        </div>
       </div>
-      <div class="event-body">test test test</div>
+      <div class="event-body" *ngIf="i === selectedEventIndex">
+        test test test
+      </div>
     </li>
   </ul>
 </div>

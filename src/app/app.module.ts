@@ -16,6 +16,7 @@ import { VestiComponent } from './pages/vesti/vesti.component';
 import { CalendarPageComponent } from './pages/calendar-page/calendar-page.component';
 import { CalendarPageWeeklyComponent } from './pages/calendar-page-weekly/calendar-page-weekly.component';
 import { CalendarDetailsComponent } from './componenets/calendar-details/calendar-details.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { CalendarDetailsComponent } from './componenets/calendar-details/calenda
     HttpClientModule,
     SharedModule,
     AdminModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
