@@ -15,6 +15,7 @@ import { CarouselComponent } from './ui/carousel/carousel.component';
 import { VestiComponent } from './pages/vesti/vesti.component';
 import { CalendarPageComponent } from './pages/calendar-page/calendar-page.component';
 import { CalendarPageWeeklyComponent } from './pages/calendar-page-weekly/calendar-page-weekly.component';
+import { CalendarDetailsComponent } from './componenets/calendar-details/calendar-details.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { CalendarPageWeeklyComponent } from './pages/calendar-page-weekly/calend
     VestiComponent,
     CalendarPageComponent,
     CalendarPageWeeklyComponent,
+    CalendarDetailsComponent,
   ],
   imports: [
     BrowserModule,
