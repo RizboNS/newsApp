@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { calendarDummyData } from 'src/app/models/calendar-event.model';
+import { calendarDummyData } from 'src/app/models/calendar-events-by-day.model';
 
 @Component({
   selector: 'app-calendar-page',
@@ -8,7 +8,7 @@ import { calendarDummyData } from 'src/app/models/calendar-event.model';
 })
 export class CalendarPageComponent implements OnInit {
   calendarEvents = calendarDummyData;
-  days: string[] = [];
+
   constructor() {}
   ngOnInit(): void {
     this.initDates();
@@ -19,23 +19,7 @@ export class CalendarPageComponent implements OnInit {
   nextDay() {
     console.log('nextDay');
   }
-  initDates() {
-    this.calendarEvents.forEach((event) => {
-      const { date } = this.splitDateAndTime(event.dateAndTime);
-      const dateExists = this.days.find((d) => d === date);
-      if (dateExists) {
-        return;
-      } else {
-        this.days.push(date.toString());
-      }
-    });
-    // sort days by date
-    this.days.sort((a, b) => {
-      const dateA = new Date(a);
-      const dateB = new Date(b);
-      return dateA.getTime() - dateB.getTime();
-    });
-  }
+  initDates() {}
   splitDateAndTime(dateAndTime: string) {
     const date = dateAndTime.split('T')[0];
     const time = dateAndTime.split('T')[1];
