@@ -61,12 +61,15 @@
 }
 .event-body-wrapper {
   padding: 0;
+  pointer-events: none;
+}
+.event-body-wrapper.open {
+  pointer-events: auto;
+}
+.event-body-wrapper:hover {
+  opacity: 0.8;
 }
 .event-body {
-  /* display: none; */
   padding: 10px 10px;
 }
 
-.show {
-  display: block;
-}

@@ -21,14 +21,18 @@
           {{ event.title }}
         </div>
         <span class="spacer"></span>
-        <div class="calendar-arrow-up" *ngIf="i === selectedEventIndex">
-          <i class="fa-solid fa-chevron-down"></i>
-        </div>
-        <div class="calendar-arrow-down" *ngIf="i !== selectedEventIndex">
-          <i class="fa-solid fa-chevron-up"></i>
+        <div class="calendar-arrow" (click)="flip(i)">
+          <i
+            class="fa-solid fa-chevron-down"
+            [@rotate]="isOpenEvent(i) ? 'down' : 'up'"
+          ></i>
         </div>
       </div>
-      <div class="event-body-wrapper" [@eventAnimations]="getEventState(i)">
+      <div
+        class="event-body-wrapper"
+        [@eventAnimations]="getEventState(i)"
+        [ngClass]="getEventState(i)"
+      >
         <div class="event-body">test test test</div>
       </div>
     </li>

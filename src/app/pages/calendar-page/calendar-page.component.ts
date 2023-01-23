@@ -29,6 +29,11 @@ import {
       transition('open => closed', [animate('0.3s')]),
       transition('closed => open', [animate('0.3s')]),
     ]),
+    trigger('rotate', [
+      state('up', style({ transform: 'rotate(0deg)' })),
+      state('down', style({ transform: 'rotate(540deg)' })),
+      transition('up <=> down', [animate('0.3s ease-in')]),
+    ]),
   ],
   selector: 'app-calendar-page',
   templateUrl: './calendar-page.component.html',
@@ -37,6 +42,7 @@ import {
 export class CalendarPageComponent implements OnInit {
   calendarEvents = calendarDummyData;
   selectedEventIndex = -1;
+  arrowIndex = -1;
   constructor() {}
   ngOnInit(): void {
     this.initEvents();
@@ -64,6 +70,10 @@ export class CalendarPageComponent implements OnInit {
   }
   flip(index: number) {
     this.selectedEventIndex = index === this.selectedEventIndex ? -1 : index;
+    this.arrowIndex = index;
+  }
+  isOpenEvent(index: number) {
+    return this.selectedEventIndex === index;
   }
   getEventState(index: number) {
     return index === this.selectedEventIndex ? 'open' : 'closed';
