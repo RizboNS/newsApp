@@ -13,6 +13,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { StoriesComponent } from './components/stories/stories.component';
 import { CarouselComponent } from './ui/carousel/carousel.component';
 import { VestiComponent } from './pages/vesti/vesti.component';
+import { CalendarPageComponent } from './pages/calendar-page/calendar-page.component';
+import { CalendarPageWeeklyComponent } from './pages/calendar-page-weekly/calendar-page-weekly.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { VestiComponent } from './pages/vesti/vesti.component';
     StoriesComponent,
     CarouselComponent,
     VestiComponent,
+    CalendarPageComponent,
+    CalendarPageWeeklyComponent,
   ],
   imports: [
     BrowserModule,
