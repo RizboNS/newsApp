@@ -1,4 +1,19 @@
 <div class="calendar-container">
+  <!-- calendar types filter list of checkboxes -->
+  <div class="calendar-filter">
+    <ul class="calendar-filter-list">
+      <li class="calendar-filter-item" *ngFor="let filter of calendarFilters">
+        <button
+          [ngClass]="filter[1] ? 'checked' : ''"
+          class="calendar-filter-btn"
+          (click)="handleCheckboxClick(filter[0])"
+        >
+          {{ filter[0] }}
+        </button>
+      </li>
+    </ul>
+  </div>
+
   <div class="calendar-header">
     <button class="calendar-header-button" (click)="previusDay()">
       <i class="fa-solid fa-chevron-left"></i>
