@@ -29,10 +29,10 @@ import {
       transition('open => closed', [animate('0.3s')]),
       transition('closed => open', [animate('0.3s')]),
     ]),
-    trigger('rotate', [
+    trigger('rotateArrow', [
       state('up', style({ transform: 'rotate(0deg)' })),
-      state('down', style({ transform: 'rotate(540deg)' })),
-      transition('up <=> down', [animate('0.3s ease-in')]),
+      state('down', style({ transform: 'rotate(180deg) translate(-2px, 0)' })),
+      transition('up <=> down', animate('0.25s ease-in-out')),
     ]),
   ],
   selector: 'app-calendar-page',
@@ -46,6 +46,7 @@ export class CalendarPageComponent implements OnInit {
   constructor() {}
   ngOnInit(): void {
     this.initEvents();
+    this.arrowIndex = -1;
   }
   previusDay() {
     console.log('previusDay');
@@ -68,9 +69,9 @@ export class CalendarPageComponent implements OnInit {
       event.date = date;
     });
   }
-  flip(index: number) {
-    this.selectedEventIndex = index === this.selectedEventIndex ? -1 : index;
-    this.arrowIndex = index;
+  flip(i: number) {
+    this.selectedEventIndex = i === this.selectedEventIndex ? -1 : i;
+    this.arrowIndex = i === this.arrowIndex ? -1 : i;
   }
   isOpenEvent(index: number) {
     return this.selectedEventIndex === index;

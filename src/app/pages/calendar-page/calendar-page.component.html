@@ -21,10 +21,10 @@
           {{ event.title }}
         </div>
         <span class="spacer"></span>
-        <div class="calendar-arrow" (click)="flip(i)">
+        <div class="calendar-arrow-wrapper" (click)="flip(i)">
           <i
-            class="fa-solid fa-chevron-down"
-            [@rotate]="isOpenEvent(i) ? 'down' : 'up'"
+            class="calendar-arrow"
+            [@rotateArrow]="arrowIndex === i ? 'down' : 'up'"
           ></i>
         </div>
       </div>
