@@ -6,9 +6,8 @@ import {
   style,
   transition,
   animate,
-  keyframes,
-  animateChild,
 } from '@angular/animations';
+import { calendarFilters } from 'src/app/data/calendar-filters';
 @Component({
   animations: [
     trigger('eventAnimationsState', [
@@ -40,6 +39,8 @@ export class CalendarPageComponent implements OnInit {
   calendarEvents = calendarDummyData;
   selectedEventIndex = -1;
   arrowIndex = -1;
+  calendarFilters = calendarFilters;
+
   constructor() {}
   ngOnInit(): void {
     this.initEvents();
@@ -75,5 +76,22 @@ export class CalendarPageComponent implements OnInit {
   }
   getEventState(index: number) {
     return this.selectedEventIndex === index ? 'open' : 'closed';
+  }
+
+  handleCheckboxClick(filter: string | boolean) {
+    const filterIndex = this.calendarFilters.findIndex((f) => f[0] === filter);
+    if (filterIndex !== -1) {
+      this.calendarFilters[filterIndex][1] =
+        !this.calendarFilters[filterIndex][1];
+    }
+  }
+  filterEvents() {
+    const filteredEvents = this.calendarEvents.events.filter((event) => {
+      const filterIndex = this.calendarFilters.findIndex(
+        (f) => f[0] === event.type && f[1]
+      );
+      return filterIndex !== -1;
+    });
+    this.calendarEvents.events = filteredEvents;
   }
 }

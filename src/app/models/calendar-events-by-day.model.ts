@@ -15,6 +15,7 @@ export const calendarDummyData: CalendarEventsByDay = {
   events: [
     {
       id: '1',
+      type: 'Koncert',
       title: 'Kulturni centar Beograda',
       content: `<p>Neki tamo html</p>
       <h5>Neki tamo html</h5>`,
@@ -22,6 +23,7 @@ export const calendarDummyData: CalendarEventsByDay = {
     },
     {
       id: '2',
+      type: 'Izložba',
       title: 'Kulturni centar Beograda',
       content: `<p>Neki tamo html</p>
       <h5>Neki tamo html</h5>`,
@@ -29,6 +31,7 @@ export const calendarDummyData: CalendarEventsByDay = {
     },
     {
       id: '3',
+      type: 'Pozorište',
       title: 'Kulturni centar Beograda',
       content: `<p>Neki tamo html</p>
       <h5>Neki tamo html</h5>`,
@@ -36,6 +39,7 @@ export const calendarDummyData: CalendarEventsByDay = {
     },
     {
       id: '4',
+      type: 'Festival',
       title: 'Kulturni centar Beograda',
       content: `<p>Neki tamo html</p>
       <h5>Neki tamo html</h5>`,
