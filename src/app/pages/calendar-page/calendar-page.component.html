@@ -24,7 +24,7 @@
         <div class="calendar-arrow-wrapper" (click)="flip(i)">
           <i
             class="calendar-arrow"
-            [@rotateArrow]="arrowIndex === i ? 'down' : 'up'"
+            [ngClass]="{ up: arrowIndex !== i, down: arrowIndex === i }"
           ></i>
         </div>
       </div>

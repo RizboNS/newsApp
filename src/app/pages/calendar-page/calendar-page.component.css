@@ -78,6 +78,7 @@
   height: 20px;
 }
 .calendar-arrow {
+  transition: all 1s ease-in-out;
   position: absolute;
   transform: translate(-6px, 0);
   margin-top: 16px;
@@ -89,11 +90,25 @@
   position: absolute;
   background-color: #ff6873;
   width: 3px;
-  height: 9px;
+  height: 6px;
 }
-.calendar-arrow:before {
-  transform: translate(-2px, 0) rotate(45deg);
+.calendar-arrow::before {
+  left: 0;
+  transform-origin: 0% 50%;
 }
-.calendar-arrow:after {
-  transform: translate(2px, 0) rotate(-45deg);
+.calendar-arrow::after {
+  right: 0;
+  transform-origin: 100% 50%;
+}
+.calendar-arrow.up::before {
+  transform: rotate(45deg);
+}
+.calendar-arrow.up::after {
+  transform: rotate(-45deg);
+}
+.calendar-arrow.down::before {
+  transform: rotate(-135deg);
+}
+.calendar-arrow.down::after {
+  transform: rotate(135deg);
 }

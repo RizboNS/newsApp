@@ -29,11 +29,6 @@ import {
       transition('open => closed', [animate('0.3s')]),
       transition('closed => open', [animate('0.3s')]),
     ]),
-    trigger('rotateArrow', [
-      state('up', style({ transform: 'rotate(0deg)' })),
-      state('down', style({ transform: 'rotate(180deg) translate(-2px, 0)' })),
-      transition('up <=> down', animate('0.25s ease-in-out')),
-    ]),
   ],
   selector: 'app-calendar-page',
   templateUrl: './calendar-page.component.html',
