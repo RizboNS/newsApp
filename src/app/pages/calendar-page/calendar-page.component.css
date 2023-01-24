@@ -78,11 +78,11 @@
   height: 20px;
 }
 .calendar-arrow {
-  transition: all 1s ease-in-out;
   position: absolute;
   transform: translate(-6px, 0);
-  margin-top: 16px;
-  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+
 }
 .calendar-arrow:before,
 .calendar-arrow:after {
@@ -93,22 +93,28 @@
   height: 6px;
 }
 .calendar-arrow::before {
+  transition-duration: 0.5s;
   left: 0;
   transform-origin: 0% 50%;
 }
 .calendar-arrow::after {
+  transition-duration: 0.5s;
   right: 0;
   transform-origin: 100% 50%;
 }
 .calendar-arrow.up::before {
+  transition-duration: 0.5s;
   transform: rotate(45deg);
 }
 .calendar-arrow.up::after {
+  transition-duration: 0.5s;
   transform: rotate(-45deg);
 }
 .calendar-arrow.down::before {
+  transition-duration: 0.5s;
   transform: rotate(-135deg);
 }
 .calendar-arrow.down::after {
+  transition-duration: 0.5s;
   transform: rotate(135deg);
 }

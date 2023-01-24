@@ -6,10 +6,11 @@ import {
   style,
   transition,
   animate,
+  keyframes,
 } from '@angular/animations';
 @Component({
   animations: [
-    trigger('eventAnimations', [
+    trigger('eventAnimationsState', [
       state(
         'open',
         style({
@@ -21,7 +22,7 @@ import {
       state(
         'closed',
         style({
-          height: 0,
+          height: '*',
           opacity: 0,
           transform: 'translateY(-50%)',
         })
@@ -72,6 +73,6 @@ export class CalendarPageComponent implements OnInit {
     return this.selectedEventIndex === index;
   }
   getEventState(index: number) {
-    return index === this.selectedEventIndex ? 'open' : 'closed';
+    return this.selectedEventIndex === index ? 'open' : 'closed';
   }
 }
