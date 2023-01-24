@@ -16,25 +16,29 @@ export const calendarDummyData: CalendarEventsByDay = {
     {
       id: '1',
       title: 'Kulturni centar Beograda',
-      content: 'Kulturni centar Beograda',
+      content: `<p>Neki tamo html</p>
+      <h5>Neki tamo html</h5>`,
       dateAndTime: '2023-01-03T14:00:00',
     },
     {
       id: '2',
       title: 'Kulturni centar Beograda',
-      content: 'Kulturni centar Beograda',
+      content: `<p>Neki tamo html</p>
+      <h5>Neki tamo html</h5>`,
       dateAndTime: '2023-01-03T16:30:00',
     },
     {
       id: '3',
       title: 'Kulturni centar Beograda',
-      content: 'Kulturni centar Beograda',
+      content: `<p>Neki tamo html</p>
+      <h5>Neki tamo html</h5>`,
       dateAndTime: '2023-01-03T17:45:00',
     },
     {
       id: '4',
       title: 'Kulturni centar Beograda',
-      content: 'Kulturni centar Beograda',
+      content: `<p>Neki tamo html</p>
+      <h5>Neki tamo html</h5>`,
       dateAndTime: '2023-01-03T18:00:00',
     },
   ],

@@ -33,7 +33,10 @@
         [@eventAnimationsState]="getEventState(i)"
         [ngClass]="getEventState(i)"
       >
-        <div class="event-body">test test test</div>
+        <div
+          class="event-body"
+          [innerHTML]="event.content | sanitizeHtml"
+        ></div>
       </div>
     </li>
   </ul>

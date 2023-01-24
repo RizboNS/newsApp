@@ -7,6 +7,7 @@ import {
   transition,
   animate,
   keyframes,
+  animateChild,
 } from '@angular/animations';
 @Component({
   animations: [
@@ -22,7 +23,7 @@ import {
       state(
         'closed',
         style({
-          height: '*',
+          height: '0',
           opacity: 0,
           transform: 'translateY(-50%)',
         })
