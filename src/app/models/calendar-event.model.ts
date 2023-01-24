@@ -6,4 +6,5 @@ export interface CalendarEvent {
   dateAndTime: string;
   date?: string;
   time?: string;
+  display?: boolean;
 }

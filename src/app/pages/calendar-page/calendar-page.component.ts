@@ -40,7 +40,8 @@ export class CalendarPageComponent implements OnInit {
   selectedEventIndex = -1;
   arrowIndex = -1;
   calendarFilters = calendarFilters;
-
+  filtersActive: string[] = [];
+  allMarked = true;
   constructor() {}
   ngOnInit(): void {
     this.initEvents();
@@ -65,6 +66,7 @@ export class CalendarPageComponent implements OnInit {
       const { date, time } = this.splitDateAndTime(event.dateAndTime);
       event.time = time;
       event.date = date;
+      event.display = true;
     });
   }
   flip(i: number) {
@@ -78,20 +80,29 @@ export class CalendarPageComponent implements OnInit {
     return this.selectedEventIndex === index ? 'open' : 'closed';
   }
 
-  handleCheckboxClick(filter: string | boolean) {
-    const filterIndex = this.calendarFilters.findIndex((f) => f[0] === filter);
-    if (filterIndex !== -1) {
-      this.calendarFilters[filterIndex][1] =
-        !this.calendarFilters[filterIndex][1];
+  handleCheckboxClick(filter: string) {
+    if (this.allMarked) {
+      this.filtersActive = [];
     }
+    this.allMarked = false;
+    const index = this.filtersActive.indexOf(filter);
+    if (index === -1) {
+      this.filtersActive.push(filter);
+    } else {
+      this.filtersActive.splice(index, 1);
+    }
+    this.filterEvents();
   }
   filterEvents() {
-    const filteredEvents = this.calendarEvents.events.filter((event) => {
-      const filterIndex = this.calendarFilters.findIndex(
-        (f) => f[0] === event.type && f[1]
-      );
-      return filterIndex !== -1;
+    this.calendarEvents.events.forEach((event) => {
+      event.display = this.filtersActive.includes(event.type);
     });
-    this.calendarEvents.events = filteredEvents;
+  }
+  filterAllEvents() {
+    this.allMarked = true;
+    this.filtersActive = [];
+    this.calendarEvents.events.forEach((event) => {
+      event.display = true;
+    });
   }
 }

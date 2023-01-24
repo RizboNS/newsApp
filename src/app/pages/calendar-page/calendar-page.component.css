@@ -129,17 +129,55 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 5px;
-}
-.calendar-filter ul {
+  background: linear-gradient(to right, #ffb831,#ff6600,#ff0f00,#ff0066,#cc0099,#6d3195,#333399,#000);
   list-style: none;
   margin: 0;
   padding: 0;
+  position: relative;
+  width: fit-content;
+  margin: auto;
 }
+
 .calender-filter li {
   margin: 0;
   padding: 0;
+
+}
+.calendar-filter-btn {
+  /* easy-in-out on transform and border */
+  transition: transform 0.3s ease-in-out, border 0.3s ease-in-out;
+  color: #fff;
+  padding: 2.5px 5px;
+  border: 2.5px solid #fff;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 16px;
 }
 .checked {
-  color: #e40041;
+  transform: scale(1.1);
+  border: transparent 2.5px solid;
+  animation: color-shake 0.7s ease-in-out;
+}
+
+@keyframes color-shake {
+  0% {
+    background-color: #ffb831;
+    color: #000;
+  }
+  25% {
+    background-color: #ff0f00;
+    color: #333399;
+  }
+  50% {
+    background-color: #cc0099;
+    color: #fff;
+  }
+  75% {
+    background-color: #333399;
+    color: #ff0f00;
+  }
+  100% {
+    background-color: #000;
+    color: #ffb831;
+  }
 }

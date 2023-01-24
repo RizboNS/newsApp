@@ -45,6 +45,14 @@ export const calendarDummyData: CalendarEventsByDay = {
       <h5>Neki tamo html</h5>`,
       dateAndTime: '2023-01-03T18:00:00',
     },
+    {
+      id: '4',
+      type: 'Bioskop',
+      title: 'Kulturni centar Beograda',
+      content: `<p>Neki tamo html</p>
+      <h5>Neki tamo html</h5>`,
+      dateAndTime: '2023-01-03T18:00:00',
+    },
   ],
 };
 

@@ -4,11 +4,20 @@
     <ul class="calendar-filter-list">
       <li class="calendar-filter-item" *ngFor="let filter of calendarFilters">
         <button
-          [ngClass]="filter[1] ? 'checked' : ''"
           class="calendar-filter-btn"
-          (click)="handleCheckboxClick(filter[0])"
+          [ngClass]="filtersActive.includes(filter) ? 'checked' : ''"
+          (click)="handleCheckboxClick(filter)"
         >
-          {{ filter[0] }}
+          {{ filter }}
+        </button>
+      </li>
+      <li class="calendar-filter-item">
+        <button
+          [ngClass]="allMarked ? 'checked' : ''"
+          class="calendar-filter-btn"
+          (click)="filterAllEvents()"
+        >
+          Sve
         </button>
       </li>
     </ul>
@@ -26,33 +35,32 @@
     </button>
   </div>
   <ul class="calendar-body">
-    <li
-      class="calendar-event"
-      *ngFor="let event of calendarEvents.events; let i = index"
-    >
-      <div class="calendar-event-header" (click)="flip(i)">
-        <div class="calendar-time">{{ event.time }}</div>
-        <div class="calendar-title">
-          {{ event.title }}
+    <ng-container *ngFor="let event of calendarEvents.events; let i = index">
+      <li class="calendar-event" *ngIf="event.display">
+        <div class="calendar-event-header" (click)="flip(i)">
+          <div class="calendar-time">{{ event.time }}</div>
+          <div class="calendar-title">
+            {{ event.title }}
+          </div>
+          <span class="spacer"></span>
+          <div class="calendar-arrow-wrapper" (click)="flip(i)">
+            <i
+              class="calendar-arrow"
+              [ngClass]="{ up: arrowIndex !== i, down: arrowIndex === i }"
+            ></i>
+          </div>
         </div>
-        <span class="spacer"></span>
-        <div class="calendar-arrow-wrapper" (click)="flip(i)">
-          <i
-            class="calendar-arrow"
-            [ngClass]="{ up: arrowIndex !== i, down: arrowIndex === i }"
-          ></i>
-        </div>
-      </div>
-      <div
-        class="event-body-wrapper"
-        [@eventAnimationsState]="getEventState(i)"
-        [ngClass]="getEventState(i)"
-      >
         <div
-          class="event-body"
-          [innerHTML]="event.content | sanitizeHtml"
-        ></div>
-      </div>
-    </li>
+          class="event-body-wrapper"
+          [@eventAnimationsState]="getEventState(i)"
+          [ngClass]="getEventState(i)"
+        >
+          <div
+            class="event-body"
+            [innerHTML]="event.content | sanitizeHtml"
+          ></div>
+        </div>
+      </li>
+    </ng-container>
   </ul>
 </div>
