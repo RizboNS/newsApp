@@ -1,0 +1,22 @@
+.submit-wrapper {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+}
+.submit-wrapper button {
+    width: 49%;
+}
+.title-wrapper input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.error-message {
+    color: red;
+}

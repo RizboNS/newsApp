@@ -1,4 +1,43 @@
 <form [formGroup]="editorForm" class="form-wrapper">
+  <div class="submit-wrapper">
+    <button class="btn-primary-gray">Cancel</button>
+    <button class="admin-btn-primary" (click)="onSubmit()">Submit</button>
+  </div>
+  <div class="title-wrapper">
+    <h3>Title</h3>
+    <input
+      type="text"
+      class="input"
+      formControlName="title"
+      placeholder="Enter title"
+    />
+
+    <ng-container
+      *ngIf="
+        editorForm.controls['title'].touched &&
+        editorForm.controls['title'].value === ''
+      "
+    >
+      <div class="error-message">Title is required</div>
+    </ng-container>
+  </div>
+  <div class="datetime-picker-wrapper">
+    <h3>Set publish date and time</h3>
+    <div class="datetime-picker">
+      <input
+        type="date"
+        formControlName="date"
+        class="input"
+        placeholder="Enter event date"
+      />
+      <input
+        type="time"
+        formControlName="time"
+        class="input"
+        placeholder="Enter event time"
+      />
+    </div>
+  </div>
   <div class="editor-wrapper">
     <h3>Editor</h3>
     <quill-editor

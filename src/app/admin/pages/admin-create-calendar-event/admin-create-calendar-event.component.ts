@@ -38,6 +38,27 @@ export class AdminCreateCalendarEventComponent implements OnInit {
   ngOnInit(): void {
     this.editorForm = this.fb.group({
       htmlData: [''],
+      title: ['', Validators.required],
+      publishDate: [this.getDate()],
+      publishTime: [this.getTime()],
     });
+  }
+  onSubmit() {
+    console.log(this.editorForm.value);
+  }
+  private getDate() {
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, '0');
+    let mm = String(today.getMonth() + 1).padStart(2, '0');
+    let yyyy = today.getFullYear();
+    let date = yyyy + '-' + mm + '-' + dd;
+    return date;
+  }
+  private getTime(): string {
+    let today = new Date();
+    let hh = String(today.getHours()).padStart(2, '0');
+    let mm = String(today.getMinutes()).padStart(2, '0');
+    let time = hh + ':' + mm;
+    return time;
   }
 }
