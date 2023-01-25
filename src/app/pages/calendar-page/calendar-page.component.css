@@ -194,15 +194,17 @@
   border: none;
   cursor: pointer;
   font-size: 20px;
-  /* background black */
   background-color: #000000;
   width: 280px;
-  /* color grayish white */
   color: #e4e4e4;
   position: relative;
 }
 .arrow {
   position: absolute;
-  /* create arrow pointing right */
-
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 5px solid #fff;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
 }
