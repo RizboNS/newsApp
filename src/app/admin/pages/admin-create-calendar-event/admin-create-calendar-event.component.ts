@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import 'quill-divider';
 
 @Component({
@@ -7,6 +8,8 @@ import 'quill-divider';
   styleUrls: ['./admin-create-calendar-event.component.css'],
 })
 export class AdminCreateCalendarEventComponent implements OnInit {
+  editorForm!: FormGroup;
+
   editorStyle = {
     height: '80vh',
   };
@@ -31,8 +34,10 @@ export class AdminCreateCalendarEventComponent implements OnInit {
       cssText: 'border: none;border-bottom: 1px inset;',
     },
   };
-  constructor() {}
+  constructor(private fb: FormBuilder) {}
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.editorForm = this.fb.group({
+      htmlData: [''],
+    });
   }
 }

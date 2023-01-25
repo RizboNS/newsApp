@@ -1,10 +1,12 @@
-<div class="editor-wrapper">
-  <h3>Editor</h3>
-  <quill-editor
-    #editor
-    [style]="editorStyle"
-    [modules]="quillConfig"
-    formControlName="htmlData"
-  >
-  </quill-editor>
-</div>
+<form [formGroup]="editorForm" class="form-wrapper">
+  <div class="editor-wrapper">
+    <h3>Editor</h3>
+    <quill-editor
+      #editor
+      [style]="editorStyle"
+      [modules]="quillConfig"
+      formControlName="htmlData"
+    >
+    </quill-editor>
+  </div>
+</form>
