@@ -11,7 +11,7 @@ export class AdminCreateCalendarEventComponent implements OnInit {
   editorForm!: FormGroup;
 
   editorStyle = {
-    height: '80vh',
+    height: '250px',
   };
   quillConfig = {
     toolbar: {
@@ -39,8 +39,8 @@ export class AdminCreateCalendarEventComponent implements OnInit {
     this.editorForm = this.fb.group({
       htmlData: [''],
       title: ['', Validators.required],
-      publishDate: [this.getDate()],
-      publishTime: [this.getTime()],
+      date: [this.getDate()],
+      time: [this.getTime()],
     });
   }
   onSubmit() {
