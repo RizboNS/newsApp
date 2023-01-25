@@ -186,9 +186,10 @@
   justify-content: center;
   align-items: center;
   gap: 5px;
-  margin-bottom: 10px;
+  margin-bottom: 40px;
 }
 .calendar-nav-btn {
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
   padding: 10px 5px;
   margin: 0;
   border: none;
@@ -198,6 +199,15 @@
   width: 280px;
   color: #e4e4e4;
   position: relative;
+  border: none;
+  outline: none;
+}
+.calendar-nav-btn:active {
+  animation: color-shake-smooth 0.7s ease-in-out;
+}
+.calendar-nav-btn:hover {
+  color: #fff;
+  background-color: #e40041;
 }
 .arrow {
   position: absolute;
@@ -207,4 +217,15 @@
   left: 0;
   top: 50%;
   transform: translateY(-50%);
+}
+@keyframes color-shake-smooth {
+  0% {
+    background-color: #333399;
+  }
+  50% {
+    background-color: #ff0f00;
+  }
+  100% {
+    background-color: #000;
+  }
 }
