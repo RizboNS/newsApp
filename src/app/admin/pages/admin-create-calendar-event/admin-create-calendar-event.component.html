@@ -44,6 +44,32 @@
     >
     </quill-editor>
   </div>
+  <div class="preview-wrapper">
+    <div class="preview-bar">
+      <h3>Preview</h3>
+      <ng-container class="button-bar" *ngIf="!checkScreenSize()">
+        <label class="label-as-btn-wrapper" (click)="setPreviewViewMode()">
+          {{ previewVeiwMode }} View
+          <i
+            class="fa-solid fa-mobile-screen"
+            *ngIf="previewVeiwMode === 'Mobile'"
+          ></i>
+          <i
+            class="fa-solid fa-desktop"
+            *ngIf="previewVeiwMode === 'Desktop'"
+          ></i>
+        </label>
+      </ng-container>
+    </div>
+    <div class="preview-article">
+      <div
+        class="ql-editor"
+        [ngClass]="{ mobile: previewVeiwMode === 'Mobile' }"
+        *ngIf="editorForm.value.htmlData"
+        [innerHTML]="editorForm.value.htmlData | sanitizeHtml"
+      ></div>
+    </div>
+  </div>
   <div class="submit-wrapper">
     <button class="btn-primary-gray">Cancel</button>
     <button class="admin-btn-primary" (click)="onSubmit()">Submit</button>

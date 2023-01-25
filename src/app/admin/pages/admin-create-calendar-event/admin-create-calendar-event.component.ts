@@ -9,7 +9,7 @@ import 'quill-divider';
 })
 export class AdminCreateCalendarEventComponent implements OnInit {
   editorForm!: FormGroup;
-
+  previewVeiwMode: string = 'Desktop';
   editorStyle = {
     height: '250px',
   };
@@ -60,5 +60,18 @@ export class AdminCreateCalendarEventComponent implements OnInit {
     let mm = String(today.getMinutes()).padStart(2, '0');
     let time = hh + ':' + mm;
     return time;
+  }
+  checkScreenSize(): boolean {
+    if (window.matchMedia('(max-width: 768px)').matches) {
+      return true;
+    }
+    return false;
+  }
+  setPreviewViewMode() {
+    if (this.previewVeiwMode === 'Desktop') {
+      this.previewVeiwMode = 'Mobile';
+    } else {
+      this.previewVeiwMode = 'Desktop';
+    }
   }
 }
