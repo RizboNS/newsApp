@@ -180,3 +180,29 @@
     color: #ffb831;
   }
 }
+
+.calendar-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+.calendar-nav-btn {
+  padding: 10px 5px;
+  margin: 0;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  /* background black */
+  background-color: #000000;
+  width: 280px;
+  /* color grayish white */
+  color: #e4e4e4;
+  position: relative;
+}
+.arrow {
+  position: absolute;
+  /* create arrow pointing right */
+
+}
