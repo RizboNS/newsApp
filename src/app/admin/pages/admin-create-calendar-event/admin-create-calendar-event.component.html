@@ -1,1 +1,10 @@
-<p>admin-create-calendar-event works!</p>
+<div class="editor-wrapper">
+  <h3>Editor</h3>
+  <quill-editor
+    #editor
+    [style]="editorStyle"
+    [modules]="quillConfig"
+    formControlName="htmlData"
+  >
+  </quill-editor>
+</div>
