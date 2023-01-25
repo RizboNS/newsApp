@@ -144,7 +144,6 @@
 
 }
 .calendar-filter-btn {
-  /* easy-in-out on transform and border */
   transition: transform 0.3s ease-in-out, border 0.3s ease-in-out;
   color: #fff;
   padding: 2.5px 5px;
