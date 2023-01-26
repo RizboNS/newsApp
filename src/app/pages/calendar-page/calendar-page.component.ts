@@ -72,7 +72,6 @@ export class CalendarPageComponent implements OnInit {
   flip(i: number) {
     this.selectedEventIndex = i === this.selectedEventIndex ? -1 : i;
     this.arrowIndex = i === this.arrowIndex ? -1 : i;
-    console.log(this.arrowIndex);
   }
 
   getEventState(index: number) {

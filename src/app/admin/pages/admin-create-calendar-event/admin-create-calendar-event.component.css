@@ -96,17 +96,20 @@
   padding: 10px 10px;
 }
 .calendar-arrow-wrapper {
+  position: relative;
+  width: 20px;
+  height: 20px;
+}
+.calendar-arrow {
   position: absolute;
   transform: translate(-6px, 0);
   top: 50%;
   transform: translateY(-50%);
-  width: 20px;
-  height: 20px;
 }
-
 .calendar-arrow:before,
 .calendar-arrow:after {
   content: "";
+  position: absolute;
   background-color: #e40041;
   width: 3px;
   height: 6px;
