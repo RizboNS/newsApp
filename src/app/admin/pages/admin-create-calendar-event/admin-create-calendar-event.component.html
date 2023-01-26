@@ -50,17 +50,24 @@
     </div>
     <div class="preview-bar">
       <div class="calendar-event">
-        <div class="calendar-event-header" (click)="flip(i)">
+        <div class="calendar-event-header" (click)="flip()">
           <div class="calendar-time">{{ editorForm.value.time }}</div>
           <div class="calendar-title">
             {{ editorForm.value.title }}
           </div>
           <span class="spacer"></span>
-          <div class="calendar-arrow-wrapper">
-            <i class="calendar-arrow down"></i>
+          <div class="calendar-arrow-wrapper" (click)="flip()">
+            <i
+              class="calendar-arrow"
+              [ngClass]="{ up: flipped, down: !flipped }"
+            ></i>
           </div>
         </div>
-        <div class="event-body-wrapper">
+        <div
+          class="event-body-wrapper"
+          [@eventAnimationsState]="getEventState()"
+          [ngClass]="getEventState()"
+        >
           <div class="event-body">
             <div
               class="ql-editor"

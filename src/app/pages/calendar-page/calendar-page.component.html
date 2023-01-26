@@ -53,6 +53,7 @@
           <span class="spacer"></span>
           <div class="calendar-arrow-wrapper" (click)="flip(i)">
             <i
+              (click)="flip(i)"
               class="calendar-arrow"
               [ngClass]="{ up: arrowIndex !== i, down: arrowIndex === i }"
             ></i>

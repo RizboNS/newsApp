@@ -1,8 +1,37 @@
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import 'quill-divider';
 
 @Component({
+  animations: [
+    trigger('eventAnimationsState', [
+      state(
+        'open',
+        style({
+          height: '*',
+          opacity: 1,
+          transform: 'translateY(0)',
+        })
+      ),
+      state(
+        'closed',
+        style({
+          height: '0',
+          opacity: 0,
+          transform: 'translateY(-50%)',
+        })
+      ),
+      transition('open => closed', [animate('0.3s')]),
+      transition('closed => open', [animate('0.3s')]),
+    ]),
+  ],
   selector: 'app-admin-create-calendar-event',
   templateUrl: './admin-create-calendar-event.component.html',
   styleUrls: ['./admin-create-calendar-event.component.css'],
@@ -10,6 +39,7 @@ import 'quill-divider';
 export class AdminCreateCalendarEventComponent implements OnInit {
   editorForm!: FormGroup;
   previewVeiwMode: string = 'Desktop';
+  flipped: boolean = false;
   editorStyle = {
     height: '250px',
   };
@@ -73,5 +103,11 @@ export class AdminCreateCalendarEventComponent implements OnInit {
     } else {
       this.previewVeiwMode = 'Desktop';
     }
+  }
+  flip() {
+    this.flipped = !this.flipped;
+  }
+  getEventState() {
+    return this.flipped ? 'open' : 'closed';
   }
 }
