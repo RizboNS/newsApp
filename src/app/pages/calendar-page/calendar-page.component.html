@@ -51,9 +51,8 @@
             {{ event.title }}
           </div>
           <span class="spacer"></span>
-          <div class="calendar-arrow-wrapper" (click)="flip(i)">
+          <div class="calendar-arrow-wrapper">
             <i
-              (click)="flip(i)"
               class="calendar-arrow"
               [ngClass]="{ up: arrowIndex !== i, down: arrowIndex === i }"
             ></i>
