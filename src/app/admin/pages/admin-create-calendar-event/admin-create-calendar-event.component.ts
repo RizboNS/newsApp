@@ -74,7 +74,8 @@ export class AdminCreateCalendarEventComponent implements OnInit {
     });
   }
   onSubmit() {
-    console.log(this.editorForm.value);
+    let event = this.mapToEvent();
+    console.log(event);
   }
   private getDate() {
     let today = new Date();
@@ -91,6 +92,22 @@ export class AdminCreateCalendarEventComponent implements OnInit {
     let time = hh + ':' + mm;
     return time;
   }
+  mapToEvent() {
+    let event = {
+      title: this.editorForm.value.title,
+      dateAndTime: this.mergeDateAndTime(
+        this.editorForm.value.date,
+        this.editorForm.value.time
+      ),
+      htmlData: this.editorForm.value.htmlData,
+    };
+    return event;
+  }
+  private mergeDateAndTime(date: string, time: string): string {
+    let dateTime = date + 'T' + time;
+    return dateTime;
+  }
+
   checkScreenSize(): boolean {
     if (window.matchMedia('(max-width: 768px)').matches) {
       return true;
