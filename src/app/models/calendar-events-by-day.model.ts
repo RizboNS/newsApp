@@ -1,60 +1,60 @@
 import { CalendarEvent } from './calendar-event.model';
 
 export interface CalendarEventsByDay {
-  dateAndTime: string;
+  date: string;
   events: CalendarEvent[];
-  pageCount: number;
-  pageSize: number;
+  datesCount: number;
   page: number;
 }
-export const calendarDummyData: CalendarEventsByDay = {
-  dateAndTime: '2023-01-03T00:00:00',
-  pageCount: 1,
-  pageSize: 10,
-  page: 1,
-  events: [
-    {
-      id: '1',
-      type: 'Koncert',
-      title: 'Kulturni centar Beograda',
-      content: `<p>Neki tamo html</p>
+export const calendarDummyData: CalendarEventsByDay[] = [
+  {
+    date: '2023-01-03',
+    datesCount: 1,
+    page: 1,
+    events: [
+      {
+        id: '1',
+        type: 'Koncert',
+        title: 'Kulturni centar Beograda',
+        content: `<p>Neki tamo html</p>
       <h5>Neki tamo html</h5>`,
-      dateAndTime: '2023-01-03T14:00:00',
-    },
-    {
-      id: '2',
-      type: 'Izložba',
-      title: 'Kulturni centar Beograda',
-      content: `<p>Neki tamo html</p>
+        dateAndTime: '2023-01-03T14:00:00',
+      },
+      {
+        id: '2',
+        type: 'Izložba',
+        title: 'Kulturni centar Beograda',
+        content: `<p>Neki tamo html</p>
       <h5>Neki tamo html</h5>`,
-      dateAndTime: '2023-01-03T16:30:00',
-    },
-    {
-      id: '3',
-      type: 'Pozorište',
-      title: 'Kulturni centar Beograda',
-      content: `<p>Neki tamo html</p>
+        dateAndTime: '2023-01-03T16:30:00',
+      },
+      {
+        id: '3',
+        type: 'Pozorište',
+        title: 'Kulturni centar Beograda',
+        content: `<p>Neki tamo html</p>
       <h5>Neki tamo html</h5>`,
-      dateAndTime: '2023-01-03T17:45:00',
-    },
-    {
-      id: '4',
-      type: 'Festival',
-      title: 'Kulturni centar Beograda',
-      content: `<p>Neki tamo html</p>
+        dateAndTime: '2023-01-03T17:45:00',
+      },
+      {
+        id: '4',
+        type: 'Festival',
+        title: 'Kulturni centar Beograda',
+        content: `<p>Neki tamo html</p>
       <h5>Neki tamo html</h5>`,
-      dateAndTime: '2023-01-03T18:00:00',
-    },
-    {
-      id: '4',
-      type: 'Bioskop',
-      title: 'Kulturni centar Beograda',
-      content: `<p>Neki tamo html</p>
+        dateAndTime: '2023-01-03T18:00:00',
+      },
+      {
+        id: '4',
+        type: 'Bioskop',
+        title: 'Kulturni centar Beograda',
+        content: `<p>Neki tamo html</p>
       <h5>Neki tamo html</h5>`,
-      dateAndTime: '2023-01-03T18:00:00',
-    },
-  ],
-};
+        dateAndTime: '2023-01-03T18:00:00',
+      },
+    ],
+  },
+];
 
 //   {
 //     dateAndTime: '2023-01-02T10:00:00',

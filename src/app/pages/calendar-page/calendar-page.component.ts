@@ -62,7 +62,7 @@ export class CalendarPageComponent implements OnInit {
     return { date, time };
   }
   initEvents() {
-    this.calendarEvents.events.forEach((event) => {
+    this.calendarEvents[0].events.forEach((event) => {
       const { date, time } = this.splitDateAndTime(event.dateAndTime);
       event.time = time;
       event.date = date;
@@ -92,14 +92,14 @@ export class CalendarPageComponent implements OnInit {
     this.filterEvents();
   }
   filterEvents() {
-    this.calendarEvents.events.forEach((event) => {
+    this.calendarEvents[0].events.forEach((event) => {
       event.display = this.filtersActive.includes(event.type);
     });
   }
   filterAllEvents() {
     this.allMarked = true;
     this.filtersActive = [];
-    this.calendarEvents.events.forEach((event) => {
+    this.calendarEvents[0].events.forEach((event) => {
       event.display = true;
     });
   }
