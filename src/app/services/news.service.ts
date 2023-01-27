@@ -86,6 +86,11 @@ export class NewsService {
     return this.http.put<ApiResponse<Tag[]>>(this._domain + '/api/Tag', tags);
   }
 
+  getCalendarEvents(): Observable<ApiResponse<CalendarEvent[]>> {
+    return this.http.get<ApiResponse<CalendarEvent[]>>(
+      this._domain + '/api/CalendarEvent/All'
+    );
+  }
   createCalendarEvent(
     event: CalendarEvent
   ): Observable<ApiResponse<CalendarEvent>> {
