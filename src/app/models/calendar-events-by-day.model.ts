@@ -3,14 +3,10 @@ import { CalendarEvent } from './calendar-event.model';
 export interface CalendarEventsByDay {
   date: string;
   events: CalendarEvent[];
-  datesCount: number;
-  page: number;
 }
 export const calendarDummyData: CalendarEventsByDay[] = [
   {
     date: '2023-01-03',
-    datesCount: 1,
-    page: 1,
     events: [
       {
         id: '1',

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { domainUrl } from '../data/api-domain';
 import { ApiResponse } from '../models/api-response.model';
 import { CalendarEvent } from '../models/calendar-event.model';
+import { CalendarEventsByDay } from '../models/calendar-events-by-day.model';
 import { PagedResponse } from '../models/paged-response.model';
 import { Story } from '../models/story.model';
 import { Tag } from '../models/tag.model';
@@ -89,6 +90,15 @@ export class NewsService {
   getCalendarEvents(): Observable<ApiResponse<CalendarEvent[]>> {
     return this.http.get<ApiResponse<CalendarEvent[]>>(
       this._domain + '/api/CalendarEvent/All'
+    );
+  }
+  getCalendarEventsByDates(
+    startDate: string,
+    endDate: string
+  ): Observable<ApiResponse<CalendarEventsByDay[]>> {
+    return this.http.get<ApiResponse<CalendarEventsByDay[]>>(
+      this._domain +
+        `/api/CalendarEvent/ByDates?startDate=${startDate}&endDate=${endDate}`
     );
   }
   createCalendarEvent(
