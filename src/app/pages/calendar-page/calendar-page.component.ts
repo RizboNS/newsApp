@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { calendarDummyData } from 'src/app/models/calendar-events-by-day.model';
+import {
+  calendarDummyData,
+  CalendarEventsByDay,
+} from 'src/app/models/calendar-events-by-day.model';
 import {
   trigger,
   state,
@@ -8,6 +11,7 @@ import {
   animate,
 } from '@angular/animations';
 import { calendarTypes } from 'src/app/data/calendar-types';
+import { NewsService } from 'src/app/services/news.service';
 @Component({
   animations: [
     trigger('eventAnimationsState', [
@@ -36,24 +40,35 @@ import { calendarTypes } from 'src/app/data/calendar-types';
   styleUrls: ['./calendar-page.component.css'],
 })
 export class CalendarPageComponent implements OnInit {
-  calendarEvents = calendarDummyData;
+  calendarEvents: CalendarEventsByDay[] = [];
+  startDate: string = '';
+  endDate: string = '';
+
   selectedEventIndex = -1;
   arrowIndex = -1;
   calendarFilters = calendarTypes;
   filtersActive: string[] = [];
   allMarked = true;
-  constructor() {}
+  constructor(private newsService: NewsService) {}
   ngOnInit(): void {
-    this.initEvents();
+    this.arrangeDates();
+    this.getEventsFromApi();
     this.arrowIndex = -1;
   }
-  previusDay() {
-    console.log('previusDay');
+  previusDay() {}
+  nextDay() {}
+  private arrangeDates() {
+    var startDate = new Date();
+    var endDate = new Date();
+    startDate.setHours(0, 0, 0, 0);
+    endDate.setHours(0, 0, 0, 0);
+    this.startDate = JSON.stringify(startDate);
+    this.endDate = JSON.stringify(endDate);
+    this.startDate = this.startDate.replace('Z', '').replaceAll('"', '');
+    this.endDate = this.endDate.replace('Z', '').replaceAll('"', '');
   }
-  nextDay() {
-    console.log('nextDay');
-  }
-  splitDateAndTime(dateAndTime: string) {
+
+  private splitDateAndTime(dateAndTime: string) {
     const date = dateAndTime.split('T')[0];
     const time =
       dateAndTime.split('T')[1].split(':')[0] +
@@ -61,7 +76,15 @@ export class CalendarPageComponent implements OnInit {
       dateAndTime.split('T')[1].split(':')[1];
     return { date, time };
   }
-  initEvents() {
+  private getEventsFromApi() {
+    this.newsService
+      .getCalendarEventsByDates(this.startDate, this.endDate)
+      .subscribe((res) => {
+        this.calendarEvents = res.data;
+        this.initEvents();
+      });
+  }
+  private initEvents() {
     this.calendarEvents[0].events.forEach((event) => {
       const { date, time } = this.splitDateAndTime(event.dateAndTime);
       event.time = time;

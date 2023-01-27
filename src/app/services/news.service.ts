@@ -96,6 +96,9 @@ export class NewsService {
     startDate: string,
     endDate: string
   ): Observable<ApiResponse<CalendarEventsByDay[]>> {
+    console.log(
+      `/api/CalendarEvent/ByDates?startDate=${startDate}&endDate=${endDate}`
+    );
     return this.http.get<ApiResponse<CalendarEventsByDay[]>>(
       this._domain +
         `/api/CalendarEvent/ByDates?startDate=${startDate}&endDate=${endDate}`
