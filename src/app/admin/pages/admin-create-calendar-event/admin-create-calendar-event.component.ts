@@ -8,6 +8,8 @@ import {
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import 'quill-divider';
+import { calendarTypes } from 'src/app/data/calendar-types';
+import { NewsService } from 'src/app/services/news.service';
 
 @Component({
   animations: [
@@ -40,6 +42,7 @@ export class AdminCreateCalendarEventComponent implements OnInit {
   editorForm!: FormGroup;
   previewVeiwMode: string = 'Desktop';
   flipped: boolean = false;
+  types = calendarTypes;
   editorStyle = {
     height: '250px',
   };
@@ -64,18 +67,21 @@ export class AdminCreateCalendarEventComponent implements OnInit {
       cssText: 'border: none;border-bottom: 1px inset;',
     },
   };
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private newsService: NewsService) {}
   ngOnInit(): void {
     this.editorForm = this.fb.group({
       htmlData: [''],
       title: ['', Validators.required],
+      type: [this.types[0], Validators.required],
       date: [this.getDate()],
       time: [this.getTime()],
     });
   }
   onSubmit() {
     let event = this.mapToEvent();
-    console.log(event);
+    this.newsService.createCalendarEvent(event).subscribe((res) => {
+      console.log(res);
+    });
   }
   private getDate() {
     let today = new Date();
@@ -95,11 +101,12 @@ export class AdminCreateCalendarEventComponent implements OnInit {
   mapToEvent() {
     let event = {
       title: this.editorForm.value.title,
+      type: this.editorForm.value.type,
       dateAndTime: this.mergeDateAndTime(
         this.editorForm.value.date,
         this.editorForm.value.time
       ),
-      htmlData: this.editorForm.value.htmlData,
+      content: this.editorForm.value.htmlData,
     };
     return event;
   }
@@ -107,7 +114,7 @@ export class AdminCreateCalendarEventComponent implements OnInit {
     let dateTime = date + 'T' + time;
     return dateTime;
   }
-
+  onTypeChange() {}
   checkScreenSize(): boolean {
     if (window.matchMedia('(max-width: 768px)').matches) {
       return true;

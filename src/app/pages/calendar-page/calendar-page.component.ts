@@ -7,7 +7,7 @@ import {
   transition,
   animate,
 } from '@angular/animations';
-import { calendarFilters } from 'src/app/data/calendar-filters';
+import { calendarTypes } from 'src/app/data/calendar-types';
 @Component({
   animations: [
     trigger('eventAnimationsState', [
@@ -39,7 +39,7 @@ export class CalendarPageComponent implements OnInit {
   calendarEvents = calendarDummyData;
   selectedEventIndex = -1;
   arrowIndex = -1;
-  calendarFilters = calendarFilters;
+  calendarFilters = calendarTypes;
   filtersActive: string[] = [];
   allMarked = true;
   constructor() {}

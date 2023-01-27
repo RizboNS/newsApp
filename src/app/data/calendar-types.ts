@@ -1,4 +1,4 @@
-export const calendarFilters = [
+export const calendarTypes = [
   'Bioskop',
   'Izložba',
   'Koncert',

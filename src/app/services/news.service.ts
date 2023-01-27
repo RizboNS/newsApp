@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { domainUrl } from '../data/api-domain';
 import { ApiResponse } from '../models/api-response.model';
+import { CalendarEvent } from '../models/calendar-event.model';
 import { PagedResponse } from '../models/paged-response.model';
 import { Story } from '../models/story.model';
 import { Tag } from '../models/tag.model';
@@ -83,5 +84,14 @@ export class NewsService {
   }
   updateTags(tags: Tag[]): Observable<ApiResponse<Tag[]>> {
     return this.http.put<ApiResponse<Tag[]>>(this._domain + '/api/Tag', tags);
+  }
+
+  createCalendarEvent(
+    event: CalendarEvent
+  ): Observable<ApiResponse<CalendarEvent>> {
+    return this.http.post<ApiResponse<CalendarEvent>>(
+      this._domain + '/api/CalendarEvent',
+      event
+    );
   }
 }
