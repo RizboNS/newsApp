@@ -78,7 +78,6 @@ export class CalendarPageComponent implements OnInit {
         .replace('Z', '')
         .replaceAll('"', '');
     } else if (operator === 'prev') {
-      console.log(this.selectedDate);
       const selectedDate = new Date(
         Date.UTC(
           new Date(this.selectedDate).getFullYear(),
@@ -177,7 +176,6 @@ export class CalendarPageComponent implements OnInit {
     this.newsService
       .getCalendarEventsByDates(this.startDate, this.endDate)
       .subscribe((res) => {
-        console.log(res.data);
         this.calendarEvents = res.data;
         this.initEvents();
         const index = this.calendarEvents.findIndex(
