@@ -40,10 +40,16 @@ import { NewsService } from 'src/app/services/news.service';
   styleUrls: ['./calendar-page.component.css'],
 })
 export class CalendarPageComponent implements OnInit {
-  calendarEvents: CalendarEventsByDay[] = [];
+  private calendarEvents: CalendarEventsByDay[] = [];
+  selectedEventByDay: CalendarEventsByDay = {
+    date: '',
+    events: [],
+  };
+
   startDate: string = '';
   endDate: string = '';
 
+  selectedDate: string = '';
   selectedEventIndex = -1;
   arrowIndex = -1;
   calendarFilters = calendarTypes;
@@ -55,6 +61,41 @@ export class CalendarPageComponent implements OnInit {
     this.getEventsFromApi();
     this.arrowIndex = -1;
   }
+  changeSelectedDate(operator: string) {
+    if (operator === 'next') {
+      const selectedDate = new Date(
+        Date.UTC(
+          new Date(this.selectedDate).getFullYear(),
+          new Date(this.selectedDate).getMonth(),
+          new Date(this.selectedDate).getDate() + 1,
+          0,
+          0,
+          0
+        )
+      );
+      this.selectedDate = selectedDate.toISOString().slice(0, -1);
+      this.selectedDate = this.selectedDate
+        .replace('Z', '')
+        .replaceAll('"', '');
+    } else if (operator === 'prev') {
+      console.log(this.selectedDate);
+      const selectedDate = new Date(
+        Date.UTC(
+          new Date(this.selectedDate).getFullYear(),
+          new Date(this.selectedDate).getMonth(),
+          new Date(this.selectedDate).getDate() - 1,
+          0,
+          0,
+          0
+        )
+      );
+      this.selectedDate = selectedDate.toISOString().slice(0, -1);
+      this.selectedDate = this.selectedDate
+        .replace('Z', '')
+        .replaceAll('"', '');
+    }
+  }
+
   previusDay() {
     const startDate = new Date(
       Date.UTC(
@@ -69,6 +110,9 @@ export class CalendarPageComponent implements OnInit {
 
     this.startDate = startDate.toISOString().slice(0, -1);
     this.startDate = this.startDate.replace('Z', '').replaceAll('"', '');
+
+    this.changeSelectedDate('prev');
+
     this.getEventsFromApi();
   }
   nextDay() {
@@ -85,6 +129,9 @@ export class CalendarPageComponent implements OnInit {
 
     this.endDate = endDate.toISOString().slice(0, -1);
     this.endDate = this.endDate.replace('Z', '').replaceAll('"', '');
+
+    this.changeSelectedDate('next');
+
     this.getEventsFromApi();
   }
   private arrangeDates() {
@@ -98,10 +145,11 @@ export class CalendarPageComponent implements OnInit {
         0
       )
     );
-
+    this.selectedDate = today.toISOString().slice(0, -1);
     this.startDate = today.toISOString().slice(0, -1);
     this.endDate = today.toISOString().slice(0, -1);
 
+    this.selectedDate = this.selectedDate.replace('Z', '').replaceAll('"', '');
     this.startDate = this.startDate.replace('Z', '').replaceAll('"', '');
     this.endDate = this.endDate.replace('Z', '').replaceAll('"', '');
   }
@@ -121,14 +169,21 @@ export class CalendarPageComponent implements OnInit {
         console.log(res.data);
         this.calendarEvents = res.data;
         this.initEvents();
+        const index = this.calendarEvents.findIndex(
+          (day) => day.date === this.selectedDate.slice(0, -4)
+        );
+        this.selectedEventByDay = this.calendarEvents[index];
       });
   }
+
   private initEvents() {
-    this.calendarEvents[0].events.forEach((event) => {
-      const { date, time } = this.splitDateAndTime(event.dateAndTime);
-      event.time = time;
-      event.date = date;
-      event.display = true;
+    this.calendarEvents.forEach((day) => {
+      day.events.forEach((event) => {
+        const { date, time } = this.splitDateAndTime(event.dateAndTime);
+        event.time = time;
+        event.date = date;
+        event.display = true;
+      });
     });
   }
   flip(i: number) {
