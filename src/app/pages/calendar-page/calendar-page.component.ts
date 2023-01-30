@@ -55,8 +55,38 @@ export class CalendarPageComponent implements OnInit {
     this.getEventsFromApi();
     this.arrowIndex = -1;
   }
-  previusDay() {}
-  nextDay() {}
+  previusDay() {
+    const startDate = new Date(
+      Date.UTC(
+        new Date(this.startDate).getFullYear(),
+        new Date(this.startDate).getMonth(),
+        new Date(this.startDate).getDate() - 1,
+        0,
+        0,
+        0
+      )
+    );
+
+    this.startDate = startDate.toISOString().slice(0, -1);
+    this.startDate = this.startDate.replace('Z', '').replaceAll('"', '');
+    this.getEventsFromApi();
+  }
+  nextDay() {
+    const endDate = new Date(
+      Date.UTC(
+        new Date(this.endDate).getFullYear(),
+        new Date(this.endDate).getMonth(),
+        new Date(this.endDate).getDate() + 1,
+        0,
+        0,
+        0
+      )
+    );
+
+    this.endDate = endDate.toISOString().slice(0, -1);
+    this.endDate = this.endDate.replace('Z', '').replaceAll('"', '');
+    this.getEventsFromApi();
+  }
   private arrangeDates() {
     const today = new Date(
       Date.UTC(
