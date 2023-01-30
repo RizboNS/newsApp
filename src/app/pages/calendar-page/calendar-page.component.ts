@@ -60,12 +60,28 @@ export class CalendarPageComponent implements OnInit {
   private arrangeDates() {
     var startDate = new Date();
     var endDate = new Date();
-    startDate.setHours(0, 0, 0, 0);
-    endDate.setHours(0, 0, 0, 0);
-    this.startDate = JSON.stringify(startDate);
-    this.endDate = JSON.stringify(endDate);
-    this.startDate = this.startDate.replace('Z', '').replaceAll('"', '');
-    this.endDate = this.endDate.replace('Z', '').replaceAll('"', '');
+    // startDate.setHours(0, 0, 0, 0);
+    // endDate.setHours(0, 0, 0, 0);
+    this.startDate = Date.UTC(
+      startDate.getFullYear(),
+      startDate.getMonth(),
+      startDate.getDate(),
+      0,
+      0,
+      0
+    ).toString();
+    this.endDate = Date.UTC(
+      endDate.getFullYear(),
+      endDate.getMonth(),
+      endDate.getDate(),
+      0,
+      0,
+      0
+    ).toString();
+    this.startDate = startDate.toISOString().slice(0, -1);
+    this.endDate = endDate.toISOString().slice(0, -1);
+    // this.startDate = this.startDate.replace('Z', '').replaceAll('"', '');
+    // this.endDate = this.endDate.replace('Z', '').replaceAll('"', '');
   }
 
   private splitDateAndTime(dateAndTime: string) {
@@ -80,6 +96,7 @@ export class CalendarPageComponent implements OnInit {
     this.newsService
       .getCalendarEventsByDates(this.startDate, this.endDate)
       .subscribe((res) => {
+        console.log(res.data);
         this.calendarEvents = res.data;
         this.initEvents();
       });
