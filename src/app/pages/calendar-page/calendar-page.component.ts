@@ -217,16 +217,21 @@ export class CalendarPageComponent implements OnInit {
     }
     this.filterEvents();
   }
-  filterEvents() {
-    this.calendarEvents[0].events.forEach((event) => {
-      event.display = this.filtersActive.includes(event.type);
+  private filterEvents() {
+    this.calendarEvents.forEach((day) => {
+      day.events.forEach((event) => {
+        event.display = this.filtersActive.includes(event.type);
+      });
     });
   }
   filterAllEvents() {
     this.allMarked = true;
     this.filtersActive = [];
-    this.calendarEvents[0].events.forEach((event) => {
-      event.display = true;
+
+    this.calendarEvents.forEach((day) => {
+      day.events.forEach((event) => {
+        event.display = true;
+      });
     });
   }
 }
