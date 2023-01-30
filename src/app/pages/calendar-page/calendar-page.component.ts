@@ -9,11 +9,18 @@ import {
   style,
   transition,
   animate,
+  keyframes,
 } from '@angular/animations';
 import { calendarTypes } from 'src/app/data/calendar-types';
 import { NewsService } from 'src/app/services/news.service';
+import { CalendarEvent } from 'src/app/models/calendar-event.model';
 @Component({
   animations: [
+    trigger('fadeInOut', [
+      state('void', style({ opacity: 0 })),
+      transition('void => *', animate(600)),
+      transition('* => void', animate(600)),
+    ]),
     trigger('eventAnimationsState', [
       state(
         'open',
@@ -61,6 +68,7 @@ export class CalendarPageComponent implements OnInit {
     this.getEventsFromApi();
     this.arrowIndex = -1;
   }
+
   changeSelectedDate(operator: string) {
     if (operator === 'next') {
       const selectedDate = new Date(
