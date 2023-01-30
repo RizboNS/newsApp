@@ -58,30 +58,22 @@ export class CalendarPageComponent implements OnInit {
   previusDay() {}
   nextDay() {}
   private arrangeDates() {
-    var startDate = new Date();
-    var endDate = new Date();
-    // startDate.setHours(0, 0, 0, 0);
-    // endDate.setHours(0, 0, 0, 0);
-    this.startDate = Date.UTC(
-      startDate.getFullYear(),
-      startDate.getMonth(),
-      startDate.getDate(),
-      0,
-      0,
-      0
-    ).toString();
-    this.endDate = Date.UTC(
-      endDate.getFullYear(),
-      endDate.getMonth(),
-      endDate.getDate(),
-      0,
-      0,
-      0
-    ).toString();
-    this.startDate = startDate.toISOString().slice(0, -1);
-    this.endDate = endDate.toISOString().slice(0, -1);
-    // this.startDate = this.startDate.replace('Z', '').replaceAll('"', '');
-    // this.endDate = this.endDate.replace('Z', '').replaceAll('"', '');
+    const today = new Date(
+      Date.UTC(
+        new Date().getFullYear(),
+        new Date().getMonth(),
+        new Date().getDate(),
+        0,
+        0,
+        0
+      )
+    );
+
+    this.startDate = today.toISOString().slice(0, -1);
+    this.endDate = today.toISOString().slice(0, -1);
+
+    this.startDate = this.startDate.replace('Z', '').replaceAll('"', '');
+    this.endDate = this.endDate.replace('Z', '').replaceAll('"', '');
   }
 
   private splitDateAndTime(dateAndTime: string) {
