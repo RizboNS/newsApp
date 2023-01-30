@@ -113,7 +113,7 @@ export class CalendarPageComponent implements OnInit {
 
     this.changeSelectedDate('prev');
 
-    this.getEventsFromApi();
+    this.checkForSelectedDateExistence();
   }
   nextDay() {
     const endDate = new Date(
@@ -132,8 +132,19 @@ export class CalendarPageComponent implements OnInit {
 
     this.changeSelectedDate('next');
 
-    this.getEventsFromApi();
+    this.checkForSelectedDateExistence();
   }
+  private checkForSelectedDateExistence() {
+    const index = this.calendarEvents.findIndex(
+      (day) => day.date === this.selectedDate.slice(0, -4)
+    );
+    if (index === -1) {
+      this.getEventsFromApi();
+    } else {
+      this.selectedEventByDay = this.calendarEvents[index];
+    }
+  }
+
   private arrangeDates() {
     const today = new Date(
       Date.UTC(
