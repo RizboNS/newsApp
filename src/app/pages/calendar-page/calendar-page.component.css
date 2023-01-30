@@ -1,7 +1,12 @@
 .calendar-container {
   width: 100%;
 }
-
+.calendar-weekday {
+  text-align: center;
+  width: 600px;
+  padding: 15px;
+  color: #e40041;
+}
 .calendar-header {
   border-top: #e40041 10px solid;
   display: flex;
@@ -13,9 +18,9 @@
   margin-bottom: 5px;
 }
 .calendar-header-label {
-  font-size: 36px;
+  font-size: 28px;
   line-height: 42px;
-  letter-spacing: 3px;
+  letter-spacing: 1.5px;
 }
 .calendar-header-button {
   padding: 5px;

@@ -22,54 +22,108 @@
     </ul>
   </div>
   <nav class="calendar-nav">
-    <button class="calendar-nav-btn active" routerLink="/kalendar">
+    <button
+      class="calendar-nav-btn active"
+      routerLink="/kalendar"
+      (click)="onRouteChange()"
+    >
       <span class="arrow"></span>
       Dnevni Kalendar
     </button>
-    <button class="calendar-nav-btn" routerLink="/kalendar/n">
+    <button
+      class="calendar-nav-btn"
+      routerLink="/kalendar/n"
+      (click)="onRouteChange()"
+    >
       <span class="arrow"></span>Nedeljni Kalendar
     </button>
   </nav>
   <div class="calendar-header">
-    <button class="calendar-header-button" (click)="previusDay()">
+    <button class="calendar-header-button" (click)="prev()">
       <i class="fa-solid fa-chevron-left"></i>
     </button>
     <div class="calendar-header-label">
-      {{ selectedDate | date : "dd MMMM yyyy" }}
+      <ng-container *ngIf="selectedRoute === 'daily'">
+        {{ selectedDate | date : "dd MMMM yyyy" }}
+      </ng-container>
+      <ng-container *ngIf="selectedRoute === 'weekly'">
+        {{ startDate | date : "dd MMM yyyy" }} -
+        {{ endDate | date : "dd MMM yyyy" }}
+      </ng-container>
     </div>
-    <button class="calendar-header-button" (click)="nextDay()">
+    <button class="calendar-header-button" (click)="next()">
       <i class="fa-solid fa-chevron-right"></i>
     </button>
   </div>
   <ul class="calendar-body">
-    <ng-container
-      *ngFor="let event of selectedEventByDay.events; let i = index"
-    >
-      <li class="calendar-event" *ngIf="event.display">
-        <div class="calendar-event-header" (click)="flip(i)" [@fadeInOut]>
-          <div class="calendar-time">{{ event.time }}</div>
-          <div class="calendar-title">
-            {{ event.title }}
+    <ng-container *ngIf="selectedRoute === 'daily'">
+      <ng-container
+        *ngFor="let event of selectedEventByDay.events; let i = index"
+      >
+        <li class="calendar-event" *ngIf="event.display">
+          <div class="calendar-event-header" (click)="flip(i)" [@fadeInOut]>
+            <div class="calendar-time">{{ event.time }}</div>
+            <div class="calendar-title">
+              {{ event.title }}
+            </div>
+            <span class="spacer"></span>
+            <div class="calendar-arrow-wrapper">
+              <i
+                class="calendar-arrow"
+                [ngClass]="{ up: arrowIndex !== i, down: arrowIndex === i }"
+              ></i>
+            </div>
           </div>
-          <span class="spacer"></span>
-          <div class="calendar-arrow-wrapper">
-            <i
-              class="calendar-arrow"
-              [ngClass]="{ up: arrowIndex !== i, down: arrowIndex === i }"
-            ></i>
-          </div>
-        </div>
-        <div
-          class="event-body-wrapper"
-          [@eventAnimationsState]="getEventState(i)"
-          [ngClass]="getEventState(i)"
-        >
           <div
-            class="event-body"
-            [innerHTML]="event.content | sanitizeHtml"
-          ></div>
-        </div>
-      </li>
+            class="event-body-wrapper"
+            [@eventAnimationsState]="getEventState(i)"
+            [ngClass]="getEventState(i)"
+          >
+            <div
+              class="event-body"
+              [innerHTML]="event.content | sanitizeHtml"
+            ></div>
+          </div>
+        </li>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngIf="selectedRoute === 'weekly'">
+      <ng-container *ngFor="let selectedEvents of selectedEventsByWeek">
+        <ng-container *ngIf="selectedEvents.events.length > 0">
+          <div class="calendar-weekday">
+            {{ selectedEvents.date | date : "EEEE dd MMMM yyyy" }}
+          </div>
+          <ng-container
+            *ngFor="let event of selectedEvents.events; let i = index"
+          >
+            <li class="calendar-event" *ngIf="event.display">
+              <div class="calendar-event-header" (click)="flip(i)" [@fadeInOut]>
+                <div class="calendar-time">{{ event.time }}</div>
+                <div class="calendar-title">
+                  {{ event.title }}
+                </div>
+                <span class="spacer"></span>
+                <div class="calendar-arrow-wrapper">
+                  <i
+                    class="calendar-arrow"
+                    [ngClass]="{ up: arrowIndex !== i, down: arrowIndex === i }"
+                  ></i>
+                </div>
+              </div>
+              <div
+                class="event-body-wrapper"
+                [@eventAnimationsState]="getEventState(i)"
+                [ngClass]="getEventState(i)"
+              >
+                <div
+                  class="event-body"
+                  [innerHTML]="event.content | sanitizeHtml"
+                ></div>
+              </div>
+            </li>
+          </ng-container>
+        </ng-container>
+      </ng-container>
     </ng-container>
   </ul>
 </div>
