@@ -1,19 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  calendarDummyData,
-  CalendarEventsByDay,
-} from 'src/app/models/calendar-events-by-day.model';
+import { CalendarEventsByDay } from 'src/app/models/calendar-events-by-day.model';
 import {
   trigger,
   state,
   style,
   transition,
   animate,
-  keyframes,
 } from '@angular/animations';
 import { calendarTypes } from 'src/app/data/calendar-types';
 import { NewsService } from 'src/app/services/news.service';
-import { CalendarEvent } from 'src/app/models/calendar-event.model';
 @Component({
   animations: [
     trigger('fadeInOut', [
