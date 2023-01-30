@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'tag/covid-19', component: VestiComponent },
   { path: 'kulturazadecu', component: VestiComponent },
   { path: 'konkursi', component: VestiComponent },
-  { path: 'kalendar/n', component: CalendarPageWeeklyComponent },
+  { path: 'kalendar/n', component: CalendarPageComponent },
   { path: 'kalendar', component: CalendarPageComponent },
   { path: 'kritika', component: VestiComponent },
   { path: 'fokus', component: VestiComponent },

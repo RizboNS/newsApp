@@ -9,6 +9,7 @@ import {
 } from '@angular/animations';
 import { calendarTypes } from 'src/app/data/calendar-types';
 import { NewsService } from 'src/app/services/news.service';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   animations: [
     trigger('fadeInOut', [
@@ -57,11 +58,18 @@ export class CalendarPageComponent implements OnInit {
   calendarFilters = calendarTypes;
   filtersActive: string[] = [];
   allMarked = true;
-  constructor(private newsService: NewsService) {}
+  constructor(
+    private newsService: NewsService,
+    private route: ActivatedRoute
+  ) {}
   ngOnInit(): void {
     this.arrangeDates();
     this.getEventsFromApi();
     this.arrowIndex = -1;
+    console.log(this.getCurrentRoute());
+  }
+  private getCurrentRoute() {
+    return this.route.snapshot.url[0].path;
   }
 
   changeSelectedDate(operator: string) {
