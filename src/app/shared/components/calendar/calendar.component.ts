@@ -77,7 +77,6 @@ export class CalendarComponent {
 
   onRouteChange(routePath: string) {
     this.changeRoute.emit(routePath);
-    console.log(this.urlLength);
     const url = this.route.snapshot.url;
     if (url.length === this.urlLength) {
       this.selectedRoute = 'daily';
@@ -235,15 +234,12 @@ export class CalendarComponent {
         this.selectedEventByDay = this.calendarEvents[index];
       }
     } else if (this.selectedRoute === 'weekly') {
-      console.log(this.calendarEvents);
       const startDateIndex = this.calendarEvents.findIndex(
         (day) => day.date === this.startDate.slice(0, -4)
       );
-      console.log(startDateIndex);
       const endDateIndex = this.calendarEvents.findIndex(
         (day) => day.date === this.endDate.slice(0, -4)
       );
-      console.log(endDateIndex);
       if (startDateIndex === -1 || endDateIndex === -1) {
         this.getEventsFromApi();
       } else {
