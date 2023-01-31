@@ -17,6 +17,7 @@ import { AddTagsToStoryComponent } from './components/add-tags-to-story/add-tags
 import { MiniMsgComponent } from './ui/mini-msg/mini-msg.component';
 import { AdminCreateCalendarEventComponent } from './pages/admin-create-calendar-event/admin-create-calendar-event.component';
 import { AdminEventsComponent } from './pages/admin-events/admin-events.component';
+import { AdminEventsWeeklyComponent } from './pages/admin-events-weekly/admin-events-weekly.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { AdminEventsComponent } from './pages/admin-events/admin-events.componen
     MiniMsgComponent,
     AdminCreateCalendarEventComponent,
     AdminEventsComponent,
+    AdminEventsWeeklyComponent,
   ],
   imports: [
     CommonModule,

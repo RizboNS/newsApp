@@ -8,9 +8,10 @@ import { AdminUpdateStoryComponent } from './pages/admin-update-story/admin-upda
 import { ManageTagsComponent } from './ui/manage-tags/manage-tags.component';
 import { AdminCreateCalendarEventComponent } from './pages/admin-create-calendar-event/admin-create-calendar-event.component';
 import { AdminEventsComponent } from './pages/admin-events/admin-events.component';
+import { AdminEventsWeeklyComponent } from './pages/admin-events-weekly/admin-events-weekly.component';
 
 const routes: Routes = [
-  { path: 'admin/events/weekly', component: AdminEventsComponent },
+  { path: 'admin/events/weekly', component: AdminEventsWeeklyComponent },
   { path: 'admin/events', component: AdminEventsComponent },
   {
     path: 'admin/create-calendar-event',
