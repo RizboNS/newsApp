@@ -52,9 +52,7 @@
   </div>
   <ul class="calendar-body">
     <ng-container *ngIf="selectedRoute === 'daily'">
-      <ng-container
-        *ngFor="let event of selectedEventByDay.events; let i = index"
-      >
+      <ng-container *ngFor="let event of selectedEventByDay.events">
         <ng-container *ngIf="event.id">
           <li class="calendar-event" *ngIf="event.display">
             <div
@@ -97,9 +95,7 @@
           <div class="calendar-weekday">
             {{ selectedEvents.date | date : "EEEE dd MMMM yyyy" }}
           </div>
-          <ng-container
-            *ngFor="let event of selectedEvents.events; let i = index"
-          >
+          <ng-container *ngFor="let event of selectedEvents.events">
             <ng-container *ngIf="event.id">
               <li class="calendar-event" *ngIf="event.display">
                 <div
