@@ -241,3 +241,19 @@
 .active{
   color: #fff;
 }
+.admin-btn-container button {
+  margin: 0 15px;
+  padding: 5px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 20px;
+  color: #e40041;
+}
+.admin-btn-container .btn-update:hover {
+  color: #00ff00;
+}
+.admin-btn-container .btn-delete:hover {
+  color: #ff0000;
+}

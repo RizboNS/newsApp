@@ -67,10 +67,16 @@
               <span class="spacer"></span>
               <ng-container *ngIf="adminMode">
                 <div class="admin-btn-container">
-                  <button (click)="onUpdate($event, event.id)">
+                  <button
+                    class="btn-update"
+                    (click)="onUpdate($event, event.id)"
+                  >
                     <i class="fa-solid fa-pencil"></i>
                   </button>
-                  <button (click)="onDelete($event, event.id)">
+                  <button
+                    class="btn-delete"
+                    (click)="onDelete($event, event.id)"
+                  >
                     <i class="fa-solid fa-trash"></i>
                   </button>
                 </div>
