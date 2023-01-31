@@ -5,8 +5,8 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { calendarTypes } from 'src/app/data/calendar-types';
 import { CalendarEventsByDay } from 'src/app/models/calendar-events-by-day.model';
 import { NewsService } from 'src/app/services/news.service';
@@ -54,6 +54,11 @@ export class CalendarComponent {
   startDate: string = '';
   endDate: string = '';
 
+  @Output() changeRoute: EventEmitter<string> = new EventEmitter<string>();
+
+  routePathDaily = 'daily';
+  routePathWeekly = 'weekly';
+
   selectedRoute: string = '';
   selectedDate: string = '';
   selectedEventIndex: number = -1;
@@ -63,13 +68,15 @@ export class CalendarComponent {
   allMarked = true;
   constructor(
     private newsService: NewsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
   ngOnInit(): void {
-    this.onRouteChange();
+    this.onRouteChange(this.routePathDaily);
   }
 
-  onRouteChange() {
+  onRouteChange(routePath: string) {
+    this.changeRoute.emit(routePath);
     const url = this.route.snapshot.url;
     if (url.length === 2) {
       this.selectedRoute = 'daily';

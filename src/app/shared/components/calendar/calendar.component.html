@@ -24,17 +24,12 @@
   <nav class="calendar-nav">
     <button
       class="calendar-nav-btn active"
-      routerLink="/admin/events"
-      (click)="onRouteChange()"
+      (click)="onRouteChange(routePathDaily)"
     >
       <span class="arrow"></span>
       Dnevni Kalendar
     </button>
-    <button
-      class="calendar-nav-btn"
-      routerLink="/admin/events/weekly"
-      (click)="onRouteChange()"
-    >
+    <button class="calendar-nav-btn" (click)="onRouteChange(routePathWeekly)">
       <span class="arrow"></span>Nedeljni Kalendar
     </button>
   </nav>
