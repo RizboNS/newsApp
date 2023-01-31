@@ -1,1 +1,4 @@
-<app-calendar (changeRoute)="navigateToWeeklyView($event)"></app-calendar>
+<app-calendar
+  [urlLength]="urlLength"
+  (changeRoute)="navigateToWeeklyView($event)"
+></app-calendar>

@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./admin-events-weekly.component.css'],
 })
 export class AdminEventsWeeklyComponent {
+  urlLength: number = 2;
   constructor(private router: Router) {}
   navigateToDailyView(toRoute: string) {
     if (toRoute === 'weekly' || toRoute === '') {

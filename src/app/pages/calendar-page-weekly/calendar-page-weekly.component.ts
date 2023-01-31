@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./calendar-page-weekly.component.css'],
 })
 export class CalendarPageWeeklyComponent {
+  urlLength: number = 1;
   constructor(private router: Router) {}
   navigateToDailyView(toRoute: string) {
     if (toRoute === 'weekly' || toRoute === '') {

@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./admin-events.component.css'],
 })
 export class AdminEventsComponent implements OnInit {
+  urlLength: number = 2;
   constructor(private router: Router) {}
   ngOnInit(): void {}
 

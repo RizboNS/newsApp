@@ -1,1 +1,4 @@
-<app-calendar (changeRoute)="navigateToDailyView($event)"></app-calendar>
+<app-calendar
+  [urlLength]="urlLength"
+  (changeRoute)="navigateToDailyView($event)"
+></app-calendar>

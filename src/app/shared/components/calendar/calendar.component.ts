@@ -55,6 +55,7 @@ export class CalendarComponent {
   endDate: string = '';
 
   @Output() changeRoute: EventEmitter<string> = new EventEmitter<string>();
+  @Input() urlLength: number = 1;
 
   routePathDaily = 'daily';
   routePathWeekly = 'weekly';
@@ -76,10 +77,11 @@ export class CalendarComponent {
 
   onRouteChange(routePath: string) {
     this.changeRoute.emit(routePath);
+    console.log(this.urlLength);
     const url = this.route.snapshot.url;
-    if (url.length === 2) {
+    if (url.length === this.urlLength) {
       this.selectedRoute = 'daily';
-    } else if (url.length === 3) {
+    } else if (url.length === this.urlLength + 1) {
       this.selectedRoute = 'weekly';
     }
     this.arrangeDates();
