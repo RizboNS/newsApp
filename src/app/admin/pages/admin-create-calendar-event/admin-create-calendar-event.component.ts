@@ -5,11 +5,13 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import 'quill-divider';
+import { take } from 'rxjs';
 import { calendarTypes } from 'src/app/data/calendar-types';
 import { NewsService } from 'src/app/services/news.service';
+import { MiniMsgComponent } from '../../ui/mini-msg/mini-msg.component';
 
 @Component({
   animations: [
@@ -43,6 +45,7 @@ export class AdminCreateCalendarEventComponent implements OnInit {
   previewVeiwMode: string = 'Desktop';
   flipped: boolean = false;
   types = calendarTypes;
+  @ViewChild(MiniMsgComponent) miniMsg: any;
   editorStyle = {
     height: '250px',
   };
@@ -79,9 +82,23 @@ export class AdminCreateCalendarEventComponent implements OnInit {
   }
   onSubmit() {
     let event = this.mapToEvent();
-    this.newsService.createCalendarEvent(event).subscribe((res) => {
-      console.log(res);
-    });
+    this.newsService
+      .createCalendarEvent(event)
+      .pipe(take(1))
+      .subscribe({
+        next: (res) => {
+          this.miniMsg.onSuccessMsg('Event created');
+          this.editorForm.reset();
+          this.editorForm.patchValue({
+            type: this.types[0],
+            date: this.getDate(),
+            time: this.getTime(),
+          });
+        },
+        error: (err) => {
+          this.miniMsg.onErrorMsg('Event not created');
+        },
+      });
   }
   private getDate() {
     let today = new Date();
