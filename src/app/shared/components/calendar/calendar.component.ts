@@ -76,8 +76,13 @@ export class CalendarComponent {
   ngOnInit(): void {
     this.onRouteChange('');
   }
-  adminBtnTst() {
-    alert('working');
+  onDelete(event: any, id: string) {
+    event.stopPropagation();
+    console.log('admin btn clicked');
+  }
+  onUpdate(event: any, id: string) {
+    event.stopPropagation();
+    console.log('admin btn clicked');
   }
   onRouteChange(routePath: string) {
     this.changeRoute.emit(routePath);
@@ -377,6 +382,7 @@ export class CalendarComponent {
     });
   }
   flip(id: string) {
+    console.log('flip clicked');
     this.selectedEventId = id === this.selectedEventId ? '' : id;
     this.arrowId = id === this.arrowId ? '' : id;
   }

@@ -65,7 +65,16 @@
                 {{ event.title }}
               </div>
               <span class="spacer"></span>
-              <button (click)="adminBtnTst()">Admin btn test</button>
+              <ng-container *ngIf="adminMode">
+                <div class="admin-btn-container">
+                  <button (click)="onUpdate($event, event.id)">
+                    <i class="fa-solid fa-pencil"></i>
+                  </button>
+                  <button (click)="onDelete($event, event.id)">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </div>
+              </ng-container>
               <div class="calendar-arrow-wrapper">
                 <i
                   class="calendar-arrow"
