@@ -17,6 +17,7 @@ import { CalendarPageComponent } from './pages/calendar-page/calendar-page.compo
 import { CalendarPageWeeklyComponent } from './pages/calendar-page-weekly/calendar-page-weekly.component';
 import { CalendarDetailsComponent } from './componenets/calendar-details/calendar-details.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CalendarComponent } from './componenets/calendar/calendar.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CalendarPageComponent,
     CalendarPageWeeklyComponent,
     CalendarDetailsComponent,
+    CalendarComponent,
   ],
   imports: [
     BrowserModule,

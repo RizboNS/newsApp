@@ -5,9 +5,8 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { take } from 'rxjs';
 import { calendarTypes } from 'src/app/data/calendar-types';
 import { CalendarEventsByDay } from 'src/app/models/calendar-events-by-day.model';
 import { NewsService } from 'src/app/services/news.service';
@@ -40,11 +39,11 @@ import { NewsService } from 'src/app/services/news.service';
       transition('closed => open', [animate('0.3s')]),
     ]),
   ],
-  selector: 'app-admin-events',
-  templateUrl: './admin-events.component.html',
-  styleUrls: ['./admin-events.component.css'],
+  selector: 'app-calendar',
+  templateUrl: './calendar.component.html',
+  styleUrls: ['./calendar.component.css'],
 })
-export class AdminEventsComponent implements OnInit {
+export class CalendarComponent {
   private calendarEvents: CalendarEventsByDay[] = [];
   selectedEventByDay: CalendarEventsByDay = {
     date: '',
