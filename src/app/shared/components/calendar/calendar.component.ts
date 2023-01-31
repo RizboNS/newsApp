@@ -61,8 +61,8 @@ export class CalendarComponent {
 
   selectedRoute: string = '';
   selectedDate: string = '';
-  selectedEventIndex: number = -1;
-  arrowIndex: number = -1;
+  selectedEventId: string = '';
+  arrowId: string = '';
   calendarFilters = calendarTypes;
   filtersActive: string[] = [];
   allMarked = true;
@@ -84,7 +84,7 @@ export class CalendarComponent {
     }
     this.arrangeDates();
     this.getEventsFromApi();
-    this.arrowIndex = -1;
+    this.arrowId = '';
   }
   changeSelectedDate(operator: string) {
     if (operator === 'next') {
@@ -371,13 +371,13 @@ export class CalendarComponent {
       });
     });
   }
-  flip(i: number) {
-    this.selectedEventIndex = i === this.selectedEventIndex ? -1 : i;
-    this.arrowIndex = i === this.arrowIndex ? -1 : i;
+  flip(id: string) {
+    this.selectedEventId = id === this.selectedEventId ? '' : id;
+    this.arrowId = id === this.arrowId ? '' : id;
   }
 
-  getEventState(index: number) {
-    return this.selectedEventIndex === index ? 'open' : 'closed';
+  getEventState(id: string) {
+    return this.selectedEventId === id ? 'open' : 'closed';
   }
 
   handleCheckboxClick(filter: string) {

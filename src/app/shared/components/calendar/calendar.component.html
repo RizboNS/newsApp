@@ -55,31 +55,40 @@
       <ng-container
         *ngFor="let event of selectedEventByDay.events; let i = index"
       >
-        <li class="calendar-event" *ngIf="event.display">
-          <div class="calendar-event-header" (click)="flip(i)" [@fadeInOut]>
-            <div class="calendar-time">{{ event.time }}</div>
-            <div class="calendar-title">
-              {{ event.title }}
-            </div>
-            <span class="spacer"></span>
-            <div class="calendar-arrow-wrapper">
-              <i
-                class="calendar-arrow"
-                [ngClass]="{ up: arrowIndex !== i, down: arrowIndex === i }"
-              ></i>
-            </div>
-          </div>
-          <div
-            class="event-body-wrapper"
-            [@eventAnimationsState]="getEventState(i)"
-            [ngClass]="getEventState(i)"
-          >
+        <ng-container *ngIf="event.id">
+          <li class="calendar-event" *ngIf="event.display">
             <div
-              class="event-body"
-              [innerHTML]="event.content | sanitizeHtml"
-            ></div>
-          </div>
-        </li>
+              class="calendar-event-header"
+              (click)="flip(event.id)"
+              [@fadeInOut]
+            >
+              <div class="calendar-time">{{ event.time }}</div>
+              <div class="calendar-title">
+                {{ event.title }}
+              </div>
+              <span class="spacer"></span>
+              <div class="calendar-arrow-wrapper">
+                <i
+                  class="calendar-arrow"
+                  [ngClass]="{
+                    up: arrowId !== event.id,
+                    down: arrowId === event.id
+                  }"
+                ></i>
+              </div>
+            </div>
+            <div
+              class="event-body-wrapper"
+              [@eventAnimationsState]="getEventState(event.id)"
+              [ngClass]="getEventState(event.id)"
+            >
+              <div
+                class="event-body"
+                [innerHTML]="event.content | sanitizeHtml"
+              ></div>
+            </div>
+          </li>
+        </ng-container>
       </ng-container>
     </ng-container>
     <ng-container *ngIf="selectedRoute === 'weekly'">
@@ -91,31 +100,40 @@
           <ng-container
             *ngFor="let event of selectedEvents.events; let i = index"
           >
-            <li class="calendar-event" *ngIf="event.display">
-              <div class="calendar-event-header" (click)="flip(i)" [@fadeInOut]>
-                <div class="calendar-time">{{ event.time }}</div>
-                <div class="calendar-title">
-                  {{ event.title }}
-                </div>
-                <span class="spacer"></span>
-                <div class="calendar-arrow-wrapper">
-                  <i
-                    class="calendar-arrow"
-                    [ngClass]="{ up: arrowIndex !== i, down: arrowIndex === i }"
-                  ></i>
-                </div>
-              </div>
-              <div
-                class="event-body-wrapper"
-                [@eventAnimationsState]="getEventState(i)"
-                [ngClass]="getEventState(i)"
-              >
+            <ng-container *ngIf="event.id">
+              <li class="calendar-event" *ngIf="event.display">
                 <div
-                  class="event-body"
-                  [innerHTML]="event.content | sanitizeHtml"
-                ></div>
-              </div>
-            </li>
+                  class="calendar-event-header"
+                  (click)="flip(event.id)"
+                  [@fadeInOut]
+                >
+                  <div class="calendar-time">{{ event.time }}</div>
+                  <div class="calendar-title">
+                    {{ event.title }}
+                  </div>
+                  <span class="spacer"></span>
+                  <div class="calendar-arrow-wrapper">
+                    <i
+                      class="calendar-arrow"
+                      [ngClass]="{
+                        up: arrowId !== event.id,
+                        down: arrowId === event.id
+                      }"
+                    ></i>
+                  </div>
+                </div>
+                <div
+                  class="event-body-wrapper"
+                  [@eventAnimationsState]="getEventState(event.id)"
+                  [ngClass]="getEventState(event.id)"
+                >
+                  <div
+                    class="event-body"
+                    [innerHTML]="event.content | sanitizeHtml"
+                  ></div>
+                </div>
+              </li>
+            </ng-container>
           </ng-container>
         </ng-container>
       </ng-container>
