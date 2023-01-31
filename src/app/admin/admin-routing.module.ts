@@ -10,6 +10,7 @@ import { AdminCreateCalendarEventComponent } from './pages/admin-create-calendar
 import { AdminEventsComponent } from './pages/admin-events/admin-events.component';
 
 const routes: Routes = [
+  { path: 'admin/events/weekly', component: AdminEventsComponent },
   { path: 'admin/events', component: AdminEventsComponent },
   {
     path: 'admin/create-calendar-event',
