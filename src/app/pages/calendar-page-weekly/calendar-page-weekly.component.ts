@@ -8,11 +8,12 @@ import { Router } from '@angular/router';
 })
 export class CalendarPageWeeklyComponent {
   constructor(private router: Router) {}
-  navigateToWeeklyView(toRoute: string) {
-    if (toRoute === 'daily') {
-      this.router.navigate(['calendar']);
-    } else if (toRoute === 'weekly') {
-      this.router.navigate(['calendar/weekly']);
+  navigateToDailyView(toRoute: string) {
+    if (toRoute === 'weekly' || toRoute === '') {
+      return;
+    }
+    if (toRoute === 'daily' && this.router.url !== '/kalendar') {
+      this.router.navigate(['/kalendar']);
     }
   }
 }

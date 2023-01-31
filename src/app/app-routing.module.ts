@@ -7,13 +7,12 @@ import { HomeComponent } from './pages/home/home.component';
 import { VestiComponent } from './pages/vesti/vesti.component';
 
 const routes: Routes = [
-  { path: 'calendar/weekly', component: CalendarPageWeeklyComponent },
   { path: 'blog', component: VestiComponent },
   { path: 'tag/en-de', component: VestiComponent },
   { path: 'tag/covid-19', component: VestiComponent },
   { path: 'kulturazadecu', component: VestiComponent },
   { path: 'konkursi', component: VestiComponent },
-  { path: 'kalendar/n', component: CalendarPageComponent },
+  { path: 'kalendar/n', component: CalendarPageWeeklyComponent },
   { path: 'kalendar', component: CalendarPageComponent },
   { path: 'kritika', component: VestiComponent },
   { path: 'fokus', component: VestiComponent },
