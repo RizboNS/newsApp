@@ -76,7 +76,9 @@ export class CalendarComponent {
   ngOnInit(): void {
     this.onRouteChange('');
   }
-
+  adminBtnTst() {
+    alert('working');
+  }
   onRouteChange(routePath: string) {
     this.changeRoute.emit(routePath);
     const url = this.route.snapshot.url;
