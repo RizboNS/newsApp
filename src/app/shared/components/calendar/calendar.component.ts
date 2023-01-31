@@ -60,6 +60,8 @@ export class CalendarComponent {
   routePathDaily = 'daily';
   routePathWeekly = 'weekly';
 
+  adminMode: boolean = false;
+
   selectedRoute: string = '';
   selectedDate: string = '';
   selectedEventId: string = '';
@@ -78,6 +80,9 @@ export class CalendarComponent {
   onRouteChange(routePath: string) {
     this.changeRoute.emit(routePath);
     const url = this.route.snapshot.url;
+    if (url[0].path === 'admin' && this.adminMode === false) {
+      this.adminMode = true;
+    }
     if (url.length === this.urlLength) {
       this.selectedRoute = 'daily';
     } else if (url.length === this.urlLength + 1) {
