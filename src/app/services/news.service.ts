@@ -122,4 +122,13 @@ export class NewsService {
       this._domain + '/api/CalendarEvent/' + id
     );
   }
+  updateCalendarEvent(
+    id: string,
+    event: CalendarEvent
+  ): Observable<ApiResponse<CalendarEvent>> {
+    return this.http.put<ApiResponse<CalendarEvent>>(
+      this._domain + '/api/CalendarEvent/' + id,
+      event
+    );
+  }
 }

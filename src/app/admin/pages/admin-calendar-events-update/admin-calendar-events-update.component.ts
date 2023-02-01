@@ -7,6 +7,7 @@ import {
 } from '@angular/animations';
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { take } from 'rxjs';
 import { calendarTypes } from 'src/app/data/calendar-types';
 import { NewsService } from 'src/app/services/news.service';
@@ -40,6 +41,7 @@ import { MiniMsgComponent } from 'src/app/shared/ui/mini-msg/mini-msg.component'
   styleUrls: ['./admin-calendar-events-update.component.css'],
 })
 export class AdminCalendarEventsUpdateComponent {
+  id: string = '';
   editorForm!: FormGroup;
   previewVeiwMode: string = 'Desktop';
   flipped: boolean = false;
@@ -69,7 +71,11 @@ export class AdminCalendarEventsUpdateComponent {
       cssText: 'border: none;border-bottom: 1px inset;',
     },
   };
-  constructor(private fb: FormBuilder, private newsService: NewsService) {}
+  constructor(
+    private fb: FormBuilder,
+    private newsService: NewsService,
+    private route: ActivatedRoute
+  ) {}
   ngOnInit(): void {
     this.editorForm = this.fb.group({
       htmlData: [''],
@@ -78,24 +84,42 @@ export class AdminCalendarEventsUpdateComponent {
       date: [this.getDate()],
       time: [this.getTime()],
     });
+    this.getEvent();
+  }
+  getEvent() {
+    this.route.params.subscribe((params) => {
+      this.id = params['id'];
+    });
+    this.newsService
+      .getCalenaarEventById(this.id)
+      .pipe(take(1))
+      .subscribe({
+        next: (res) => {
+          this.editorForm.patchValue({
+            title: res.data.title,
+            type: res.data.type,
+            date: res.data.dateAndTime.split('T')[0],
+            time: res.data.dateAndTime.split('T')[1],
+            htmlData: res.data.content,
+          });
+          this.miniMsg.onSuccessMsg('Event loaded');
+        },
+        error: () => {
+          this.miniMsg.onErrorMsg('Event not found');
+        },
+      });
   }
   onSubmit() {
     let event = this.mapToEvent();
     this.newsService
-      .createCalendarEvent(event)
+      .updateCalendarEvent(this.id, event)
       .pipe(take(1))
       .subscribe({
         next: () => {
-          this.miniMsg.onSuccessMsg('Event created');
-          this.editorForm.reset();
-          this.editorForm.patchValue({
-            type: this.types[0],
-            date: this.getDate(),
-            time: this.getTime(),
-          });
+          this.miniMsg.onSuccessMsg('Event updated');
         },
         error: () => {
-          this.miniMsg.onErrorMsg('Event not created');
+          this.miniMsg.onErrorMsg('Event did not update');
         },
       });
   }
