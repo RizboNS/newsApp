@@ -117,4 +117,9 @@ export class NewsService {
       this._domain + '/api/CalendarEvent/' + id
     );
   }
+  getCalenaarEventById(id: string): Observable<ApiResponse<CalendarEvent>> {
+    return this.http.get<ApiResponse<CalendarEvent>>(
+      this._domain + '/api/CalendarEvent/' + id
+    );
+  }
 }
