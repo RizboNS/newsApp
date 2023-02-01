@@ -20,6 +20,7 @@ import { DropDownComponent } from './ui/drop-down/drop-down.component';
     LoadingComponent,
     CalendarComponent,
     MiniMsgComponent,
+    DropDownComponent,
   ],
 })
 export class SharedModule {}

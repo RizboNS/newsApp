@@ -35,6 +35,14 @@
       <li>
         <a routerLink="">Live</a>
       </li>
+      <li>
+        <app-drop-down
+          [label]="testName"
+          [options]="testOptions"
+          [selectedOptionIndex]="0"
+          (onOptionSelectedIndexChange)="onOptionSelected($event)"
+        ></app-drop-down>
+      </li>
     </ul>
   </nav>
 </header>

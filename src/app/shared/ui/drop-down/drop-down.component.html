@@ -1,1 +1,15 @@
-<p>drop-down works!</p>
+<div class="drop-down-container">
+  <label class="drop-down-label" (click)="showOptionsToggle()">
+    {{ label }}
+  </label>
+  <ul class="drop-down-menu" [@dropDown]="showOptions ? 'open' : 'closed'">
+    <ng-container *ngFor="let option of options; let i = index">
+      <li
+        [class.active]="i === selectedOptionIndex"
+        (click)="onOptionSelected(i); showOptions = false"
+      >
+        {{ option }}
+      </li>
+    </ng-container>
+  </ul>
+</div>
