@@ -7,6 +7,7 @@ import {
 } from '@angular/animations';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { take } from 'rxjs';
 import { calendarTypes } from 'src/app/data/calendar-types';
 import { CalendarEventsByDay } from 'src/app/models/calendar-events-by-day.model';
 import { NewsService } from 'src/app/services/news.service';
@@ -78,7 +79,17 @@ export class CalendarComponent {
   }
   onDelete(event: any, id: string) {
     event.stopPropagation();
-    console.log('admin btn clicked');
+    this.newsService
+      .deleteCalendarEvent(id)
+      .pipe(take(1))
+      .subscribe({
+        next: (res) => {
+          this.getEventsFromApi();
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
   }
   onUpdate(event: any, id: string) {
     event.stopPropagation();
