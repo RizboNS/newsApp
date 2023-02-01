@@ -164,29 +164,24 @@
 .checked {
   transform: scale(1.1);
   border: transparent 2.5px solid;
-  animation: color-shake 0.7s ease-in-out;
+  animation: color-shake 0.3s ease-in-out;
 }
 
 @keyframes color-shake {
   0% {
     background-color: #ffb831;
-    color: #000;
   }
   25% {
     background-color: #ff0f00;
-    color: #333399;
   }
   50% {
     background-color: #cc0099;
-    color: #fff;
   }
   75% {
     background-color: #333399;
-    color: #ff0f00;
   }
   100% {
     background-color: #000;
-    color: #ffb831;
   }
 }
 
@@ -206,7 +201,7 @@
   font-size: 20px;
   background-color: #000000;
   width: 280px;
-  color: #e4e4e4;
+  color: #aba9a9;
   position: relative;
   border: none;
   outline: none;

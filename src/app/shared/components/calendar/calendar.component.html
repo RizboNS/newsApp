@@ -23,13 +23,18 @@
   </div>
   <nav class="calendar-nav">
     <button
-      class="calendar-nav-btn active"
+      class="calendar-nav-btn"
+      [ngClass]="selectedRoute === 'daily' ? 'active' : ''"
       (click)="onRouteChange(routePathDaily)"
     >
       <span class="arrow"></span>
       Dnevni Kalendar
     </button>
-    <button class="calendar-nav-btn" (click)="onRouteChange(routePathWeekly)">
+    <button
+      class="calendar-nav-btn"
+      [ngClass]="selectedRoute === 'weekly' ? 'active' : ''"
+      (click)="onRouteChange(routePathWeekly)"
+    >
       <span class="arrow"></span>Nedeljni Kalendar
     </button>
   </nav>
