@@ -1,0 +1,152 @@
+.submit-wrapper {
+  margin: 20px 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.submit-wrapper button {
+  width: 49%;
+}
+.title-wrapper input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.error-message {
+  color: red;
+}
+
+.input {
+width: 100%;
+padding: 10px;
+border: 1px solid #ccc;
+margin-bottom: 10px;
+}
+.type-wrapper select {
+width: 100%;
+padding: 10px;
+border: 1px solid #ccc;
+border-radius: 5px;
+}
+.type-wrapper option {
+padding: 10px;
+}
+
+.preview-bar {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 10px 0;
+}
+.label-as-btn-wrapper {
+display: inline-block;
+margin: 0.2rem;
+cursor: pointer;
+padding: 0.5rem 1rem;
+border: 1px solid #ccc;
+border-radius: 4px;
+background-color: #fff;
+color: #000;
+font-size: 1rem;
+font-weight: 500;
+transition: all 0.3s ease;
+}
+.label-as-btn-wrapper:hover {
+background-color: #e0e0e0;
+}
+.label-as-btn-wrapper:active {
+background-color: #bdbdbd;
+}
+.preview-wrapper {
+width: 100%;
+}
+
+.calendar-event {
+width: 100%;
+border-top: 1px dotted #dce7eb;
+}
+.calendar-event-header {
+display: flex;
+align-items: center;
+gap: 10px;
+cursor: pointer;
+font-size: 18px;
+line-height: 26px;
+letter-spacing: 1px;
+color: #e40041;
+padding: 10px 5px;
+position: relative;
+}
+.calendar-event-header:hover {
+background-color: #00000010;
+
+}
+.calendar-time {
+font-weight: 500;
+background-color: #e40041;
+color: #fff;
+padding: 5px;
+font-size: 14px;
+border-radius: 2px;
+}
+.event-body-wrapper {
+padding: 0;
+pointer-events: none;
+}
+.event-body-wrapper.open {
+pointer-events: auto;
+}
+.event-body-wrapper:hover {
+opacity: 0.8;
+}
+.event-body {
+padding: 10px 10px;
+}
+.calendar-arrow-wrapper {
+position: relative;
+width: 20px;
+height: 20px;
+}
+.calendar-arrow {
+position: absolute;
+transform: translate(-6px, 0);
+top: 50%;
+transform: translateY(-50%);
+}
+.calendar-arrow:before,
+.calendar-arrow:after {
+content: "";
+position: absolute;
+background-color: #e40041;
+width: 3px;
+height: 6px;
+}
+.calendar-arrow::before {
+transition-duration: 0.5s;
+left: 0;
+transform-origin: 0% 50%;
+}
+.calendar-arrow::after {
+transition-duration: 0.5s;
+right: 0;
+transform-origin: 100% 50%;
+}
+.calendar-arrow.up::before {
+transition-duration: 0.5s;
+transform: rotate(45deg);
+}
+.calendar-arrow.up::after {
+transition-duration: 0.5s;
+transform: rotate(-45deg);
+}
+.calendar-arrow.down::before {
+transition-duration: 0.5s;
+transform: rotate(-135deg);
+}
+.calendar-arrow.down::after {
+transition-duration: 0.5s;
+transform: rotate(135deg);
+}

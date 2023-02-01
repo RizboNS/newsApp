@@ -9,10 +9,15 @@ import { ManageTagsComponent } from './ui/manage-tags/manage-tags.component';
 import { AdminCreateCalendarEventComponent } from './pages/admin-create-calendar-event/admin-create-calendar-event.component';
 import { AdminEventsComponent } from './pages/admin-events/admin-events.component';
 import { AdminEventsWeeklyComponent } from './pages/admin-events-weekly/admin-events-weekly.component';
+import { AdminCalendarEventsUpdateComponent } from './pages/admin-calendar-events-update/admin-calendar-events-update.component';
 
 const routes: Routes = [
   { path: 'admin/events/weekly', component: AdminEventsWeeklyComponent },
   { path: 'admin/events', component: AdminEventsComponent },
+  {
+    path: 'admin/update-calendar-event/:id',
+    component: AdminCalendarEventsUpdateComponent,
+  },
   {
     path: 'admin/create-calendar-event',
     component: AdminCreateCalendarEventComponent,

@@ -17,6 +17,7 @@ import { AddTagsToStoryComponent } from './components/add-tags-to-story/add-tags
 import { AdminCreateCalendarEventComponent } from './pages/admin-create-calendar-event/admin-create-calendar-event.component';
 import { AdminEventsComponent } from './pages/admin-events/admin-events.component';
 import { AdminEventsWeeklyComponent } from './pages/admin-events-weekly/admin-events-weekly.component';
+import { AdminCalendarEventsUpdateComponent } from './pages/admin-calendar-events-update/admin-calendar-events-update.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { AdminEventsWeeklyComponent } from './pages/admin-events-weekly/admin-ev
     AdminCreateCalendarEventComponent,
     AdminEventsComponent,
     AdminEventsWeeklyComponent,
+    AdminCalendarEventsUpdateComponent,
   ],
   imports: [
     CommonModule,

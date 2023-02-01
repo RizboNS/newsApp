@@ -80,7 +80,8 @@ export class CalendarComponent {
   allMarked = true;
   constructor(
     private newsService: NewsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
   ngOnInit(): void {
     this.onRouteChange('');
@@ -103,7 +104,7 @@ export class CalendarComponent {
   }
   onUpdate(event: any, id: string) {
     event.stopPropagation();
-    console.log('admin btn clicked');
+    this.router.navigate(['admin/update-calendar-event', id]);
   }
   onRouteChange(routePath: string) {
     this.changeRoute.emit(routePath);

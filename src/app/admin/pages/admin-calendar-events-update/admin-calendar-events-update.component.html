@@ -1,0 +1,95 @@
+<form [formGroup]="editorForm" class="form-wrapper">
+  <div class="title-wrapper">
+    <h3>Title</h3>
+    <input
+      type="text"
+      class="input"
+      formControlName="title"
+      placeholder="Enter title"
+    />
+
+    <ng-container
+      *ngIf="
+        editorForm.controls['title'].touched &&
+        editorForm.controls['title'].value === ''
+      "
+    >
+      <div class="error-message">Title is required</div>
+    </ng-container>
+  </div>
+  <div class="type-wrapper">
+    <h3>Type</h3>
+    <select formControlName="type" (change)="onTypeChange()">
+      <option *ngFor="let type of types" [value]="type">
+        {{ type }}
+      </option>
+    </select>
+  </div>
+  <div class="datetime-picker-wrapper">
+    <h3>Set event date and time</h3>
+    <div class="datetime-picker">
+      <input
+        type="date"
+        formControlName="date"
+        class="input"
+        placeholder="Enter event date"
+      />
+      <input
+        type="time"
+        formControlName="time"
+        class="input"
+        placeholder="Enter event time"
+      />
+    </div>
+  </div>
+  <div class="editor-wrapper">
+    <h3>Editor</h3>
+    <quill-editor
+      #editor
+      [style]="editorStyle"
+      [modules]="quillConfig"
+      formControlName="htmlData"
+    >
+    </quill-editor>
+  </div>
+  <div class="preview-wrapper">
+    <div class="preview-bar">
+      <h3>Preview</h3>
+    </div>
+    <div class="preview-bar">
+      <div class="calendar-event">
+        <div class="calendar-event-header" (click)="flip()">
+          <div class="calendar-time">{{ editorForm.value.time }}</div>
+          <div class="calendar-title">
+            {{ editorForm.value.title }}
+          </div>
+          <span class="spacer"></span>
+          <div class="calendar-arrow-wrapper">
+            <i
+              class="calendar-arrow"
+              [ngClass]="{ up: flipped, down: !flipped }"
+            ></i>
+          </div>
+        </div>
+        <div
+          class="event-body-wrapper"
+          [@eventAnimationsState]="getEventState()"
+          [ngClass]="getEventState()"
+        >
+          <div class="event-body">
+            <div
+              class="ql-editor"
+              *ngIf="editorForm.value.htmlData"
+              [innerHTML]="editorForm.value.htmlData | sanitizeHtml"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="submit-wrapper">
+    <button class="btn-primary-gray">Cancel</button>
+    <button class="admin-btn-primary" (click)="onSubmit()">Submit</button>
+  </div>
+</form>
+<app-mini-msg></app-mini-msg>
