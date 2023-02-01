@@ -4,6 +4,7 @@ import { SanitizeHtmlPipe } from './pipes/sanitize-html.pipe';
 import { LoadingComponent } from './ui/loading/loading.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { MiniMsgComponent } from './ui/mini-msg/mini-msg.component';
+import { DropDownComponent } from './ui/drop-down/drop-down.component';
 
 @NgModule({
   declarations: [
@@ -11,6 +12,7 @@ import { MiniMsgComponent } from './ui/mini-msg/mini-msg.component';
     LoadingComponent,
     CalendarComponent,
     MiniMsgComponent,
+    DropDownComponent,
   ],
   imports: [CommonModule],
   exports: [
