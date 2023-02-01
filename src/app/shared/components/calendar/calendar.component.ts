@@ -5,12 +5,19 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { take } from 'rxjs';
 import { calendarTypes } from 'src/app/data/calendar-types';
 import { CalendarEventsByDay } from 'src/app/models/calendar-events-by-day.model';
 import { NewsService } from 'src/app/services/news.service';
+import { MiniMsgComponent } from '../../ui/mini-msg/mini-msg.component';
 
 @Component({
   animations: [
@@ -57,6 +64,7 @@ export class CalendarComponent {
 
   @Output() changeRoute: EventEmitter<string> = new EventEmitter<string>();
   @Input() urlLength: number = 1;
+  @ViewChild(MiniMsgComponent) miniMsg: any;
 
   routePathDaily = 'daily';
   routePathWeekly = 'weekly';
@@ -83,11 +91,13 @@ export class CalendarComponent {
       .deleteCalendarEvent(id)
       .pipe(take(1))
       .subscribe({
-        next: (res) => {
+        next: () => {
           this.getEventsFromApi();
+          this.arrowId = '';
+          this.miniMsg.onSuccessMsg('Event deleted successfully');
         },
-        error: (err) => {
-          console.log(err);
+        error: () => {
+          this.miniMsg.onErrorMsg('Error deleting event');
         },
       });
   }
@@ -358,6 +368,12 @@ export class CalendarComponent {
             this.calendarEvents.findIndex((d) => d.date === day.date) === -1
           ) {
             this.calendarEvents.push(day);
+          } else {
+            const index = this.calendarEvents.findIndex(
+              (d) => d.date === day.date
+            );
+            if (this.calendarEvents[index].events.length != day.events.length)
+              this.calendarEvents[index] = day;
           }
         });
 

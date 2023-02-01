@@ -112,4 +112,9 @@ export class NewsService {
       event
     );
   }
+  deleteCalendarEvent(id: string): Observable<ApiResponse<CalendarEvent>> {
+    return this.http.delete<ApiResponse<CalendarEvent>>(
+      this._domain + '/api/CalendarEvent/' + id
+    );
+  }
 }

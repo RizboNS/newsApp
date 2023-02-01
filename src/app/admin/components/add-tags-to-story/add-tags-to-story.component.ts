@@ -10,7 +10,7 @@ import {
 import { take, timeout } from 'rxjs';
 import { Tag } from 'src/app/models/tag.model';
 import { NewsService } from 'src/app/services/news.service';
-import { MiniMsgComponent } from '../../ui/mini-msg/mini-msg.component';
+import { MiniMsgComponent } from '../../../shared/ui/mini-msg/mini-msg.component';
 
 @Component({
   selector: 'app-add-tags-to-story',

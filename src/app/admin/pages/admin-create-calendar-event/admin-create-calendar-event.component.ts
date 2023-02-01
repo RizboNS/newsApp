@@ -11,7 +11,7 @@ import 'quill-divider';
 import { take } from 'rxjs';
 import { calendarTypes } from 'src/app/data/calendar-types';
 import { NewsService } from 'src/app/services/news.service';
-import { MiniMsgComponent } from '../../ui/mini-msg/mini-msg.component';
+import { MiniMsgComponent } from '../../../shared/ui/mini-msg/mini-msg.component';
 
 @Component({
   animations: [
@@ -86,7 +86,7 @@ export class AdminCreateCalendarEventComponent implements OnInit {
       .createCalendarEvent(event)
       .pipe(take(1))
       .subscribe({
-        next: (res) => {
+        next: () => {
           this.miniMsg.onSuccessMsg('Event created');
           this.editorForm.reset();
           this.editorForm.patchValue({
@@ -95,7 +95,7 @@ export class AdminCreateCalendarEventComponent implements OnInit {
             time: this.getTime(),
           });
         },
-        error: (err) => {
+        error: () => {
           this.miniMsg.onErrorMsg('Event not created');
         },
       });
