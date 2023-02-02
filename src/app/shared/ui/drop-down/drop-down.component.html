@@ -1,8 +1,13 @@
 <div class="drop-down-container">
-  <label class="drop-down-label" (click)="showOptionsToggle()">
+  <label class="drop-down-label" (click)="showOptionsToggle()" #dropDownLabel>
     {{ label }}
   </label>
-  <ul class="drop-down-menu" [@dropDown]="showOptions ? 'open' : 'closed'">
+  <ul
+    class="drop-down-menu"
+    [@eventAnimationsState]="getEventState()"
+    [ngClass]="getEventState()"
+    #dropDownMenu
+  >
     <ng-container *ngFor="let option of options; let i = index">
       <li
         [class.active]="i === selectedOptionIndex"

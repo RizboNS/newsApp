@@ -24,6 +24,9 @@
   background-color: #fff;
   z-index: 1;
 }
+.drop-down-menu.open {
+  pointer-events: auto;
+}
 ul {
   list-style: none;
   padding: 0;
