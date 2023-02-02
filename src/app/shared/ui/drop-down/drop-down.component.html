@@ -10,10 +10,12 @@
   >
     <ng-container *ngFor="let option of options; let i = index">
       <li
-        [class.active]="i === selectedOptionIndex"
         (click)="onOptionSelected(i); showOptions = false"
+        routerLinkActive="active"
       >
-        {{ option }}
+        <a [routerLink]="option.path" routerLinkActive="active">{{
+          option.name
+        }}</a>
       </li>
     </ng-container>
   </ul>
