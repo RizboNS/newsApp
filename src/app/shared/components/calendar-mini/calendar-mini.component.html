@@ -1,0 +1,40 @@
+<div class="calendar-container">
+  <ul class="calendar-body">
+    <ng-container *ngFor="let event of calendarEventsByDay.events">
+      <ng-container *ngIf="event.id">
+        <li class="calendar-event" *ngIf="event.display">
+          <div
+            class="calendar-event-header"
+            (click)="flip(event.id)"
+            [@fadeInOut]
+          >
+            <div class="calendar-time">{{ event.time }}</div>
+            <div class="calendar-title">
+              {{ event.title }}
+            </div>
+            <span class="spacer"></span>
+            <div class="calendar-arrow-wrapper">
+              <i
+                class="calendar-arrow"
+                [ngClass]="{
+                  up: arrowId !== event.id,
+                  down: arrowId === event.id
+                }"
+              ></i>
+            </div>
+          </div>
+          <div
+            class="event-body-wrapper"
+            [@eventAnimationsState]="getEventState(event.id)"
+            [ngClass]="getEventState(event.id)"
+          >
+            <div
+              class="event-body"
+              [innerHTML]="event.content | sanitizeHtml"
+            ></div>
+          </div>
+        </li>
+      </ng-container>
+    </ng-container>
+  </ul>
+</div>

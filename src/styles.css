@@ -131,9 +131,6 @@ p {
 }
 
 .banner-container {
-  width: 400px;
-  height: 900px;
-  background-color: #2e7d32;
   position: -webkit-sticky;
   position: sticky;
   top: 0;

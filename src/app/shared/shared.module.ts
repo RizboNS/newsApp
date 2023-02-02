@@ -6,6 +6,7 @@ import { CalendarComponent } from './components/calendar/calendar.component';
 import { MiniMsgComponent } from './ui/mini-msg/mini-msg.component';
 import { DropDownComponent } from './ui/drop-down/drop-down.component';
 import { RouterModule } from '@angular/router';
+import { CalendarMiniComponent } from './components/calendar-mini/calendar-mini.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { RouterModule } from '@angular/router';
     CalendarComponent,
     MiniMsgComponent,
     DropDownComponent,
+    CalendarMiniComponent,
   ],
   imports: [CommonModule, RouterModule],
   exports: [
@@ -22,6 +24,7 @@ import { RouterModule } from '@angular/router';
     CalendarComponent,
     MiniMsgComponent,
     DropDownComponent,
+    CalendarMiniComponent,
   ],
 })
 export class SharedModule {}
