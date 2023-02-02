@@ -59,9 +59,6 @@ export class DropDownComponent {
 
   @Input() label: string = '';
   @Input() options: Link[] = [];
-  @Input() selectedOptionIndex: number = 0;
-  @Output() onOptionSelectedIndexChange: EventEmitter<number> =
-    new EventEmitter<number>();
 
   showOptions = false;
 
@@ -71,9 +68,6 @@ export class DropDownComponent {
     return this.showOptions ? 'open' : 'closed';
   }
 
-  onOptionSelected(option: number) {
-    this.onOptionSelectedIndexChange.emit(option);
-  }
   showOptionsToggle() {
     this.showOptions = !this.showOptions;
   }

@@ -10,12 +10,10 @@
         >
       </li>
       <li>
-        <app-drop-down
-          [label]="story"
-          [options]="storyOptions"
-          [selectedOptionIndex]="0"
-          (onOptionSelectedIndexChange)="onOptionSelected($event)"
-        ></app-drop-down>
+        <app-drop-down [label]="story" [options]="storyOptions"></app-drop-down>
+      </li>
+      <li>
+        <app-drop-down [label]="story" [options]="storyOptions"></app-drop-down>
       </li>
       <li>
         <a routerLink="/admin/events" routerLinkActive="active"
