@@ -14,6 +14,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
+import { LinkContainer } from 'src/app/models/link-container.model';
 import { Link } from 'src/app/models/link.model';
 
 @Component({
@@ -58,7 +59,7 @@ export class DropDownComponent {
   }
 
   @Input() label: string = '';
-  @Input() options: Link[] = [];
+  @Input() options: LinkContainer = { label: '', links: [] };
 
   showOptions = false;
 

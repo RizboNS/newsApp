@@ -10,20 +10,10 @@
         >
       </li>
       <li>
-        <app-drop-down [label]="story" [options]="storyOptions"></app-drop-down>
+        <app-drop-down [options]="storyLinkOptions"></app-drop-down>
       </li>
       <li>
-        <app-drop-down [label]="story" [options]="storyOptions"></app-drop-down>
-      </li>
-      <li>
-        <a routerLink="/admin/events" routerLinkActive="active"
-          >Calendar Events</a
-        >
-      </li>
-      <li>
-        <a routerLink="/admin/create-calendar-event" routerLinkActive="active"
-          >Create Calendar Event</a
-        >
+        <app-drop-down [options]="calendarLinkOptions"></app-drop-down>
       </li>
       <li>
         <a routerLink="/admin/manage-tags" routerLinkActive="active"

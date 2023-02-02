@@ -1,6 +1,6 @@
 <div class="drop-down-container">
   <label class="drop-down-label" (click)="showOptionsToggle()" #dropDownLabel>
-    {{ label }}
+    {{ options.label }}
   </label>
   <ul
     class="drop-down-menu"
@@ -8,13 +8,13 @@
     [ngClass]="getEventState()"
     #dropDownMenu
   >
-    <ng-container *ngFor="let option of options; let i = index">
+    <ng-container *ngFor="let link of options.links; let i = index">
       <li routerLinkActive="active">
         <a
           (click)="showOptionsToggle()"
-          [routerLink]="option.path"
+          [routerLink]="link.path"
           routerLinkActive="active"
-          >{{ option.name }}</a
+          >{{ link.name }}</a
         >
       </li>
     </ng-container>

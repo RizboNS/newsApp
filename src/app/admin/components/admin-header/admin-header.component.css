@@ -21,6 +21,24 @@ a {
 .active {
   color: #671ee5;
 }
-a:hover {
-  color: #1e88e5;
+a {
+  display: block;
+  padding: 0.2rem 0.4rem;
+  margin: 0 0.2rem;
+  text-decoration: none;
+  color: #000;
+}
+a::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  background-color: #000;
+  transition: width 0.3s ease-in-out;
+}
+a:hover::after {
+  width: 100%;
+}
+.active {
+  color: #671ee5;
 }

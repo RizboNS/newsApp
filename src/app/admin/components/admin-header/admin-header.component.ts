@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LinkContainer } from 'src/app/models/link-container.model';
 import { Link } from 'src/app/models/link.model';
 
 @Component({
@@ -7,13 +8,18 @@ import { Link } from 'src/app/models/link.model';
   styleUrls: ['./admin-header.component.css'],
 })
 export class AdminHeaderComponent {
-  storyOptions: Link[] = [
-    { name: 'Create Story', path: '/admin/create-story' },
-    { name: 'List Stories', path: '/admin/stories' },
-  ];
-  story: string = 'Story';
-
-  onOptionSelected(option: number) {
-    console.log(option);
-  }
+  storyLinkOptions: LinkContainer = {
+    label: 'Story',
+    links: [
+      { name: 'Create Story', path: '/admin/create-story' },
+      { name: 'List Stories', path: '/admin/stories' },
+    ],
+  };
+  calendarLinkOptions: LinkContainer = {
+    label: 'Calendar',
+    links: [
+      { name: 'Create Calendar Event', path: '/admin/create-calendar-event' },
+      { name: 'List Calendar Events', path: '/admin/events' },
+    ],
+  };
 }
