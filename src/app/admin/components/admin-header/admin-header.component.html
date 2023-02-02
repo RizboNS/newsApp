@@ -10,12 +10,12 @@
         >
       </li>
       <li>
-        <a routerLink="/admin/stories" routerLinkActive="active">Stories</a>
-      </li>
-      <li>
-        <a routerLink="/admin/create-story" routerLinkActive="active"
-          >Create Story</a
-        >
+        <app-drop-down
+          [label]="story"
+          [options]="storyOptions"
+          [selectedOptionIndex]="0"
+          (onOptionSelectedIndexChange)="onOptionSelected($event)"
+        ></app-drop-down>
       </li>
       <li>
         <a routerLink="/admin/events" routerLinkActive="active"
@@ -34,14 +34,6 @@
       </li>
       <li>
         <a routerLink="">Live</a>
-      </li>
-      <li>
-        <app-drop-down
-          [label]="testName"
-          [options]="testOptions"
-          [selectedOptionIndex]="0"
-          (onOptionSelectedIndexChange)="onOptionSelected($event)"
-        ></app-drop-down>
       </li>
     </ul>
   </nav>

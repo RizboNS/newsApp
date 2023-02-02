@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Link } from 'src/app/models/link.model';
 
 @Component({
   selector: 'app-admin-header',
@@ -6,8 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./admin-header.component.css'],
 })
 export class AdminHeaderComponent {
-  testOptions: string[] = ['test1', 'test2', 'test3'];
-  testName: string = 'testName';
+  storyOptions: Link[] = [
+    { name: 'Create Story', path: '/admin/create-story' },
+    { name: 'List Stories', path: '/admin/stories' },
+  ];
+  story: string = 'Story';
 
   onOptionSelected(option: number) {
     console.log(option);

@@ -5,6 +5,7 @@ import { LoadingComponent } from './ui/loading/loading.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { MiniMsgComponent } from './ui/mini-msg/mini-msg.component';
 import { DropDownComponent } from './ui/drop-down/drop-down.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,7 @@ import { DropDownComponent } from './ui/drop-down/drop-down.component';
     MiniMsgComponent,
     DropDownComponent,
   ],
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   exports: [
     SanitizeHtmlPipe,
     LoadingComponent,

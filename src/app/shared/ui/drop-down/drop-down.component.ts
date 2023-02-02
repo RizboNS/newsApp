@@ -14,6 +14,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
+import { Link } from 'src/app/models/link.model';
 
 @Component({
   selector: 'app-drop-down',
@@ -57,7 +58,7 @@ export class DropDownComponent {
   }
 
   @Input() label: string = '';
-  @Input() options: string[] = [];
+  @Input() options: Link[] = [];
   @Input() selectedOptionIndex: number = 0;
   @Output() onOptionSelectedIndexChange: EventEmitter<number> =
     new EventEmitter<number>();
