@@ -62,9 +62,8 @@ export class CalendarMiniComponent implements OnInit {
   }
 
   flip(id: string) {
-    console.log('flip clicked');
-    // this.selectedEventId = id === this.selectedEventId ? '' : id;
-    // this.arrowId = id === this.arrowId ? '' : id;
+    this.selectedEventId = id === this.selectedEventId ? '' : id;
+    this.arrowId = id === this.arrowId ? '' : id;
   }
   getEventState(id: string) {
     return this.selectedEventId === id ? 'open' : 'closed';
