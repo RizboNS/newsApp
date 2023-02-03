@@ -1,14 +1,18 @@
 <div class="calendar-container">
   <div class="calendar-header">
-    <label class="calendar-header-label"> Kalendar dogadjaja </label>
-    <!-- a tag to route to calendar with icon of calendar -->
-    <a
-      class="calendar-header-button"
-      [routerLink]="['/kalendar']"
-      routerLinkActive="active"
-    >
-      <i class="fa-solid fa-calendar"></i>
-    </a>
+    <div class="btn-container">
+      <div class="arrow-right"></div>
+      <a
+        class="calendar-header-button"
+        [routerLink]="['/kalendar']"
+        title="Kalendar događaja"
+      >
+        <label class="calendar-header-label">Kalendar događaja</label>
+        <div class="calendar-icon">
+          <i class="fa-regular fa-calendar-days"></i>
+        </div>
+      </a>
+    </div>
   </div>
   <ul class="calendar-body">
     <ng-container *ngFor="let event of calendarEventsByDay.events">
