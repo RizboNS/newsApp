@@ -1,6 +1,14 @@
 <div class="calendar-container">
   <div class="calendar-header">
     <label class="calendar-header-label"> Kalendar dogadjaja </label>
+    <!-- a tag to route to calendar with icon of calendar -->
+    <a
+      class="calendar-header-button"
+      [routerLink]="['/kalendar']"
+      routerLinkActive="active"
+    >
+      <i class="fa-solid fa-calendar"></i>
+    </a>
   </div>
   <ul class="calendar-body">
     <ng-container *ngFor="let event of calendarEventsByDay.events">
