@@ -1,4 +1,7 @@
 <div class="calendar-container">
+  <div class="calendar-header">
+    <label class="calendar-header-label"> Kalendar dogadjaja </label>
+  </div>
   <ul class="calendar-body">
     <ng-container *ngFor="let event of calendarEventsByDay.events">
       <ng-container *ngIf="event.id">

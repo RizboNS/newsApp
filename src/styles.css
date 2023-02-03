@@ -118,7 +118,6 @@ p {
 .admin-btn-warn:active {
     background-color: #c62828;
 }
-/* Main Article */
 .article {
     margin: auto;
     max-width: 850px;
@@ -129,7 +128,12 @@ p {
     line-height: 1.5;
     margin-bottom: 20px;
 }
-
+.aside-container {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  width: 300px;
+}
 .banner-container {
   position: -webkit-sticky;
   position: sticky;
