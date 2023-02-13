@@ -13,7 +13,10 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        if (event.url.startsWith('/kalendar')) {
+        if (
+          event.url.startsWith('/kalendar') ||
+          event.url.startsWith('/admin')
+        ) {
           this.hideMiniCalendar = true;
         } else {
           this.hideMiniCalendar = false;
