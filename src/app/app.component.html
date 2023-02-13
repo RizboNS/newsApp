@@ -8,7 +8,7 @@
 <div class="content">
   <div class="banner-container"></div>
   <router-outlet></router-outlet>
-  <aside class="aside-container">
+  <aside class="aside-container" #asideContainer>
     <ng-container *ngIf="!hideMiniCalendar">
       <app-calendar-mini></app-calendar-mini>
     </ng-container>

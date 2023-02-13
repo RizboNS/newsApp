@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
@@ -9,6 +9,8 @@ import { NavigationEnd, Router } from '@angular/router';
 export class AppComponent implements OnInit {
   title = 'newsApp';
   hideMiniCalendar = false;
+  @ViewChild('asideContainer') asideContainer!: ElementRef;
+
   constructor(private router: Router) {}
   ngOnInit(): void {
     this.router.events.subscribe((event) => {
@@ -21,8 +23,12 @@ export class AppComponent implements OnInit {
         } else {
           this.hideMiniCalendar = false;
         }
+        console.log('kidsCount: ' + this.asideContainerKidsCount());
       }
     });
+  }
+  asideContainerKidsCount(): number {
+    return this.asideContainer.nativeElement.children.length;
   }
 
   isOnAdminRoute() {
