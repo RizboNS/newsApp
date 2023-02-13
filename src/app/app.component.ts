@@ -23,7 +23,13 @@ export class AppComponent implements OnInit {
         } else {
           this.hideMiniCalendar = false;
         }
-        console.log('kidsCount: ' + this.asideContainerKidsCount());
+        // check if the aside container has any children and if it does not change asideContaienr width to 0
+        if (this.asideContainerKidsCount() === 0) {
+          this.asideContainer.nativeElement.style.width = '0';
+        } else {
+          this.asideContainer.nativeElement.style.width = '300px';
+        }
+        //not working properly on revert
       }
     });
   }
