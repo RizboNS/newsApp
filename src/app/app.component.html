@@ -9,7 +9,9 @@
   <div class="banner-container"></div>
   <router-outlet></router-outlet>
   <aside class="aside-container">
-    <app-calendar-mini></app-calendar-mini>
+    <ng-container *ngIf="!hideMiniCalendar">
+      <app-calendar-mini></app-calendar-mini>
+    </ng-container>
   </aside>
 </div>
 <footer class="footer"></footer>

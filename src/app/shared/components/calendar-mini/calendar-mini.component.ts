@@ -6,6 +6,7 @@ import {
   trigger,
 } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { CalendarEventsByDay } from 'src/app/models/calendar-events-by-day.model';
 import { NewsService } from 'src/app/services/news.service';
 
