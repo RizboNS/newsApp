@@ -42,7 +42,7 @@ import { NewsService } from 'src/app/services/news.service';
   ],
 })
 export class CalendarMiniComponent implements OnInit {
-  private calendarEvents: CalendarEventsByDay[] = [];
+  calendarEvents: CalendarEventsByDay[] = [];
   calendarEventsByDay: CalendarEventsByDay = {
     date: '',
     events: [],

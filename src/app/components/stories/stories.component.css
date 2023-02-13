@@ -1,5 +1,11 @@
+.wrapper {
+  width: 640px;
+  /* box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2); */
+  padding: 20px;
+  /* border-radius: 5px; */
+}
 .paginated-container {
-  width: 600px;
+  /* width: 600px; */
   margin: auto;
   display: flex;
   flex-wrap: wrap;
@@ -108,7 +114,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 1rem auto;
+  margin: 1rem auto 0 0;
   padding: 0.5rem;
   border-bottom: 1px solid #E40042;
   border-top: #E40042 1px solid;
@@ -161,7 +167,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /* gap: 0.8rem; */
 }
 .article-info-sml .article-top-row {
   display: flex;

@@ -1,126 +1,131 @@
 <ng-container *ngIf="stories.get(pageSelected.toString())?.length">
-  <div class="paginated-container">
-    <article
-      class="story"
-      *ngFor="let story of stories.get(pageSelected.toString()); let i = index"
-      [routerLink]="['/vest/' + story.titleId]"
-    >
-      <div class="icon-container">
-        <app-carousel
-          class="carousel-ui"
-          [images]="story.imageDbs"
-        ></app-carousel>
-        <div class="title-container">
-          <ng-container *ngIf="i > 4">
-            <div class="article-info-sml">
-              <div class="article-top-row">
-                <div class="category">
-                  <p>
-                    <a [routerLink]="'/' + story.type">
-                      {{ story.typeDisplay }}
-                    </a>
-                    &gt;
-                    <a
-                      [routerLink]="
-                        '/kategorija/' +
-                        categoryMap
-                          .get(story.category)
-                          ?.toLowerCase()
-                          ?.replaceAll(' ', '-')
-                      "
-                    >
-                      {{ categoryMap.get(story.category) }}
-                    </a>
-                  </p>
+  <main class="wrapper">
+    <div class="paginated-container">
+      <article
+        class="story"
+        *ngFor="
+          let story of stories.get(pageSelected.toString());
+          let i = index
+        "
+        [routerLink]="['/vest/' + story.titleId]"
+      >
+        <div class="icon-container">
+          <app-carousel
+            class="carousel-ui"
+            [images]="story.imageDbs"
+          ></app-carousel>
+          <div class="title-container">
+            <ng-container *ngIf="i > 4">
+              <div class="article-info-sml">
+                <div class="article-top-row">
+                  <div class="category">
+                    <p>
+                      <a [routerLink]="'/' + story.type">
+                        {{ story.typeDisplay }}
+                      </a>
+                      &gt;
+                      <a
+                        [routerLink]="
+                          '/kategorija/' +
+                          categoryMap
+                            .get(story.category)
+                            ?.toLowerCase()
+                            ?.replaceAll(' ', '-')
+                        "
+                      >
+                        {{ categoryMap.get(story.category) }}
+                      </a>
+                    </p>
+                  </div>
+                  <div class="date">
+                    <p>
+                      {{ story.publishTime | date : "mediumDate" }}
+                    </p>
+                  </div>
                 </div>
-                <div class="date">
-                  <p>
-                    {{ story.publishTime | date : "mediumDate" }}
-                  </p>
+                <h3 class="title">{{ story.title }}</h3>
+                <div class="article-body">
+                  <p>{{ story.firstText }}</p>
                 </div>
               </div>
+            </ng-container>
+            <ng-container *ngIf="i < 5">
               <h3 class="title">{{ story.title }}</h3>
-              <div class="article-body">
-                <p>{{ story.firstText }}</p>
-              </div>
-            </div>
-          </ng-container>
-          <ng-container *ngIf="i < 5">
-            <h3 class="title">{{ story.title }}</h3>
-          </ng-container>
-        </div>
-      </div>
-      <ng-container *ngIf="i < 5">
-        <div class="article-info">
-          <div class="category">
-            <a [routerLink]="'/' + story.type">
-              {{ story.typeDisplay }}
-            </a>
-            &gt;
-            <a
-              [routerLink]="
-                '/kategorija/' +
-                categoryMap
-                  .get(story.category)
-                  ?.toLowerCase()
-                  ?.replaceAll(' ', '-')
-              "
-            >
-              {{ categoryMap.get(story.category) }}
-            </a>
-          </div>
-          <div class="date">
-            <p>
-              {{ story.publishTime | date : "mediumDate" }}
-            </p>
-          </div>
-        </div>
-        <div class="article-body-main">
-          <p>{{ story.firstText }}</p>
-        </div>
-        <ng-container *ngIf="story.tagNames && story.tagNames.length > 0">
-          <div class="tags">
-            <span class="arrow"></span>
-            <ng-container *ngFor="let tag of story.tagNames; let i = index">
-              <a [routerLink]="'/tag/' + tag">
-                <span class="tag">{{ tag }}</span>
-              </a>
-              <ng-container *ngIf="i != story.tagNames.length - 1">
-                <span class="divider">&nbsp;|&nbsp;</span>
-              </ng-container>
             </ng-container>
           </div>
+        </div>
+        <ng-container *ngIf="i < 5">
+          <div class="article-info">
+            <div class="category">
+              <a [routerLink]="'/' + story.type">
+                {{ story.typeDisplay }}
+              </a>
+              &gt;
+              <a
+                [routerLink]="
+                  '/kategorija/' +
+                  categoryMap
+                    .get(story.category)
+                    ?.toLowerCase()
+                    ?.replaceAll(' ', '-')
+                "
+              >
+                {{ categoryMap.get(story.category) }}
+              </a>
+            </div>
+            <div class="date">
+              <p>
+                {{ story.publishTime | date : "mediumDate" }}
+              </p>
+            </div>
+          </div>
+          <div class="article-body-main">
+            <p>{{ story.firstText }}</p>
+          </div>
+          <ng-container *ngIf="story.tagNames && story.tagNames.length > 0">
+            <div class="tags">
+              <span class="arrow"></span>
+              <ng-container *ngFor="let tag of story.tagNames; let i = index">
+                <a [routerLink]="'/tag/' + tag">
+                  <span class="tag">{{ tag }}</span>
+                </a>
+                <ng-container *ngIf="i != story.tagNames.length - 1">
+                  <span class="divider">&nbsp;|&nbsp;</span>
+                </ng-container>
+              </ng-container>
+            </div>
+          </ng-container>
         </ng-container>
-      </ng-container>
-    </article>
-  </div>
-  <div class="pagination-controls">
-    <button class="pagination-btn" (click)="pageSelectHandler(1)">
-      &lt;&lt;
-    </button>
-    <button
-      class="pagination-btn"
-      (click)="pageSelectHandler(pageSelected - 1)"
-    >
-      &lt;
-    </button>
-    <ng-container *ngFor="let page of pageRangeToShow; let i = index">
+      </article>
+    </div>
+    <div class="pagination-controls">
+      <button class="pagination-btn" (click)="pageSelectHandler(1)">
+        &lt;&lt;
+      </button>
       <button
         class="pagination-btn"
-        [ngClass]="{ active: pageSelected === page }"
-        (click)="pageSelectHandler(page)"
+        (click)="pageSelectHandler(pageSelected - 1)"
       >
-        {{ page }}
+        &lt;
       </button>
-    </ng-container>
-    <button
-      class="pagination-btn"
-      (click)="pageSelectHandler(pageSelected + 1)"
-    >
-      &gt;
-    </button>
-    <button class="pagination-btn" (click)="pageSelectHandler(pageCount)">
-      &gt;&gt;
-    </button>
-  </div>
+      <ng-container *ngFor="let page of pageRangeToShow; let i = index">
+        <button
+          class="pagination-btn"
+          [ngClass]="{ active: pageSelected === page }"
+          (click)="pageSelectHandler(page)"
+        >
+          {{ page }}
+        </button>
+      </ng-container>
+      <button
+        class="pagination-btn"
+        (click)="pageSelectHandler(pageSelected + 1)"
+      >
+        &gt;
+      </button>
+      <button class="pagination-btn" (click)="pageSelectHandler(pageCount)">
+        &gt;&gt;
+      </button>
+    </div>
+  </main>
 </ng-container>
